@@ -11,13 +11,24 @@ def create_tables(connection):
     cursor = connection.cursor()
     
     cursor.execute('''
+        CREATE TABLE IF NOT EXISTS accounts (
+            accountno TEXT PRIMARY KEY,
+            balance REAL NOT NULL,
+            type TEXT NOT NULL,
+            interest_rate REAL DEFAULT 0,
+            reference TEXT
+        );            
+    ''')
+    
+    cursor.execute('''
        CREATE TABLE IF NOT EXISTS transactions (
            id INTEGER PRIMARY KEY AUTOINCREMENT,
            accountno TEXT NOT NULL,
            ref TEXT NOT NULL,
            val REAL NOT NULL,
            time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-           category TEXT
+           category TEXT,
+           FOREIGN KEY(accountno) REFERENCES accounts(accountno)
        );    
     ''')
     
@@ -28,11 +39,12 @@ def create_tables(connection):
 def init_db(connection):
     reset_db(connection)
     create_tables(connection)
-    add_file_data(connection, "../sample/sample_data.csv")
+    add_file_account_data(connection, "../sample/sample_account_data.csv")
+    add_file_transaction_data(connection, "../sample/sample_transaction_data.csv") #TODO uncomment
     
 
-'''Adds data from a csv file specified by filename from the sample folder'''
-def add_file_data(connection, filepath):
+'''Adds transaction data from a csv file specified by filepath'''
+def add_file_transaction_data(connection, filepath):
     transactions = []
     with open(filepath, "r") as file1:
         for line in file1:
@@ -43,8 +55,26 @@ def add_file_data(connection, filepath):
     cursor = connection.cursor()
     cursor.executemany('''
         INSERT INTO transactions (accountno, ref, val, time, category)
-        VALUES (?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?);
     ''', transactions)
+    connection.commit()
+    cursor.close()
+
+'''Adds account data from a csv file specified by filepath'''
+def add_file_account_data(connection, filepath):
+    accounts = []
+    with open(filepath, "r") as file1:
+        for line in file1:
+            data = line.strip().split(",")
+            accounts.append((data[0], float(data[1]), data[2], float(data[3]), data[4]))
+        cursor = connection.cursor()
+    cursor.executemany('''
+        INSERT INTO accounts (accountno, balance, type, interest_rate, reference)
+        VALUES (?, ?, ?, ?, ?);
+    ''', accounts)
+    connection.commit()
+    cursor.close()
+    
 
 '''Adds the data from a transaction object to the database'''
 def add_transaction(connection, transaction):
@@ -53,7 +83,17 @@ def add_transaction(connection, transaction):
        INSERT INTO transactions (accountno, ref, val, time, category)
        VALUES (?, ?, ?, ?, ?)
     ''', (transaction.accountno, transaction.ref, transaction.value, transaction.time, transaction.category))
-    cursor.commit()
+    connection.commit()
+    cursor.close()
+
+'''Adds the data from an account object to the database'''
+def add_account(connection, account):
+    cursor = connection.cursor()
+    cursor('''
+        INSERT INTO accounts (accountno, balance, type, interest_rate, reference)
+        VALUES (?, ?, ?, ?, ?);
+    ''', account.accountno, account.balance, account.type, account.interest_rate, account.reference)
+    connection.commit()
     cursor.close()
 
 '''Removes all tables and recreates them'''
