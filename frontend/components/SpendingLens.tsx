@@ -3,10 +3,11 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaExclamationTriangle } from "react-icons/fa";
+import { motion } from "framer-motion";
 import * as d3 from "d3";
-import "./spendingLens.css"; // Import the separate CSS file
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import "./spendingLens.css";
 
 interface ICategoryData {
     category: string;
@@ -22,336 +23,118 @@ interface BubbleData extends ICategoryData {
     radius: number;
     x: number;
     y: number;
+    isSelected: boolean;
 }
 
 const SpendingLens: React.FC<ISpendingLensProps> = ({
     categories,
     onFilterChange,
 }) => {
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(
-        categories.map((cat) => cat.category)
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(
+        null
     );
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
     const [bubbles, setBubbles] = useState<BubbleData[]>([]);
     const svgRef = useRef<SVGSVGElement | null>(null);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
-    // Calculate total spending to determine proportions
-    const totalSpending = categories.reduce(
-        (total, cat) => total + cat.amount,
-        0
-    );
-
-    // Define a threshold for unusual spending (e.g., top 10% spenders)
-    const thresholdAmount =
-        categories.length > 0
-            ? d3.quantile(
-                  categories.map((cat) => cat.amount).sort(d3.ascending),
-                  0.9
-              ) || 0
-            : 0;
-
-    // Initialize bubbles with radius based on amount
+    // Initialize bubbles with radius based on amount and setup a force simulation
     useEffect(() => {
-        const logScale = d3
-            .scaleSqrt()
-            .domain([1, d3.max(categories, (d) => d.amount)!])
-            .range([30, 80]);
+        const maxAmount = d3.max(categories, (d) => d.amount) || 1;
+        const logScale = d3.scaleSqrt().domain([1, maxAmount]).range([30, 80]);
 
         const initialBubbles: BubbleData[] = categories.map((cat) => ({
             ...cat,
             radius: logScale(cat.amount),
-            x: Math.random() * 800, // Initial random positions
-            y: Math.random() * 600,
+            x: Math.random() * 600,
+            y: Math.random() * 400,
+            isSelected: false,
         }));
 
-        setBubbles(initialBubbles);
-    }, [categories]);
+        const containerWidth = containerRef.current?.offsetWidth || 800;
+        const containerHeight = containerRef.current?.offsetHeight || 400;
 
-    // Set up D3 force simulation
-    useEffect(() => {
-        if (bubbles.length === 0) return;
-
+        // Use D3 force simulation to prevent bubbles from overlapping
         const simulation = d3
-            .forceSimulation<BubbleData>(bubbles)
-            .force("charge", d3.forceManyBody().strength(5))
-            .force("center", d3.forceCenter(400, 300))
+            .forceSimulation(initialBubbles)
+            .force("x", d3.forceX(containerWidth / 2).strength(0.05))
+            .force("y", d3.forceY(containerHeight / 2).strength(0.05))
             .force(
                 "collision",
-                d3.forceCollide().radius((d) => d.radius + 2)
+                d3.forceCollide<BubbleData>().radius((d) => d.radius + 5)
             )
             .on("tick", () => {
-                setBubbles([...bubbles]);
+                setBubbles([...simulation.nodes()]);
             });
+
+        simulation.alpha(0.5).restart();
 
         return () => {
             simulation.stop();
         };
-    }, [bubbles]);
+    }, [categories]);
 
     const handleCategoryToggle = (category: string) => {
-        let updatedCategories: string[];
-        if (selectedCategories.includes(category)) {
-            updatedCategories = selectedCategories.filter(
-                (cat) => cat !== category
-            );
-        } else {
-            updatedCategories = [...selectedCategories, category];
-        }
-        setSelectedCategories(updatedCategories);
-        onFilterChange(updatedCategories);
+        const updatedCategory = selectedCategory === category ? null : category;
+        setSelectedCategory(updatedCategory);
+
+        const updatedBubbles = bubbles.map((bubble) => ({
+            ...bubble,
+            isSelected: bubble.category === updatedCategory,
+        }));
+
+        setBubbles(updatedBubbles);
+        onFilterChange(updatedCategory ? [updatedCategory] : []);
     };
 
-    // Bubble Size Scaling: Already handled by radius in D3
-    // Log scale ensures better handling of large ranges
-
     return (
-        <>
-            {/* Spending Lens Container */}
-            <div className="spending-lens">
-                <h2 className="spending-lens-title">Spending Lens</h2>
-                <div className="bubble-container">
-                    <svg ref={svgRef} className="bubble-svg">
-                        {bubbles.map((cat, index) => {
-                            const isSelected = selectedCategories.includes(
-                                cat.category
-                            );
-                            const isUnusual = cat.amount > thresholdAmount;
-
-                            return (
-                                <motion.g
-                                    key={`${cat.category}-${index}`}
-                                    initial={{ opacity: 0, scale: 0.5 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    <motion.circle
-                                        cx={cat.x}
-                                        cy={cat.y}
-                                        r={cat.radius}
-                                        fill={isUnusual ? "#f87171" : "#3b82f6"} // Red for unusual, Blue otherwise
-                                        stroke={
-                                            isSelected ? "#2563eb" : "#ffffff"
-                                        }
-                                        strokeWidth={isSelected ? 4 : 2}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() =>
-                                            handleCategoryToggle(cat.category)
-                                        }
-                                        tabIndex={0}
-                                        role="button"
-                                        aria-pressed={isSelected}
-                                        aria-label={`Toggle category ${cat.category}`}
-                                        onKeyDown={(e) => {
-                                            if (
-                                                e.key === "Enter" ||
-                                                e.key === " "
-                                            ) {
-                                                handleCategoryToggle(
-                                                    cat.category
-                                                );
-                                            }
-                                        }}
-                                    />
-                                    <text
-                                        x={cat.x}
-                                        y={cat.y}
-                                        textAnchor="middle"
-                                        alignmentBaseline="middle"
-                                        className="bubble-text"
-                                        fill={isUnusual ? "#ffffff" : "#ffffff"}
-                                    >
-                                        {cat.category}
-                                    </text>
-                                    {isUnusual && (
-                                        <FaExclamationTriangle
-                                            className="indicator-icon"
-                                            style={{
-                                                position: "absolute",
-                                                left: cat.x + cat.radius - 10,
-                                                top: cat.y - cat.radius - 10,
-                                                color: "#ffeb3b",
-                                                fontSize: "18px",
-                                                pointerEvents: "none",
-                                            }}
-                                        />
-                                    )}
-                                </motion.g>
-                            );
-                        })}
-                    </svg>
-                </div>
-            </div>
-
-            {/* Expandable Modal */}
-            <AnimatePresence>
-                {isExpanded && (
-                    <>
-                        {/* Overlay */}
-                        <motion.div
-                            className="modal-overlay"
-                            onClick={() => setIsExpanded(false)}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        />
-
-                        {/* Modal Content */}
-                        <motion.div
-                            className="modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
+        <div className="spending-lens" ref={containerRef}>
+            <h2 className="spending-lens-title">Spending Lens</h2>
+            <div className="bubble-container">
+                <svg ref={svgRef} className="bubble-svg">
+                    {bubbles.map((cat, index) => (
+                        <motion.g
+                            key={`${cat.category}-${index}`}
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}
                         >
-                            <motion.div
-                                className="modal-inner"
-                                initial={{ y: -50 }}
-                                animate={{ y: 0 }}
-                                exit={{ y: 50 }}
-                                transition={{ duration: 0.3 }}
+                            <motion.circle
+                                cx={cat.x}
+                                cy={cat.y}
+                                r={
+                                    cat.isSelected
+                                        ? cat.radius * 1.2
+                                        : cat.radius
+                                }
+                                fill={cat.isSelected ? "#2563eb" : "#60a5fa"}
+                                stroke="#ffffff"
+                                strokeWidth={2}
+                                opacity={0.8}
+                                whileHover={{ scale: 1.1 }}
+                                onClick={() =>
+                                    handleCategoryToggle(cat.category)
+                                }
+                                data-tooltip-id={`tooltip-${index}`}
+                                data-tooltip-content={`$${cat.amount.toFixed(
+                                    2
+                                )}`}
+                            />
+                            <text
+                                x={cat.x}
+                                y={cat.y}
+                                textAnchor="middle"
+                                alignmentBaseline="middle"
+                                className="bubble-text"
+                                fill="#ffffff"
                             >
-                                {/* Close Button */}
-                                <button
-                                    className="modal-close-button"
-                                    onClick={() => setIsExpanded(false)}
-                                    aria-label="Close Spending Lens"
-                                >
-                                    &times;
-                                </button>
-
-                                {/* Expanded Spending Lens */}
-                                <h2 className="modal-title">
-                                    Spending Lens - Expanded View
-                                </h2>
-                                <div className="bubble-container-expanded">
-                                    <svg className="bubble-svg-expanded">
-                                        {bubbles.map((cat, index) => {
-                                            const isSelected =
-                                                selectedCategories.includes(
-                                                    cat.category
-                                                );
-                                            const isUnusual =
-                                                cat.amount > thresholdAmount;
-
-                                            return (
-                                                <motion.g
-                                                    key={`${cat.category}-expanded-${index}`}
-                                                    initial={{
-                                                        opacity: 0,
-                                                        scale: 0.5,
-                                                    }}
-                                                    animate={{
-                                                        opacity: 1,
-                                                        scale: 1,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <motion.circle
-                                                        cx={cat.x}
-                                                        cy={cat.y}
-                                                        r={cat.radius}
-                                                        fill={
-                                                            isUnusual
-                                                                ? "#f87171"
-                                                                : "#3b82f6"
-                                                        } // Red for unusual, Blue otherwise
-                                                        stroke={
-                                                            isSelected
-                                                                ? "#2563eb"
-                                                                : "#ffffff"
-                                                        }
-                                                        strokeWidth={
-                                                            isSelected ? 4 : 2
-                                                        }
-                                                        whileHover={{
-                                                            scale: 1.05,
-                                                        }}
-                                                        whileTap={{
-                                                            scale: 0.95,
-                                                        }}
-                                                        onClick={() =>
-                                                            handleCategoryToggle(
-                                                                cat.category
-                                                            )
-                                                        }
-                                                        tabIndex={0}
-                                                        role="button"
-                                                        aria-pressed={
-                                                            isSelected
-                                                        }
-                                                        aria-label={`Toggle category ${cat.category}`}
-                                                        onKeyDown={(e) => {
-                                                            if (
-                                                                e.key ===
-                                                                    "Enter" ||
-                                                                e.key === " "
-                                                            ) {
-                                                                handleCategoryToggle(
-                                                                    cat.category
-                                                                );
-                                                            }
-                                                        }}
-                                                    />
-                                                    <text
-                                                        x={cat.x}
-                                                        y={cat.y}
-                                                        textAnchor="middle"
-                                                        alignmentBaseline="middle"
-                                                        className="bubble-text"
-                                                        fill={
-                                                            isUnusual
-                                                                ? "#ffffff"
-                                                                : "#ffffff"
-                                                        }
-                                                    >
-                                                        {cat.category}
-                                                    </text>
-                                                    {isUnusual && (
-                                                        <FaExclamationTriangle
-                                                            className="indicator-icon"
-                                                            style={{
-                                                                position:
-                                                                    "absolute",
-                                                                left:
-                                                                    cat.x +
-                                                                    cat.radius -
-                                                                    10,
-                                                                top:
-                                                                    cat.y -
-                                                                    cat.radius -
-                                                                    10,
-                                                                color: "#ffeb3b",
-                                                                fontSize:
-                                                                    "18px",
-                                                                pointerEvents:
-                                                                    "none",
-                                                            }}
-                                                        />
-                                                    )}
-                                                </motion.g>
-                                            );
-                                        })}
-                                    </svg>
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-
-            {/* Expand Button */}
-            <div className="expand-button-container">
-                <button
-                    className="expand-button"
-                    onClick={() => setIsExpanded(true)}
-                >
-                    Expand Spending Lens
-                </button>
+                                {cat.category}
+                            </text>
+                            <Tooltip id={`tooltip-${index}`} />
+                        </motion.g>
+                    ))}
+                </svg>
             </div>
-        </>
+        </div>
     );
 };
 

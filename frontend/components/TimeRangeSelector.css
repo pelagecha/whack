@@ -1,0 +1,47 @@
+.time-range-selector {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.months-container {
+    display: flex;
+    position: relative;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.month {
+    min-width: 100px;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.month.active {
+    background-color: #e0f7fa;
+}
+
+.range-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: #00796b;
+    cursor: ew-resize;
+    z-index: 10;
+}
+
+.left-handle {
+    left: 0;
+}
+
+.right-handle {
+    right: 0;
+}
