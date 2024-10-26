@@ -5,8 +5,10 @@ from datetime import datetime
 import uvicorn
 import uuid
 from processors.image_classification import classify_image
+from database import create_connection, DATABASE_FILE, get_account_transactions#, add_file_account_data, add_transaction
 
 app = FastAPI()
+database_connection = None
 
 # Configure CORS
 app.add_middleware(
@@ -19,6 +21,18 @@ app.add_middleware(
 
 # In-memory storage for sessions (use a database for production)
 data_storage = {}
+
+#Connect to the database on app startup
+@app.on_event("startup")
+def start_db():
+    global database_connection
+    database_connection = create_connection(f'database{DATABASE_FILE}')
+
+#Close database connection on shutdown
+@app.on_event("shutdown")
+def close_db():
+    if database_connection:
+        database_connection.close()
 
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
