@@ -6,14 +6,15 @@ const FileUpload = ({
 }: {
     onFileUpload: (file: File) => void;
 }) => {
-    const [file, setFile] = useState<File | null>(null);
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            setFile(e.target.files[0]);
-            onFileUpload(e.target.files[0]);
+            const file = e.target.files[0];
+            if (file) {
+                onFileUpload(file);
+            }
         }
     };
 
@@ -33,7 +34,6 @@ const FileUpload = ({
             e.stopPropagation();
             setDragActive(false);
             if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-                setFile(e.dataTransfer.files[0]);
                 onFileUpload(e.dataTransfer.files[0]);
             }
         },
