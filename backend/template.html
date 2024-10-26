@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <html>
+        <body>
+        <div class="content" style="display: block; Margin: 0 auto; max-width: 1000px; padding: 10px; min-width: 320px; background-color: #DCDFE8;">
+            <div class="box" style="padding: 20px 40px;">
+                <h1 class="Hi" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:#203BB6;">Hi <span id="username"></span>, this is your weekly summary...</h1>
+            </div>
+            <br>
+            <div class="box" style="padding: 10px; text-align: center;">
+                <h2 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Your Total Expense this Week</h1>
+                <h3 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><span id=expensethisweek></span></h1> 
+                <h4 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">This is <span id="percentexpensemore"></span>% <span id="moreless"></span> than Last Week</h1>  
+            </div>
+            <div class="box" style="padding: 10px; text-align: center;">
+                <h2 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Your Highest Expense Category this Week</h1>
+                <h3 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><span id="expensethisweekcategory"></span></h1>   
+            </div>
+            <div class="box" style="padding: 10px; text-align: center;">
+                <h2 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Your Total Expense this Month</h1>
+                <h3 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><span id="expensethismonth"></span></h1> 
+                <h4 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">This is <span id="percentexpensemoremonth"></span>% <span id="morelessmonth"></span> than Last Month</h1>  
+            </div>
+            <div class="box" style="padding: 10px; text-align: center;">
+                <h2 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Your Highest Expense Category this Month</h1>
+                <h3 class="Hi" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"><span id="expensethismonthcategory"></span></h1>   
+            </div>    
+        </div>
+
+        <script>
+            // Edit to include the right data
+            document.getElementById("username").innerHTML = "Username";
+            document.getElementById("expensethisweek").innerHTML = "ExpenseWeek";
+            document.getElementById("percentexpensemore").innerHTML = "%ExpenseWeek";
+            document.getElementById("moreless").innerHTML = "more/less";
+            document.getElementById("expensethisweekcategory").innerHTML = "ExpenseWeekCategory";
+            document.getElementById("expensethismonth").innerHTML = "ExpenseMonth";
+            document.getElementById("percentexpensemoremonth").innerHTML = "%ExpenseMonth";
+            document.getElementById("morelessmonth").innerHTML = "more/less";
+            document.getElementById("expensethismonthcategory").innerHTML = "ExpenseWeekCategory";
+        </script>
+    </body>
+</html>

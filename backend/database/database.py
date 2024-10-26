@@ -39,8 +39,8 @@ def create_tables(connection):
 def init_db(connection):
     reset_db(connection)
     create_tables(connection)
-    add_file_account_data(connection, "../sample/sample_account_data.csv")
-    add_file_transaction_data(connection, "../sample/sample_transaction_data.csv")
+    add_file_account_data(connection, "./sample/sample_account_data.csv")
+    add_file_transaction_data(connection, "./sample/sample_transaction_data.csv")
     
 
 '''Adds transaction data from a csv file specified by filepath'''
@@ -124,6 +124,9 @@ def reset_db(connection):
     cursor.execute('''
         DROP TABLE IF EXISTS transactions;
     ''')
+    cursor.execute('''
+        DROP TABLE IF EXISTS accounts;               
+    ''')
     connection.commit()
     cursor.close()
     
@@ -135,6 +138,17 @@ def get_account_transactions(connection, accountno):
         FROM transactions
         WHERE accountno = ?;
     ''', accountno)
+    records = cursor.fetchall()
+    cursor.close()
+    return records
+
+'''Testing method that gets all transaction data''' #TODO remove
+def get_all_transaction_data(connection):
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT *
+        FROM transactions;               
+    ''')
     records = cursor.fetchall()
     cursor.close()
     return records
