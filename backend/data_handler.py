@@ -1,12 +1,10 @@
-# data/data_handler.py
-
 import pandas as pd
 
-def load_data(csv_file):
+def load_data(file):
     """
     Loads the bank statement CSV file into a Pandas DataFrame.
     """
-    df = pd.read_csv(csv_file, parse_dates=['Date'])
+    df = pd.read_csv(file, parse_dates=['Date'])
     return df
 
 def get_categories(df):
@@ -27,3 +25,9 @@ def filter_data(df, start_date=None, end_date=None, categories=None):
     if categories:
         filtered_df = filtered_df[filtered_df['Category'].isin(categories)]
     return filtered_df
+
+def to_json(df):
+    """
+    Converts DataFrame to JSON.
+    """
+    return df.to_dict(orient='records')
