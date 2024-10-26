@@ -244,8 +244,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+#Frontend next things
+frontend/.next
+frontend/node_modules
 
-
-frontend/.next/
-frontend/node_modules/
-
+#Database
+backend/database/finance.db
