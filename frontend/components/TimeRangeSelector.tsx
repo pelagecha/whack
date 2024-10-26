@@ -135,6 +135,7 @@ const TimeRangeSelector: React.FC = () => {
                 }}
                 drag="x"
                 dragElastic={0}
+                dragConstraints={{ left: 0, right: 0 }} // Remove inertia by constraining drag
                 onDrag={handleDrag}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
