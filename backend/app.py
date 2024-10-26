@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from data_handler import load_data, get_categories, filter_data, to_json
 from datetime import datetime
@@ -32,10 +32,10 @@ async def upload_file(file: UploadFile = File(...)):
 
 @app.post("/filter")
 async def filter_data_endpoint(
-    session_id: str = Form(...),
-    start_date: str = Form(None),
-    end_date: str = Form(None),
-    categories: str = Form(None)
+    session_id: str,
+    start_date: str = None,
+    end_date: str = None,
+    categories: str = None
 ):
     """
     Endpoint to filter data based on session, date range, and categories.
@@ -44,11 +44,9 @@ async def filter_data_endpoint(
     if df is None:
         return {"error": "Session not found"}
     
-    # Parse dates
+    # Parse dates and categories
     start_date_parsed = datetime.strptime(start_date, "%Y-%m-%d") if start_date else None
     end_date_parsed = datetime.strptime(end_date, "%Y-%m-%d") if end_date else None
-    
-    # Parse categories
     categories_list = categories.split(",") if categories else None
     
     # Filter data
