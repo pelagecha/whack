@@ -1,5 +1,3 @@
-// frontend/pages/index.tsx
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,6 +5,9 @@ import FileUpload from "../components/FileUpload";
 import SpendingGraph from "../components/SpendingGraph";
 import SpendingLens from "../components/SpendingLens";
 import TimeRangeSelector from "./TimeRangeSelector";
+import { registerUser, loginUser, getUserData } from "../services/authService";
+import Header from "../components/Header";
+import InfoTiles from "../components/InfoTiles";
 
 interface Transaction {
     id: string;
@@ -27,6 +28,19 @@ export default function HomePage() {
     const [balance, setBalance] = useState<number>(0);
     const [totalSpending, setTotalSpending] = useState<number>(0);
     const [spendingIncrease, setSpendingIncrease] = useState<number>(0);
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const userData = await getUserData();
+            if (userData && userData.success) {
+                setUser(userData.user);
+                setData(userData.user.transactions || []);
+                setFilteredData(userData.user.transactions || []);
+            }
+        };
+        fetchUserData();
+    }, []);
 
     useEffect(() => {
         const categoryMap: { [key: string]: number } = {};
@@ -52,7 +66,6 @@ export default function HomePage() {
         setCategoriesData(categories);
         setTotalSpending(totalSpent);
 
-        // Assuming balance calculation based on transactions
         const income = data
             .filter((transaction) => transaction.amount > 0)
             .reduce((acc, transaction) => acc + transaction.amount, 0);
@@ -63,7 +76,6 @@ export default function HomePage() {
     }, [data]);
 
     useEffect(() => {
-        // Calculate spending increase (This is a placeholder logic)
         if (filteredData.length > 0) {
             const firstHalf = filteredData.slice(
                 0,
@@ -117,7 +129,7 @@ export default function HomePage() {
                     } => entry !== null
                 );
             setData(parsedData);
-            setFilteredData(parsedData); // Initialize filteredData with all data
+            setFilteredData(parsedData);
         };
         reader.readAsText(file);
     };
@@ -140,64 +152,48 @@ export default function HomePage() {
         setFilteredData(updatedData);
     };
 
+    const handleRegister = async (username: string, password: string) => {
+        const response = await registerUser(username, password);
+        if (response.success) {
+            alert("Registration successful. Please log in.");
+        } else {
+            alert("Registration failed: " + response.message);
+        }
+    };
+
+    const handleLogin = async (username: string, password: string) => {
+        const response = await loginUser(username, password);
+        if (response.success) {
+            setUser(response.user);
+            setData(response.user.transactions || []);
+            setFilteredData(response.user.transactions || []);
+        } else {
+            alert("Login failed: " + response.message);
+        }
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            {/* Header */}
-            <header className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 shadow-lg">
-                <div className="container mx-auto flex justify-between items-center">
-                    <h1 className="text-4xl font-extrabold">Capital</h1>
-                    {/* Optional: Add Navigation Links Here */}
-                </div>
-            </header>
+            <Header
+                user={user}
+                onRegister={() => handleRegister("testUser", "password123")}
+                onLogin={() => handleLogin("testUser", "password123")}
+            />
 
-            {/* Main Content */}
             <main className="flex-grow container mx-auto p-8">
-                {/* Dashboard Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-                        <h2 className="text-2xl font-bold text-gray-700">
-                            Current Balance
-                        </h2>
-                        <p className="text-3xl text-green-600 font-extrabold mt-4">
-                            ${balance.toFixed(2)}
-                        </p>
-                    </div>
-                    <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-                        <h2 className="text-2xl font-bold text-gray-700">
-                            Total Spending
-                        </h2>
-                        <p className="text-3xl text-red-600 font-extrabold mt-4">
-                            ${totalSpending.toFixed(2)}
-                        </p>
-                    </div>
-                    <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-                        <h2 className="text-2xl font-bold text-gray-700">
-                            Spending Increase
-                        </h2>
-                        <p className="text-3xl text-yellow-500 font-extrabold mt-4">
-                            {spendingIncrease.toFixed(2)}%
-                        </p>
-                    </div>
-                    <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-                        <h2 className="text-2xl font-bold text-gray-700">
-                            Transactions Count
-                        </h2>
-                        <p className="text-3xl text-blue-600 font-extrabold mt-4">
-                            {data.length}
-                        </p>
-                    </div>
-                </div>
+                <InfoTiles
+                    balance={balance}
+                    totalSpending={totalSpending}
+                    spendingIncrease={spendingIncrease}
+                    transactionCount={data ? data.length : 0} // Add null/undefined check
+                />
 
-                {/* Time Range Selector */}
                 <div className="mb-8">
-                    <TimeRangeSelector
-                        onTimeRangeChange={handleTimeRangeChange}
-                    />
+                    <TimeRangeSelector onChange={handleTimeRangeChange} />
                 </div>
 
                 {filteredData.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* Spending Lens Card */}
                         <div className="bg-white rounded-xl shadow-lg p-8">
                             <SpendingLens
                                 categories={categoriesData}
@@ -205,7 +201,6 @@ export default function HomePage() {
                             />
                         </div>
 
-                        {/* Spending Graph Card */}
                         <div className="bg-white rounded-xl shadow-lg p-8">
                             <SpendingGraph data={filteredData} />
                         </div>
@@ -223,7 +218,6 @@ export default function HomePage() {
                 )}
             </main>
 
-            {/* Footer */}
             <footer className="bg-gray-900 text-white p-4 text-center">
                 <p>&copy; 2024 Clean my Credit. All rights reserved.</p>
             </footer>

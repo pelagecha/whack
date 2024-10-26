@@ -1,0 +1,1000 @@
+ACC00002,2023-07-11,03:37,dining,103.32,fast food
+ACC00002,2023-06-24,03:35,transport,175.84,fuel
+ACC00003,2023-03-23,09:08,utilities,53.79,water
+ACC00004,2023-11-10,09:33,groceries,265.53,milk
+ACC00005,2023-03-07,15:52,utilities,171.78,water
+ACC00003,2023-01-29,05:54,entertainment,197.2,concert
+ACC00008,2023-07-23,04:11,entertainment,195.36,sports event
+ACC00005,2023-12-08,15:16,transport,216.13,fuel
+ACC00008,2023-03-16,10:04,groceries,263.57,snacks
+ACC00005,2023-06-21,12:45,rent,78.71,monthly rent
+ACC00007,2023-08-28,10:38,dining,318.48,snacks
+ACC00001,2023-12-27,03:07,entertainment,329.08,movie
+ACC00006,2023-09-20,11:34,entertainment,171.54,sports event
+ACC00003,2023-06-18,02:50,entertainment,147.62,sports event
+ACC00006,2023-04-20,04:09,transport,483.77,fuel
+ACC00008,2023-08-12,21:00,utilities,336.18,gas
+ACC00001,2023-08-18,11:07,groceries,318.73,milk
+ACC00003,2023-07-23,09:25,utilities,192.24,water
+ACC00001,2023-05-31,01:58,dining,217.31,snacks
+ACC00004,2023-01-31,14:51,utilities,483.18,phone bill
+ACC00008,2023-06-24,00:14,transport,335.56,fuel
+ACC00003,2023-06-03,14:13,groceries,388.78,snacks
+ACC00005,2023-09-25,13:53,transport,218.94,fuel
+ACC00003,2023-07-29,08:36,groceries,189.08,vegetables
+ACC00002,2023-08-10,09:28,transport,149.1,bus fare
+ACC00005,2023-03-16,11:33,transport,184.67,train ticket
+ACC00002,2023-06-19,23:42,entertainment,422.86,movie
+ACC00006,2023-07-20,21:32,transport,175.38,train ticket
+ACC00007,2023-08-22,13:57,groceries,181.12,bread
+ACC00008,2023-02-09,21:43,dining,61.68,snacks
+ACC00005,2023-12-09,00:34,groceries,364.89,meat
+ACC00004,2023-10-05,04:51,entertainment,203.12,museum
+ACC00002,2023-11-13,02:45,dining,75.4,snacks
+ACC00006,2023-12-24,23:15,groceries,390.41,bread
+ACC00008,2023-07-16,05:02,entertainment,253.45,concert
+ACC00001,2023-12-02,07:13,transport,305.41,train ticket
+ACC00003,2023-04-17,16:22,entertainment,498.96,museum
+ACC00002,2023-05-21,12:26,rent,322.87,monthly rent
+ACC00008,2023-03-01,17:46,groceries,462.81,snacks
+ACC00002,2023-01-15,01:10,entertainment,457.61,sports event
+ACC00004,2023-11-03,23:33,transport,376.3,fuel
+ACC00003,2023-11-14,13:22,rent,367.14,monthly rent
+ACC00005,2023-09-25,21:12,dining,434.48,snacks
+ACC00001,2023-07-26,14:26,transport,131.57,fuel
+ACC00005,2023-06-10,00:08,groceries,175.7,meat
+ACC00008,2023-09-21,15:31,entertainment,471.67,museum
+ACC00006,2023-06-02,15:20,rent,257.73,monthly rent
+ACC00003,2023-02-26,01:13,transport,315.93,fuel
+ACC00002,2023-03-15,20:46,groceries,466.74,snacks
+ACC00002,2023-08-25,13:20,groceries,281.27,meat
+ACC00003,2023-10-26,11:12,groceries,54.45,meat
+ACC00008,2023-07-09,23:01,utilities,96.47,water
+ACC00005,2023-03-11,23:23,utilities,452.34,electricity
+ACC00008,2023-07-29,20:27,groceries,296.11,fruits
+ACC00001,2023-05-11,18:36,rent,435.5,monthly rent
+ACC00003,2023-02-24,10:30,rent,53.9,monthly rent
+ACC00005,2023-09-08,07:20,rent,477.57,monthly rent
+ACC00004,2023-11-18,14:23,utilities,276.34,water
+ACC00007,2023-11-29,09:27,rent,99.37,monthly rent
+ACC00001,2023-06-15,21:32,transport,136.22,bus fare
+ACC00006,2023-05-19,15:38,utilities,416.65,gas
+ACC00007,2023-08-08,23:22,rent,87.44,monthly rent
+ACC00002,2023-10-29,18:37,groceries,78.6,milk
+ACC00007,2023-01-26,02:24,transport,322.18,fuel
+ACC00007,2023-03-05,10:30,dining,423.34,restaurant
+ACC00002,2023-11-13,20:45,groceries,173.17,snacks
+ACC00005,2023-08-26,03:11,transport,85.88,fuel
+ACC00006,2023-09-19,02:21,dining,57.27,snacks
+ACC00004,2023-05-07,00:02,groceries,356.98,fruits
+ACC00004,2023-01-17,06:37,utilities,207.12,water
+ACC00006,2023-12-13,22:18,dining,282.69,coffee
+ACC00006,2023-12-03,21:20,rent,346.4,monthly rent
+ACC00006,2023-09-03,02:38,utilities,90.97,phone bill
+ACC00008,2023-04-21,05:25,transport,356.48,fuel
+ACC00007,2023-10-14,12:58,dining,486.08,restaurant
+ACC00003,2023-02-13,03:36,transport,228.93,train ticket
+ACC00002,2023-07-16,09:54,dining,465.73,restaurant
+ACC00007,2023-05-15,15:02,groceries,34.54,milk
+ACC00005,2023-11-03,00:39,rent,172.86,monthly rent
+ACC00005,2023-07-20,20:34,rent,52.78,monthly rent
+ACC00008,2023-06-16,23:01,groceries,289.36,vegetables
+ACC00003,2023-02-01,14:10,groceries,57.65,snacks
+ACC00006,2023-08-30,07:08,utilities,411.58,electricity
+ACC00004,2023-06-08,07:19,utilities,350.08,electricity
+ACC00002,2023-04-26,18:13,groceries,352.98,vegetables
+ACC00006,2023-10-11,07:07,utilities,261.93,phone bill
+ACC00001,2023-09-18,21:47,dining,45.2,snacks
+ACC00005,2023-03-18,12:49,entertainment,334.38,concert
+ACC00005,2023-05-10,21:59,dining,122.13,snacks
+ACC00004,2023-07-12,01:50,rent,61.75,monthly rent
+ACC00001,2023-06-22,03:26,dining,23.11,coffee
+ACC00001,2023-02-13,11:56,utilities,43.35,water
+ACC00006,2023-01-13,15:22,transport,22.12,bus fare
+ACC00002,2023-02-22,23:56,entertainment,250.67,movie
+ACC00005,2023-11-25,20:00,dining,275.01,fast food
+ACC00007,2023-12-18,13:25,dining,384.67,coffee
+ACC00006,2023-08-06,04:55,entertainment,458.95,movie
+ACC00006,2023-02-14,07:10,rent,109.55,monthly rent
+ACC00008,2023-11-10,22:58,rent,24.02,monthly rent
+ACC00005,2023-04-03,22:24,utilities,275.6,gas
+ACC00003,2023-07-29,08:47,transport,35.39,train ticket
+ACC00001,2023-05-15,15:01,rent,333.43,monthly rent
+ACC00001,2023-06-12,05:59,dining,126.03,snacks
+ACC00008,2023-09-21,00:47,transport,382.29,fuel
+ACC00005,2023-01-12,00:57,rent,97.65,monthly rent
+ACC00006,2023-12-01,16:23,transport,258.54,bus fare
+ACC00002,2023-11-08,22:04,transport,37.84,fuel
+ACC00008,2023-10-11,07:20,transport,30.72,fuel
+ACC00004,2023-07-03,23:25,rent,403.41,monthly rent
+ACC00001,2023-03-23,02:57,utilities,116.86,gas
+ACC00006,2023-05-08,00:53,utilities,400.48,phone bill
+ACC00006,2023-11-29,15:16,rent,464.79,monthly rent
+ACC00003,2023-07-07,06:59,entertainment,276.01,movie
+ACC00003,2023-10-12,10:18,entertainment,92.91,sports event
+ACC00005,2023-07-05,15:13,entertainment,135.72,sports event
+ACC00004,2023-12-29,03:52,utilities,147.44,water
+ACC00005,2023-02-03,00:05,dining,346.6,coffee
+ACC00002,2023-08-07,13:48,entertainment,6.84,movie
+ACC00001,2023-06-02,01:00,groceries,434.48,meat
+ACC00004,2023-03-17,20:00,entertainment,354.52,museum
+ACC00005,2023-09-03,09:42,utilities,211.78,gas
+ACC00005,2023-01-27,16:53,dining,369.34,fast food
+ACC00002,2023-12-23,20:22,entertainment,209.64,sports event
+ACC00008,2023-03-31,12:39,groceries,436.43,meat
+ACC00008,2023-09-17,22:14,dining,338.35,fast food
+ACC00004,2023-05-22,22:25,groceries,300.77,vegetables
+ACC00005,2023-02-08,08:09,dining,126.21,fast food
+ACC00006,2023-02-23,19:08,utilities,160.9,electricity
+ACC00005,2023-05-15,02:27,rent,447.61,monthly rent
+ACC00003,2023-10-10,09:39,transport,76.6,bus fare
+ACC00005,2023-09-16,21:56,transport,82.58,train ticket
+ACC00002,2023-12-01,13:39,utilities,21.35,internet
+ACC00006,2023-07-21,16:29,rent,197.93,monthly rent
+ACC00005,2023-07-26,15:50,transport,423.99,fuel
+ACC00008,2023-03-24,19:21,dining,187.14,snacks
+ACC00002,2023-06-21,18:49,dining,155.41,coffee
+ACC00006,2023-04-26,14:51,rent,204.93,monthly rent
+ACC00007,2023-05-29,03:50,transport,486.25,fuel
+ACC00002,2023-05-18,11:53,dining,447.78,snacks
+ACC00004,2023-09-23,13:08,groceries,124.79,bread
+ACC00008,2023-01-26,09:39,entertainment,365.62,concert
+ACC00007,2023-05-29,18:26,groceries,297.33,bread
+ACC00002,2023-04-14,20:19,rent,5.74,monthly rent
+ACC00003,2023-07-01,07:58,dining,464.8,fast food
+ACC00008,2023-09-24,05:37,dining,62.03,snacks
+ACC00007,2023-12-10,20:25,entertainment,116.42,sports event
+ACC00001,2023-05-13,07:03,utilities,330.77,phone bill
+ACC00007,2023-09-25,18:46,transport,206.87,train ticket
+ACC00007,2023-09-30,15:58,rent,263.72,monthly rent
+ACC00004,2023-01-10,12:15,transport,382.75,bus fare
+ACC00001,2023-03-12,13:00,entertainment,161.13,museum
+ACC00003,2023-04-24,15:34,transport,485.98,bus fare
+ACC00002,2023-04-21,14:15,entertainment,446.41,movie
+ACC00001,2023-02-18,03:06,groceries,170.68,milk
+ACC00006,2023-03-25,10:45,rent,445.69,monthly rent
+ACC00003,2023-12-13,09:49,groceries,330.18,meat
+ACC00002,2023-10-14,00:52,entertainment,183.0,museum
+ACC00002,2023-06-27,01:36,entertainment,435.89,sports event
+ACC00002,2023-10-05,22:54,dining,9.36,coffee
+ACC00007,2023-07-27,08:39,rent,238.06,monthly rent
+ACC00005,2023-04-05,12:11,groceries,403.48,fruits
+ACC00005,2023-05-03,00:47,transport,146.6,fuel
+ACC00001,2023-06-15,05:46,dining,223.45,snacks
+ACC00003,2023-11-21,05:11,entertainment,164.34,sports event
+ACC00005,2023-10-05,00:37,groceries,371.57,milk
+ACC00003,2023-07-17,22:08,entertainment,186.12,museum
+ACC00004,2023-05-18,01:45,dining,328.36,coffee
+ACC00007,2023-02-05,17:54,transport,427.23,train ticket
+ACC00006,2023-04-24,03:23,dining,66.27,snacks
+ACC00007,2023-03-27,00:15,rent,347.8,monthly rent
+ACC00004,2023-01-03,19:28,groceries,207.82,milk
+ACC00007,2023-05-22,17:17,dining,488.3,restaurant
+ACC00003,2023-02-04,10:10,entertainment,439.28,movie
+ACC00003,2023-05-10,19:37,dining,58.65,fast food
+ACC00006,2023-05-02,08:33,groceries,305.21,snacks
+ACC00001,2023-04-30,18:57,utilities,96.49,gas
+ACC00006,2023-01-30,16:09,transport,43.63,train ticket
+ACC00008,2023-12-29,20:08,dining,352.58,fast food
+ACC00008,2023-01-15,12:00,transport,231.27,fuel
+ACC00005,2023-10-09,23:56,transport,180.92,fuel
+ACC00008,2023-06-16,22:56,groceries,359.51,milk
+ACC00004,2023-08-05,04:04,rent,287.17,monthly rent
+ACC00005,2023-10-23,09:39,entertainment,259.58,movie
+ACC00001,2023-10-28,15:35,dining,22.49,restaurant
+ACC00001,2023-09-05,13:01,dining,57.35,coffee
+ACC00006,2023-01-08,07:40,utilities,178.39,electricity
+ACC00007,2023-11-04,19:19,utilities,385.0,internet
+ACC00003,2023-06-16,17:51,dining,129.79,snacks
+ACC00001,2023-11-19,19:38,transport,433.26,fuel
+ACC00002,2023-04-05,10:05,rent,63.11,monthly rent
+ACC00007,2023-01-23,05:53,transport,340.25,bus fare
+ACC00006,2023-01-10,02:34,groceries,65.28,milk
+ACC00003,2023-03-30,02:20,utilities,463.66,internet
+ACC00001,2023-12-20,16:41,rent,162.21,monthly rent
+ACC00007,2023-12-07,16:21,transport,402.3,train ticket
+ACC00006,2023-08-12,15:35,rent,91.68,monthly rent
+ACC00004,2023-10-07,19:39,entertainment,372.92,museum
+ACC00008,2023-04-25,02:06,groceries,121.61,vegetables
+ACC00004,2023-05-01,14:45,entertainment,195.06,movie
+ACC00006,2023-07-18,14:39,rent,249.48,monthly rent
+ACC00004,2023-12-26,10:39,dining,140.28,restaurant
+ACC00006,2023-04-12,16:33,transport,190.17,train ticket
+ACC00001,2023-09-01,06:53,groceries,429.77,bread
+ACC00006,2023-02-28,18:37,groceries,485.94,snacks
+ACC00002,2023-03-07,05:46,rent,378.44,monthly rent
+ACC00007,2023-02-07,10:27,dining,65.46,restaurant
+ACC00004,2023-02-01,09:49,rent,97.09,monthly rent
+ACC00005,2023-03-27,01:18,groceries,409.05,vegetables
+ACC00007,2023-08-11,23:42,entertainment,79.87,sports event
+ACC00008,2023-09-21,11:41,transport,43.63,fuel
+ACC00004,2023-06-07,02:00,dining,242.9,fast food
+ACC00003,2023-02-05,12:54,transport,227.62,fuel
+ACC00003,2023-06-17,20:43,dining,397.39,coffee
+ACC00006,2023-08-15,08:01,dining,159.36,fast food
+ACC00006,2023-11-02,02:42,dining,126.91,restaurant
+ACC00002,2023-03-25,05:42,groceries,240.69,bread
+ACC00007,2023-04-20,13:38,groceries,238.93,fruits
+ACC00007,2023-12-06,03:53,groceries,23.16,snacks
+ACC00004,2023-02-12,16:50,groceries,411.65,bread
+ACC00006,2023-10-26,11:32,transport,166.87,bus fare
+ACC00004,2023-07-11,01:19,groceries,470.27,snacks
+ACC00008,2023-03-19,06:48,entertainment,335.52,sports event
+ACC00004,2023-06-14,06:29,dining,479.59,restaurant
+ACC00001,2023-08-10,08:45,dining,154.48,snacks
+ACC00002,2023-06-14,21:22,utilities,268.78,phone bill
+ACC00006,2023-02-01,08:03,dining,103.11,restaurant
+ACC00001,2023-12-09,12:07,utilities,314.51,electricity
+ACC00005,2023-06-23,22:57,rent,413.56,monthly rent
+ACC00007,2023-07-15,18:15,transport,179.68,bus fare
+ACC00008,2023-01-22,04:35,groceries,209.83,vegetables
+ACC00006,2023-05-27,21:16,groceries,123.8,milk
+ACC00002,2023-12-23,15:23,rent,39.42,monthly rent
+ACC00002,2023-09-02,12:29,transport,330.83,train ticket
+ACC00008,2023-06-10,04:05,dining,460.27,snacks
+ACC00007,2023-12-20,23:38,rent,34.69,monthly rent
+ACC00007,2023-08-08,04:43,groceries,258.24,milk
+ACC00004,2023-09-02,15:22,groceries,264.18,snacks
+ACC00003,2023-10-24,22:38,rent,421.58,monthly rent
+ACC00008,2023-01-06,19:21,groceries,142.17,snacks
+ACC00003,2023-09-25,19:23,groceries,456.17,fruits
+ACC00005,2023-12-29,07:18,entertainment,177.8,museum
+ACC00004,2023-04-15,03:35,utilities,157.91,gas
+ACC00003,2023-06-20,13:17,entertainment,99.25,concert
+ACC00008,2023-06-03,13:06,groceries,396.43,milk
+ACC00003,2023-11-02,17:11,rent,278.94,monthly rent
+ACC00006,2023-08-09,21:28,rent,301.58,monthly rent
+ACC00004,2023-01-31,07:27,entertainment,208.58,museum
+ACC00005,2023-07-28,07:51,entertainment,459.26,sports event
+ACC00004,2023-07-10,06:36,groceries,351.26,meat
+ACC00001,2023-08-22,18:59,rent,269.22,monthly rent
+ACC00007,2023-05-19,03:54,rent,225.34,monthly rent
+ACC00007,2023-09-06,09:01,rent,407.05,monthly rent
+ACC00006,2023-08-20,23:23,entertainment,83.16,sports event
+ACC00002,2023-04-01,02:50,entertainment,22.76,museum
+ACC00001,2023-12-05,14:09,groceries,33.11,snacks
+ACC00008,2023-02-25,21:05,rent,258.99,monthly rent
+ACC00001,2023-10-18,01:33,utilities,186.86,electricity
+ACC00001,2023-09-17,17:44,utilities,377.25,internet
+ACC00008,2023-10-22,19:52,groceries,463.36,fruits
+ACC00008,2023-11-29,06:47,utilities,350.86,gas
+ACC00006,2023-03-10,15:51,rent,331.71,monthly rent
+ACC00005,2023-01-26,22:06,transport,395.39,train ticket
+ACC00001,2023-09-09,10:45,dining,449.54,coffee
+ACC00006,2023-10-12,00:02,entertainment,69.13,movie
+ACC00004,2023-02-01,15:27,entertainment,100.84,museum
+ACC00007,2023-01-09,02:16,transport,386.55,train ticket
+ACC00004,2023-08-08,20:39,transport,104.71,bus fare
+ACC00005,2023-10-26,13:35,rent,336.39,monthly rent
+ACC00007,2023-05-23,02:22,entertainment,412.86,museum
+ACC00006,2023-03-15,10:17,transport,338.44,fuel
+ACC00008,2023-01-17,09:19,groceries,138.14,vegetables
+ACC00002,2023-11-13,08:10,dining,384.04,fast food
+ACC00004,2023-02-17,16:05,rent,148.46,monthly rent
+ACC00007,2023-08-04,01:41,dining,308.05,snacks
+ACC00008,2023-10-01,08:31,groceries,245.82,fruits
+ACC00003,2023-03-30,21:28,dining,126.4,snacks
+ACC00008,2023-08-18,14:06,groceries,178.39,meat
+ACC00006,2023-05-15,17:06,dining,88.13,coffee
+ACC00008,2023-10-17,12:06,transport,230.01,train ticket
+ACC00004,2023-08-13,12:38,groceries,318.71,milk
+ACC00001,2023-12-22,18:33,dining,491.82,coffee
+ACC00005,2023-12-01,04:45,rent,59.03,monthly rent
+ACC00004,2023-01-09,06:47,rent,105.71,monthly rent
+ACC00001,2023-06-29,03:42,entertainment,383.79,movie
+ACC00001,2023-12-13,21:29,transport,455.71,train ticket
+ACC00001,2023-09-26,18:51,rent,271.47,monthly rent
+ACC00006,2023-05-23,10:52,entertainment,270.74,museum
+ACC00002,2023-08-01,21:37,entertainment,454.0,movie
+ACC00002,2023-09-03,21:40,dining,378.32,snacks
+ACC00003,2023-11-10,05:00,transport,213.33,train ticket
+ACC00003,2023-04-29,10:57,utilities,218.69,gas
+ACC00008,2023-07-25,01:07,groceries,440.48,meat
+ACC00001,2023-01-12,03:35,dining,179.49,snacks
+ACC00008,2023-06-16,05:23,groceries,378.8,snacks
+ACC00005,2023-05-02,12:01,transport,63.38,fuel
+ACC00001,2023-08-26,20:06,entertainment,76.81,concert
+ACC00001,2023-12-13,09:52,entertainment,225.12,sports event
+ACC00001,2023-06-09,07:16,groceries,114.84,meat
+ACC00008,2023-05-22,00:43,entertainment,110.88,museum
+ACC00007,2023-02-12,23:45,rent,179.25,monthly rent
+ACC00007,2023-10-18,04:50,transport,102.12,fuel
+ACC00004,2023-07-24,11:22,transport,250.06,fuel
+ACC00008,2023-07-12,09:08,entertainment,182.8,museum
+ACC00004,2023-04-04,10:43,utilities,439.42,electricity
+ACC00002,2023-03-30,00:55,dining,9.34,snacks
+ACC00008,2023-01-18,10:17,transport,5.32,train ticket
+ACC00002,2023-09-05,16:02,utilities,238.91,electricity
+ACC00006,2023-05-14,04:36,utilities,448.24,internet
+ACC00003,2023-01-23,06:35,dining,448.4,snacks
+ACC00001,2023-12-14,07:21,groceries,343.44,bread
+ACC00005,2023-12-15,12:47,groceries,291.12,meat
+ACC00001,2023-09-04,18:37,rent,201.42,monthly rent
+ACC00003,2023-11-22,14:18,groceries,350.63,fruits
+ACC00005,2023-06-13,01:59,utilities,458.75,phone bill
+ACC00006,2023-09-13,22:11,dining,216.99,restaurant
+ACC00008,2023-01-02,05:47,transport,327.85,bus fare
+ACC00001,2023-10-07,00:53,transport,11.98,bus fare
+ACC00003,2023-02-15,19:18,transport,358.65,train ticket
+ACC00001,2023-03-01,08:55,dining,161.64,fast food
+ACC00005,2023-05-28,18:24,utilities,499.28,electricity
+ACC00006,2023-08-01,01:44,dining,45.73,restaurant
+ACC00001,2023-03-26,05:19,dining,245.59,snacks
+ACC00003,2023-11-14,00:43,entertainment,231.26,movie
+ACC00006,2023-05-05,18:26,entertainment,389.63,concert
+ACC00002,2023-03-09,21:13,transport,416.56,train ticket
+ACC00005,2023-04-03,06:53,groceries,352.65,snacks
+ACC00005,2023-06-03,20:24,groceries,176.04,milk
+ACC00004,2023-04-04,17:52,transport,138.84,bus fare
+ACC00006,2023-12-24,20:42,transport,171.62,fuel
+ACC00007,2023-05-22,06:25,dining,324.05,restaurant
+ACC00004,2023-11-11,08:36,utilities,224.04,gas
+ACC00004,2023-08-05,17:49,transport,18.0,train ticket
+ACC00008,2023-10-03,12:59,dining,346.35,fast food
+ACC00005,2023-03-14,01:15,dining,254.84,fast food
+ACC00003,2023-12-22,09:33,dining,444.18,coffee
+ACC00006,2023-03-06,17:47,rent,279.16,monthly rent
+ACC00007,2023-02-20,23:38,dining,490.95,fast food
+ACC00005,2023-02-13,20:55,entertainment,264.67,concert
+ACC00004,2023-01-29,01:18,utilities,423.73,electricity
+ACC00001,2023-05-26,22:38,groceries,468.63,snacks
+ACC00003,2023-10-02,10:27,rent,363.9,monthly rent
+ACC00006,2023-07-13,08:51,groceries,494.13,vegetables
+ACC00005,2023-05-15,10:05,utilities,477.51,electricity
+ACC00004,2023-02-25,19:32,groceries,428.91,bread
+ACC00001,2023-05-14,04:04,transport,491.66,train ticket
+ACC00007,2023-08-16,16:03,entertainment,406.04,movie
+ACC00004,2023-02-22,12:27,transport,453.04,train ticket
+ACC00008,2023-09-20,00:31,groceries,475.58,meat
+ACC00004,2023-05-28,23:51,rent,425.91,monthly rent
+ACC00005,2023-07-11,22:22,dining,299.79,restaurant
+ACC00004,2023-02-07,01:11,entertainment,173.22,movie
+ACC00005,2023-06-18,02:44,groceries,109.54,bread
+ACC00008,2023-09-12,03:35,groceries,87.05,bread
+ACC00006,2023-01-07,10:38,utilities,472.36,internet
+ACC00004,2023-03-01,09:04,groceries,328.96,bread
+ACC00003,2023-04-08,02:03,dining,209.59,restaurant
+ACC00004,2023-03-05,14:26,groceries,308.24,milk
+ACC00008,2023-10-25,14:10,transport,31.66,train ticket
+ACC00006,2023-03-06,17:32,rent,160.74,monthly rent
+ACC00008,2023-12-05,07:34,transport,58.39,fuel
+ACC00006,2023-06-06,09:34,rent,275.96,monthly rent
+ACC00003,2023-11-25,13:42,entertainment,489.06,sports event
+ACC00001,2023-10-02,03:38,groceries,312.66,meat
+ACC00003,2023-08-28,11:18,groceries,6.7,snacks
+ACC00006,2023-02-27,10:17,groceries,34.95,snacks
+ACC00008,2023-10-16,09:18,groceries,139.56,bread
+ACC00002,2023-07-22,05:20,dining,256.97,coffee
+ACC00003,2023-02-08,01:07,dining,14.23,snacks
+ACC00006,2023-10-29,00:43,rent,39.8,monthly rent
+ACC00006,2023-02-13,03:44,rent,356.54,monthly rent
+ACC00005,2023-05-29,08:56,rent,309.35,monthly rent
+ACC00007,2023-02-27,08:00,utilities,499.11,water
+ACC00002,2023-10-21,10:06,groceries,275.86,fruits
+ACC00003,2023-01-19,07:37,dining,432.48,restaurant
+ACC00007,2023-10-13,22:00,entertainment,190.49,concert
+ACC00003,2023-02-09,23:36,utilities,149.45,phone bill
+ACC00003,2023-07-09,12:03,utilities,43.79,water
+ACC00002,2023-09-11,20:26,entertainment,121.54,movie
+ACC00006,2023-07-15,02:23,groceries,361.43,snacks
+ACC00004,2023-06-01,04:17,dining,493.7,coffee
+ACC00008,2023-10-13,20:21,dining,384.39,coffee
+ACC00008,2023-03-18,14:58,transport,425.81,fuel
+ACC00002,2023-04-30,20:55,transport,312.55,fuel
+ACC00002,2023-07-30,08:49,rent,148.78,monthly rent
+ACC00005,2023-02-13,19:58,entertainment,419.16,sports event
+ACC00001,2023-10-29,12:14,transport,499.11,train ticket
+ACC00004,2023-12-06,01:25,transport,303.78,fuel
+ACC00004,2023-09-04,21:26,utilities,5.46,electricity
+ACC00008,2023-12-29,19:48,dining,369.97,coffee
+ACC00004,2023-01-16,16:05,entertainment,90.8,sports event
+ACC00005,2023-10-10,21:43,utilities,120.9,phone bill
+ACC00005,2023-03-12,10:34,entertainment,194.34,sports event
+ACC00005,2023-05-20,01:44,dining,116.8,restaurant
+ACC00002,2023-06-14,19:33,entertainment,409.51,sports event
+ACC00004,2023-07-30,03:16,entertainment,332.91,sports event
+ACC00002,2023-01-09,05:07,utilities,424.99,water
+ACC00002,2023-07-11,19:51,entertainment,208.58,movie
+ACC00004,2023-11-08,11:23,dining,155.64,restaurant
+ACC00002,2023-11-21,12:04,dining,51.5,coffee
+ACC00007,2023-03-22,16:33,dining,102.54,restaurant
+ACC00007,2023-03-11,15:01,dining,339.8,coffee
+ACC00003,2023-08-31,22:05,transport,321.74,fuel
+ACC00007,2023-12-25,05:36,dining,356.44,fast food
+ACC00003,2023-08-09,05:27,entertainment,288.64,sports event
+ACC00005,2023-11-13,10:55,utilities,312.62,gas
+ACC00002,2023-01-08,05:16,groceries,39.41,bread
+ACC00005,2023-01-10,06:25,utilities,92.85,electricity
+ACC00006,2023-01-15,15:35,transport,182.9,fuel
+ACC00008,2023-05-13,10:08,transport,36.43,train ticket
+ACC00007,2023-02-18,18:02,rent,257.76,monthly rent
+ACC00004,2023-10-17,04:30,entertainment,372.21,concert
+ACC00004,2023-10-29,22:45,utilities,18.02,internet
+ACC00005,2023-05-21,12:58,dining,158.11,restaurant
+ACC00007,2023-03-22,13:38,transport,152.79,bus fare
+ACC00007,2023-10-15,17:33,entertainment,261.49,movie
+ACC00001,2023-07-27,13:48,transport,488.71,bus fare
+ACC00004,2023-07-12,16:05,dining,333.22,snacks
+ACC00007,2023-12-22,16:31,groceries,447.29,milk
+ACC00001,2023-04-26,10:55,transport,41.69,bus fare
+ACC00008,2023-05-24,10:24,groceries,57.28,fruits
+ACC00007,2023-08-16,00:20,groceries,304.91,meat
+ACC00008,2023-01-11,05:00,transport,233.33,train ticket
+ACC00004,2023-02-20,15:10,transport,314.84,bus fare
+ACC00001,2023-10-29,23:58,rent,40.75,monthly rent
+ACC00001,2023-12-09,12:37,transport,417.45,train ticket
+ACC00006,2023-04-09,23:45,rent,284.53,monthly rent
+ACC00007,2023-07-29,10:14,dining,240.16,coffee
+ACC00002,2023-01-27,09:09,utilities,86.76,phone bill
+ACC00001,2023-02-08,05:36,rent,292.15,monthly rent
+ACC00004,2023-06-17,09:26,dining,67.8,fast food
+ACC00004,2023-10-11,09:18,utilities,308.08,gas
+ACC00001,2023-04-05,13:39,utilities,90.33,phone bill
+ACC00004,2023-08-18,21:59,dining,138.43,restaurant
+ACC00005,2023-07-30,20:56,groceries,158.04,bread
+ACC00006,2023-04-08,17:03,transport,425.49,train ticket
+ACC00006,2023-09-13,22:18,rent,304.86,monthly rent
+ACC00002,2023-09-11,17:56,dining,42.03,snacks
+ACC00007,2023-07-12,14:34,utilities,84.38,water
+ACC00005,2023-12-15,00:02,entertainment,157.89,sports event
+ACC00001,2023-09-02,07:14,groceries,392.06,vegetables
+ACC00002,2023-01-04,09:07,rent,207.85,monthly rent
+ACC00006,2023-04-27,15:36,transport,384.09,train ticket
+ACC00007,2023-11-07,05:32,entertainment,54.17,museum
+ACC00008,2023-05-27,07:48,dining,495.74,coffee
+ACC00001,2023-12-09,19:23,entertainment,261.05,movie
+ACC00003,2023-03-18,17:03,transport,142.36,train ticket
+ACC00007,2023-03-30,16:17,rent,249.45,monthly rent
+ACC00003,2023-04-02,07:37,transport,227.98,bus fare
+ACC00008,2023-06-29,03:24,rent,414.96,monthly rent
+ACC00006,2023-01-17,10:14,groceries,320.24,vegetables
+ACC00002,2023-11-29,07:43,groceries,114.8,vegetables
+ACC00001,2023-02-09,01:01,rent,360.1,monthly rent
+ACC00001,2023-07-31,14:49,dining,164.95,fast food
+ACC00004,2023-04-26,11:51,transport,387.48,train ticket
+ACC00005,2023-02-14,00:30,transport,491.0,bus fare
+ACC00003,2023-03-14,10:41,transport,199.83,bus fare
+ACC00003,2023-12-06,23:03,groceries,321.44,meat
+ACC00007,2023-07-04,13:05,utilities,6.2,internet
+ACC00006,2023-03-24,12:54,groceries,69.03,milk
+ACC00003,2023-01-17,18:46,entertainment,149.77,sports event
+ACC00008,2023-03-08,22:02,dining,383.84,restaurant
+ACC00002,2023-11-27,13:47,groceries,100.9,vegetables
+ACC00002,2023-04-05,03:42,transport,476.93,bus fare
+ACC00005,2023-10-17,08:42,groceries,130.24,fruits
+ACC00001,2023-06-01,21:36,utilities,209.21,electricity
+ACC00008,2023-03-22,20:46,dining,226.15,fast food
+ACC00007,2023-11-15,23:30,rent,490.92,monthly rent
+ACC00006,2023-12-31,10:46,rent,209.28,monthly rent
+ACC00008,2023-01-30,18:04,entertainment,498.68,movie
+ACC00003,2023-04-22,02:30,utilities,298.37,internet
+ACC00005,2023-12-13,04:44,utilities,43.71,gas
+ACC00008,2023-05-22,15:03,groceries,404.71,fruits
+ACC00004,2023-11-27,14:04,dining,62.24,restaurant
+ACC00001,2023-06-12,19:00,transport,464.31,bus fare
+ACC00003,2023-09-16,11:45,dining,450.66,restaurant
+ACC00008,2023-11-09,03:40,entertainment,18.18,movie
+ACC00004,2023-08-07,12:25,groceries,297.49,meat
+ACC00002,2023-02-02,10:43,utilities,157.25,electricity
+ACC00007,2023-06-05,02:33,entertainment,333.42,concert
+ACC00007,2023-02-01,05:23,entertainment,266.43,movie
+ACC00005,2023-01-14,07:35,transport,474.27,fuel
+ACC00004,2023-02-15,23:08,transport,314.51,fuel
+ACC00004,2023-05-07,00:47,transport,266.94,fuel
+ACC00002,2023-11-12,09:53,utilities,458.01,phone bill
+ACC00001,2023-03-09,17:16,groceries,150.34,vegetables
+ACC00005,2023-05-24,07:54,groceries,10.82,milk
+ACC00008,2023-01-06,21:38,groceries,435.82,milk
+ACC00002,2023-03-13,00:23,rent,199.46,monthly rent
+ACC00003,2023-11-29,02:45,groceries,155.23,milk
+ACC00003,2023-01-22,16:21,dining,62.06,restaurant
+ACC00003,2023-09-19,09:59,rent,67.11,monthly rent
+ACC00002,2023-09-30,10:45,dining,58.47,fast food
+ACC00006,2023-01-05,06:07,utilities,394.24,internet
+ACC00003,2023-04-01,19:05,utilities,413.68,phone bill
+ACC00001,2023-08-15,09:51,rent,245.55,monthly rent
+ACC00005,2023-05-21,20:23,entertainment,434.2,museum
+ACC00006,2023-09-15,14:40,groceries,122.71,meat
+ACC00006,2023-05-13,17:18,rent,172.56,monthly rent
+ACC00007,2023-08-13,21:25,entertainment,315.33,sports event
+ACC00003,2023-03-20,18:04,utilities,199.84,electricity
+ACC00008,2023-01-06,12:31,dining,230.55,fast food
+ACC00005,2023-06-16,06:09,groceries,438.69,bread
+ACC00007,2023-10-01,21:22,entertainment,238.69,movie
+ACC00006,2023-11-05,15:47,utilities,463.9,water
+ACC00006,2023-07-21,21:33,rent,214.71,monthly rent
+ACC00003,2023-01-03,05:30,transport,46.93,bus fare
+ACC00003,2023-12-27,13:25,transport,96.35,fuel
+ACC00005,2023-09-02,01:13,dining,37.7,coffee
+ACC00003,2023-10-01,01:58,utilities,63.77,gas
+ACC00001,2023-10-28,03:37,rent,263.51,monthly rent
+ACC00004,2023-12-11,21:25,rent,439.31,monthly rent
+ACC00006,2023-04-12,10:35,transport,239.85,bus fare
+ACC00004,2023-12-04,03:38,groceries,387.42,bread
+ACC00006,2023-09-20,23:43,transport,90.39,train ticket
+ACC00003,2023-11-14,23:25,dining,26.0,restaurant
+ACC00003,2023-02-19,03:41,entertainment,32.38,movie
+ACC00004,2023-02-27,12:40,dining,86.4,restaurant
+ACC00007,2023-12-26,01:14,dining,112.17,snacks
+ACC00003,2023-02-25,10:07,entertainment,248.35,sports event
+ACC00003,2023-10-04,07:44,rent,299.83,monthly rent
+ACC00007,2023-08-01,20:25,utilities,61.28,gas
+ACC00008,2023-05-16,04:14,dining,44.39,restaurant
+ACC00004,2023-12-04,10:05,groceries,312.95,meat
+ACC00003,2023-06-30,01:26,entertainment,126.11,movie
+ACC00001,2023-03-19,15:24,rent,150.58,monthly rent
+ACC00001,2023-10-11,15:12,dining,177.21,restaurant
+ACC00005,2023-12-21,01:50,groceries,463.77,bread
+ACC00002,2023-08-03,11:57,entertainment,346.6,movie
+ACC00006,2023-05-08,02:39,groceries,171.49,snacks
+ACC00005,2023-12-18,19:27,groceries,394.19,meat
+ACC00001,2023-02-26,04:34,dining,251.07,fast food
+ACC00006,2023-06-11,00:25,transport,194.83,train ticket
+ACC00005,2023-02-18,19:12,utilities,433.52,internet
+ACC00006,2023-06-30,08:09,rent,32.47,monthly rent
+ACC00006,2023-12-06,08:54,dining,474.81,snacks
+ACC00003,2023-07-21,22:07,utilities,104.45,internet
+ACC00004,2023-02-03,20:01,entertainment,340.96,concert
+ACC00008,2023-04-02,04:32,utilities,33.22,water
+ACC00008,2023-09-15,21:24,dining,348.93,restaurant
+ACC00006,2023-07-17,05:10,entertainment,34.12,movie
+ACC00005,2023-11-15,17:03,rent,334.36,monthly rent
+ACC00005,2023-05-05,19:09,groceries,474.69,milk
+ACC00005,2023-01-10,01:54,groceries,59.07,vegetables
+ACC00008,2023-01-02,13:35,dining,239.17,snacks
+ACC00007,2023-05-03,09:49,transport,24.42,bus fare
+ACC00008,2023-11-24,09:52,groceries,73.04,milk
+ACC00005,2023-01-15,08:08,transport,108.67,train ticket
+ACC00008,2023-07-20,06:26,utilities,158.84,gas
+ACC00005,2023-08-04,13:51,utilities,60.82,internet
+ACC00003,2023-08-17,16:11,entertainment,308.44,concert
+ACC00007,2023-12-25,23:17,rent,150.57,monthly rent
+ACC00008,2023-12-01,14:47,groceries,459.14,meat
+ACC00008,2023-09-18,11:13,groceries,388.61,snacks
+ACC00006,2023-11-07,05:05,transport,171.06,train ticket
+ACC00002,2023-03-30,06:42,utilities,129.12,gas
+ACC00001,2023-07-09,07:46,dining,178.43,fast food
+ACC00007,2023-02-23,06:24,entertainment,434.79,movie
+ACC00005,2023-08-21,03:36,entertainment,282.09,sports event
+ACC00006,2023-08-29,03:40,rent,301.94,monthly rent
+ACC00007,2023-04-22,18:12,transport,8.27,fuel
+ACC00004,2023-12-08,11:10,utilities,302.18,internet
+ACC00002,2023-05-20,22:34,entertainment,327.58,museum
+ACC00002,2023-09-14,17:00,rent,121.26,monthly rent
+ACC00003,2023-08-09,22:13,utilities,153.1,gas
+ACC00007,2023-06-01,11:44,dining,254.07,fast food
+ACC00001,2023-02-11,01:32,groceries,217.71,meat
+ACC00004,2023-08-31,08:16,utilities,277.28,phone bill
+ACC00003,2023-07-28,13:18,utilities,344.73,phone bill
+ACC00008,2023-11-01,06:46,utilities,457.54,phone bill
+ACC00003,2023-09-25,03:45,groceries,255.05,vegetables
+ACC00007,2023-12-27,02:34,utilities,198.95,electricity
+ACC00002,2023-10-08,12:23,transport,88.23,train ticket
+ACC00003,2023-01-23,04:48,groceries,461.05,fruits
+ACC00005,2023-07-07,14:38,entertainment,411.27,movie
+ACC00008,2023-05-14,12:50,entertainment,169.06,concert
+ACC00001,2023-06-03,22:41,utilities,96.26,water
+ACC00005,2023-01-06,05:54,entertainment,487.03,concert
+ACC00005,2023-03-03,21:09,transport,330.76,fuel
+ACC00006,2023-07-21,09:11,transport,365.27,train ticket
+ACC00003,2023-07-20,09:54,utilities,470.23,water
+ACC00006,2023-05-24,14:36,dining,83.02,coffee
+ACC00006,2023-03-23,08:22,utilities,105.27,electricity
+ACC00003,2023-07-22,18:22,utilities,98.89,electricity
+ACC00003,2023-02-18,18:17,rent,70.92,monthly rent
+ACC00008,2023-06-29,15:41,transport,203.57,bus fare
+ACC00005,2023-03-31,11:21,groceries,403.26,milk
+ACC00005,2023-12-04,02:24,utilities,323.5,phone bill
+ACC00002,2023-12-06,08:13,rent,357.85,monthly rent
+ACC00005,2023-07-18,10:06,dining,211.57,coffee
+ACC00006,2023-06-03,16:18,rent,237.12,monthly rent
+ACC00007,2023-06-22,04:17,rent,113.21,monthly rent
+ACC00008,2023-06-23,01:03,utilities,397.98,gas
+ACC00007,2023-01-06,23:17,entertainment,270.21,sports event
+ACC00006,2023-12-30,15:56,entertainment,361.8,concert
+ACC00006,2023-11-06,00:50,utilities,319.02,gas
+ACC00008,2023-05-05,00:08,dining,491.49,fast food
+ACC00006,2023-03-13,20:32,groceries,324.33,snacks
+ACC00005,2023-02-08,00:52,utilities,267.87,electricity
+ACC00004,2023-01-30,11:25,transport,432.07,fuel
+ACC00004,2023-05-28,05:05,groceries,140.61,milk
+ACC00003,2023-08-23,08:21,groceries,259.51,milk
+ACC00001,2023-05-26,03:43,groceries,225.36,milk
+ACC00001,2023-05-31,02:09,transport,101.09,fuel
+ACC00005,2023-09-18,02:41,dining,226.02,fast food
+ACC00005,2023-08-10,18:00,entertainment,436.22,concert
+ACC00002,2023-07-23,21:05,rent,205.12,monthly rent
+ACC00003,2023-08-28,10:28,utilities,461.89,internet
+ACC00007,2023-05-16,03:43,rent,15.81,monthly rent
+ACC00007,2023-03-18,05:10,transport,112.35,train ticket
+ACC00006,2023-01-03,18:39,groceries,125.52,fruits
+ACC00006,2023-12-21,21:35,entertainment,175.62,concert
+ACC00007,2023-02-21,14:04,dining,15.81,coffee
+ACC00002,2023-02-16,23:07,transport,66.19,train ticket
+ACC00002,2023-10-22,16:23,transport,336.21,fuel
+ACC00005,2023-04-12,16:03,rent,409.3,monthly rent
+ACC00001,2023-03-19,09:25,transport,64.28,train ticket
+ACC00003,2023-12-08,08:57,utilities,256.78,water
+ACC00004,2023-01-20,00:54,entertainment,263.64,sports event
+ACC00006,2023-07-21,08:53,transport,440.27,train ticket
+ACC00007,2023-02-06,06:16,utilities,77.81,internet
+ACC00004,2023-10-14,06:06,utilities,191.73,phone bill
+ACC00001,2023-01-29,23:21,rent,491.39,monthly rent
+ACC00008,2023-10-23,02:50,groceries,54.48,vegetables
+ACC00001,2023-09-12,22:24,dining,215.62,snacks
+ACC00003,2023-06-17,17:37,rent,468.57,monthly rent
+ACC00008,2023-10-11,05:53,entertainment,295.3,movie
+ACC00006,2023-07-24,23:38,rent,305.27,monthly rent
+ACC00008,2023-10-22,06:59,dining,62.56,restaurant
+ACC00001,2023-02-06,05:20,utilities,389.6,electricity
+ACC00008,2023-08-13,09:23,utilities,101.4,internet
+ACC00004,2023-04-23,06:38,dining,438.88,restaurant
+ACC00002,2023-06-04,15:05,entertainment,358.45,sports event
+ACC00004,2023-12-01,16:19,utilities,327.07,gas
+ACC00007,2023-04-11,17:07,transport,213.46,bus fare
+ACC00001,2023-01-17,07:07,rent,479.71,monthly rent
+ACC00006,2023-09-05,02:30,utilities,180.45,internet
+ACC00006,2023-05-15,18:03,dining,371.32,restaurant
+ACC00008,2023-06-25,15:07,rent,124.02,monthly rent
+ACC00007,2023-01-30,13:57,rent,491.26,monthly rent
+ACC00008,2023-10-12,02:16,transport,81.7,fuel
+ACC00008,2023-11-08,02:09,transport,135.17,bus fare
+ACC00001,2023-04-21,09:08,dining,317.99,coffee
+ACC00003,2023-08-24,23:09,dining,195.08,snacks
+ACC00001,2023-05-29,04:02,rent,414.7,monthly rent
+ACC00008,2023-10-26,03:45,entertainment,105.96,museum
+ACC00007,2023-11-21,06:48,groceries,275.89,bread
+ACC00008,2023-01-01,19:24,rent,57.9,monthly rent
+ACC00005,2023-02-12,14:40,rent,258.32,monthly rent
+ACC00003,2023-11-08,12:10,rent,494.6,monthly rent
+ACC00006,2023-10-25,18:58,rent,223.21,monthly rent
+ACC00003,2023-08-03,02:28,rent,380.66,monthly rent
+ACC00005,2023-08-03,03:49,entertainment,246.6,concert
+ACC00008,2023-03-06,02:03,rent,9.22,monthly rent
+ACC00005,2023-04-18,13:42,utilities,466.88,internet
+ACC00005,2023-04-07,11:23,transport,70.54,fuel
+ACC00008,2023-12-16,02:50,entertainment,143.55,concert
+ACC00002,2023-12-29,01:19,transport,228.62,bus fare
+ACC00003,2023-09-22,14:15,groceries,159.34,fruits
+ACC00001,2023-02-07,20:53,rent,309.46,monthly rent
+ACC00003,2023-02-02,20:02,rent,368.65,monthly rent
+ACC00005,2023-11-18,01:44,dining,282.77,coffee
+ACC00003,2023-01-24,17:34,dining,108.5,coffee
+ACC00002,2023-01-12,00:47,utilities,342.37,gas
+ACC00005,2023-01-20,17:18,entertainment,184.8,movie
+ACC00004,2023-11-07,10:18,entertainment,402.44,concert
+ACC00002,2023-01-18,16:21,groceries,131.95,snacks
+ACC00001,2023-09-21,21:18,utilities,137.14,electricity
+ACC00008,2023-10-25,19:08,groceries,180.31,snacks
+ACC00001,2023-04-02,08:42,transport,120.96,train ticket
+ACC00001,2023-02-25,20:24,utilities,54.29,phone bill
+ACC00006,2023-07-29,07:33,transport,492.45,fuel
+ACC00002,2023-08-14,16:43,transport,125.01,fuel
+ACC00003,2023-02-19,05:37,entertainment,456.97,concert
+ACC00001,2023-02-28,04:58,rent,449.36,monthly rent
+ACC00004,2023-12-28,04:53,utilities,207.36,electricity
+ACC00004,2023-11-05,23:46,utilities,98.23,internet
+ACC00004,2023-07-08,06:41,entertainment,378.87,museum
+ACC00006,2023-03-02,08:47,utilities,233.02,gas
+ACC00008,2023-09-26,01:53,groceries,220.91,vegetables
+ACC00003,2023-06-20,09:34,utilities,291.64,internet
+ACC00003,2023-10-13,08:43,transport,442.65,train ticket
+ACC00002,2023-05-22,17:08,rent,314.0,monthly rent
+ACC00005,2023-10-18,22:38,entertainment,424.48,movie
+ACC00003,2023-10-22,06:52,utilities,119.23,water
+ACC00006,2023-10-30,10:30,entertainment,315.12,concert
+ACC00004,2023-09-13,16:08,dining,68.93,restaurant
+ACC00005,2023-05-20,23:51,entertainment,346.2,sports event
+ACC00001,2023-08-10,14:48,transport,351.28,bus fare
+ACC00007,2023-01-08,20:44,transport,11.6,fuel
+ACC00002,2023-02-23,23:13,dining,357.71,fast food
+ACC00007,2023-08-22,11:10,groceries,62.49,vegetables
+ACC00001,2023-11-28,17:26,dining,359.97,snacks
+ACC00001,2023-04-23,16:24,utilities,141.09,phone bill
+ACC00006,2023-08-20,07:34,groceries,270.69,bread
+ACC00006,2023-07-11,07:06,groceries,192.02,meat
+ACC00003,2023-01-12,16:36,groceries,53.76,milk
+ACC00008,2023-03-05,00:41,transport,411.2,train ticket
+ACC00007,2023-12-15,01:17,transport,23.23,bus fare
+ACC00006,2023-05-18,19:04,utilities,77.76,internet
+ACC00001,2023-06-01,20:15,groceries,145.39,bread
+ACC00001,2023-09-20,01:21,dining,315.96,snacks
+ACC00001,2023-05-27,17:57,transport,497.42,train ticket
+ACC00001,2023-10-23,08:08,utilities,36.86,water
+ACC00006,2023-02-22,20:30,entertainment,350.27,museum
+ACC00008,2023-11-28,00:03,entertainment,222.85,sports event
+ACC00001,2023-08-14,04:31,dining,347.87,restaurant
+ACC00006,2023-02-22,09:17,groceries,130.38,snacks
+ACC00005,2023-03-17,13:39,groceries,152.23,milk
+ACC00006,2023-07-16,14:30,rent,370.15,monthly rent
+ACC00008,2023-03-04,07:11,entertainment,291.48,movie
+ACC00008,2023-06-16,13:29,dining,139.15,fast food
+ACC00005,2023-06-27,12:52,rent,360.65,monthly rent
+ACC00001,2023-12-03,10:40,entertainment,132.31,movie
+ACC00005,2023-11-23,07:29,groceries,444.12,meat
+ACC00007,2023-05-23,14:27,rent,489.23,monthly rent
+ACC00004,2023-05-20,13:47,entertainment,128.68,movie
+ACC00003,2023-10-20,21:18,dining,418.35,fast food
+ACC00008,2023-01-16,03:30,entertainment,83.67,museum
+ACC00004,2023-08-04,13:07,transport,199.46,train ticket
+ACC00006,2023-03-01,05:12,entertainment,356.08,concert
+ACC00004,2023-08-27,23:03,dining,497.96,restaurant
+ACC00001,2023-01-14,17:39,transport,385.39,train ticket
+ACC00008,2023-07-24,22:04,dining,428.7,coffee
+ACC00003,2023-08-06,15:00,groceries,73.12,bread
+ACC00005,2023-10-16,03:54,utilities,124.75,internet
+ACC00001,2023-07-27,23:38,groceries,168.8,snacks
+ACC00002,2023-06-23,11:01,entertainment,251.06,sports event
+ACC00005,2023-08-26,07:05,utilities,391.6,gas
+ACC00003,2023-10-13,06:41,utilities,84.44,water
+ACC00007,2023-01-27,23:50,dining,215.88,snacks
+ACC00007,2023-03-27,10:49,transport,134.02,train ticket
+ACC00007,2023-05-18,00:27,entertainment,353.12,concert
+ACC00008,2023-05-27,11:43,rent,10.07,monthly rent
+ACC00004,2023-06-12,00:00,entertainment,410.33,museum
+ACC00006,2023-06-26,03:05,dining,267.77,fast food
+ACC00007,2023-07-24,00:06,utilities,440.37,water
+ACC00008,2023-02-23,14:58,entertainment,242.99,sports event
+ACC00005,2023-09-23,05:44,transport,34.44,train ticket
+ACC00002,2023-03-05,19:48,utilities,338.2,water
+ACC00008,2023-12-03,15:27,rent,374.53,monthly rent
+ACC00001,2023-02-08,15:09,rent,23.76,monthly rent
+ACC00001,2023-02-08,08:09,rent,236.51,monthly rent
+ACC00006,2023-02-11,15:01,rent,358.19,monthly rent
+ACC00008,2023-09-22,16:45,groceries,310.28,fruits
+ACC00004,2023-10-01,21:14,rent,290.27,monthly rent
+ACC00005,2023-03-06,18:02,utilities,195.04,electricity
+ACC00001,2023-07-04,03:24,groceries,254.29,meat
+ACC00003,2023-05-30,13:54,utilities,475.56,electricity
+ACC00006,2023-03-12,00:40,transport,422.09,train ticket
+ACC00006,2023-09-11,16:10,rent,347.15,monthly rent
+ACC00003,2023-12-04,09:10,entertainment,267.4,movie
+ACC00004,2023-09-05,06:48,dining,104.58,restaurant
+ACC00004,2023-03-12,08:41,utilities,230.61,water
+ACC00003,2023-12-10,10:34,transport,387.85,train ticket
+ACC00001,2023-07-26,23:16,groceries,361.1,fruits
+ACC00006,2023-02-17,10:40,entertainment,287.23,concert
+ACC00003,2023-02-17,02:30,rent,206.29,monthly rent
+ACC00002,2023-10-31,04:26,dining,127.9,fast food
+ACC00001,2023-01-11,14:18,dining,332.92,fast food
+ACC00008,2023-04-01,22:18,rent,353.8,monthly rent
+ACC00003,2023-04-13,22:53,dining,116.6,snacks
+ACC00004,2023-07-12,21:47,entertainment,425.99,movie
+ACC00002,2023-01-11,16:15,groceries,194.0,milk
+ACC00004,2023-05-05,13:02,entertainment,224.6,movie
+ACC00007,2023-05-04,12:44,utilities,208.64,gas
+ACC00008,2023-07-03,13:24,rent,469.66,monthly rent
+ACC00001,2023-07-17,15:22,utilities,459.43,internet
+ACC00007,2023-12-10,14:33,transport,48.01,train ticket
+ACC00008,2023-07-18,02:37,dining,266.82,coffee
+ACC00008,2023-04-10,02:15,transport,218.59,bus fare
+ACC00003,2023-03-03,20:13,utilities,347.63,water
+ACC00003,2023-09-03,00:43,dining,63.44,restaurant
+ACC00006,2023-11-28,23:29,entertainment,424.4,concert
+ACC00001,2023-09-29,05:16,groceries,217.73,meat
+ACC00006,2023-10-04,22:48,dining,173.48,fast food
+ACC00004,2023-07-11,01:27,groceries,54.12,fruits
+ACC00006,2023-09-12,10:36,entertainment,274.76,concert
+ACC00006,2023-03-14,06:25,groceries,183.61,fruits
+ACC00005,2023-09-16,22:58,utilities,351.74,phone bill
+ACC00004,2023-03-30,04:27,groceries,176.85,snacks
+ACC00001,2023-02-02,03:12,groceries,286.2,meat
+ACC00001,2023-02-10,12:53,dining,487.94,snacks
+ACC00007,2023-11-14,20:16,transport,229.39,bus fare
+ACC00007,2023-07-10,21:50,dining,326.38,snacks
+ACC00008,2023-02-24,12:39,transport,365.26,bus fare
+ACC00004,2023-02-04,03:26,transport,192.63,train ticket
+ACC00001,2023-09-20,17:35,transport,417.21,bus fare
+ACC00004,2023-03-23,04:49,groceries,416.25,bread
+ACC00007,2023-01-16,23:22,rent,6.88,monthly rent
+ACC00005,2023-10-13,05:22,utilities,150.01,phone bill
+ACC00004,2023-08-10,15:46,entertainment,467.55,movie
+ACC00005,2023-08-13,23:46,dining,101.91,fast food
+ACC00005,2023-08-21,00:29,transport,459.42,fuel
+ACC00002,2023-08-05,00:15,rent,274.1,monthly rent
+ACC00006,2023-03-28,05:52,entertainment,443.78,movie
+ACC00001,2023-06-16,13:25,dining,327.65,coffee
+ACC00001,2023-07-25,16:55,entertainment,10.53,movie
+ACC00003,2023-07-13,16:16,utilities,396.14,water
+ACC00005,2023-05-22,15:58,rent,199.47,monthly rent
+ACC00005,2023-01-12,21:50,transport,293.19,bus fare
+ACC00007,2023-05-01,19:06,utilities,229.1,phone bill
+ACC00002,2023-10-29,11:34,transport,42.24,fuel
+ACC00001,2023-05-06,16:03,entertainment,418.69,sports event
+ACC00002,2023-12-07,02:57,groceries,265.37,meat
+ACC00001,2023-06-25,07:47,dining,36.09,coffee
+ACC00002,2023-03-20,17:41,transport,145.9,fuel
+ACC00005,2023-11-08,04:13,rent,452.56,monthly rent
+ACC00008,2023-04-07,02:05,utilities,425.82,gas
+ACC00008,2023-06-21,05:13,utilities,111.87,phone bill
+ACC00008,2023-06-02,02:43,entertainment,108.41,museum
+ACC00005,2023-09-23,08:20,transport,113.18,bus fare
+ACC00005,2023-06-25,17:25,dining,432.06,fast food
+ACC00002,2023-05-20,12:38,groceries,243.33,milk
+ACC00008,2023-03-24,16:26,rent,167.68,monthly rent
+ACC00004,2023-09-18,13:10,groceries,138.68,vegetables
+ACC00006,2023-09-30,23:29,entertainment,178.79,sports event
+ACC00001,2023-06-26,20:50,utilities,52.69,phone bill
+ACC00006,2023-04-22,09:14,rent,110.08,monthly rent
+ACC00001,2023-10-02,06:31,groceries,319.8,milk
+ACC00003,2023-12-26,05:03,transport,354.99,train ticket
+ACC00007,2023-01-01,14:15,utilities,433.0,internet
+ACC00007,2023-11-27,14:41,utilities,32.02,internet
+ACC00004,2023-11-04,16:13,dining,489.57,restaurant
+ACC00008,2023-06-24,04:58,entertainment,213.53,museum
+ACC00006,2023-04-08,21:40,groceries,82.96,snacks
+ACC00005,2023-07-28,22:54,rent,396.65,monthly rent
+ACC00004,2023-12-30,14:09,entertainment,34.39,concert
+ACC00008,2023-08-29,20:01,dining,332.39,restaurant
+ACC00004,2023-07-04,09:23,transport,311.26,bus fare
+ACC00007,2023-11-04,04:40,groceries,191.47,snacks
+ACC00002,2023-02-16,13:12,entertainment,309.49,concert
+ACC00002,2023-10-26,10:04,groceries,120.47,bread
+ACC00007,2023-07-17,11:47,rent,71.44,monthly rent
+ACC00008,2023-08-18,12:29,rent,227.77,monthly rent
+ACC00007,2023-04-22,18:37,dining,7.36,coffee
+ACC00003,2023-07-05,04:41,transport,163.47,bus fare
+ACC00004,2023-10-21,13:59,transport,452.15,fuel
+ACC00001,2023-11-05,18:37,utilities,446.01,internet
+ACC00008,2023-06-30,22:57,dining,484.96,fast food
+ACC00006,2023-04-19,23:33,utilities,260.84,water
+ACC00002,2023-04-02,05:53,entertainment,449.74,sports event
+ACC00005,2023-12-14,16:31,groceries,274.68,fruits
+ACC00001,2023-12-15,01:15,utilities,161.24,water
+ACC00002,2023-09-04,18:53,utilities,437.64,internet
+ACC00002,2023-09-26,17:05,transport,346.84,fuel
+ACC00006,2023-10-02,12:21,utilities,200.89,internet
+ACC00005,2023-01-08,17:17,groceries,286.69,fruits
+ACC00006,2023-11-16,16:00,utilities,103.06,water
+ACC00005,2023-07-14,23:42,entertainment,148.47,sports event
+ACC00003,2023-07-02,05:21,utilities,54.26,gas
+ACC00004,2023-02-28,10:23,entertainment,191.6,concert
+ACC00002,2023-11-20,19:13,utilities,373.04,phone bill
+ACC00001,2023-01-24,00:46,transport,283.4,fuel
+ACC00004,2023-05-08,09:00,rent,40.54,monthly rent
+ACC00002,2023-07-08,09:22,rent,110.28,monthly rent
+ACC00007,2023-10-28,21:46,dining,243.76,restaurant
+ACC00007,2023-07-10,19:57,entertainment,148.28,concert
+ACC00003,2023-02-02,18:06,utilities,225.35,water
+ACC00005,2023-03-25,07:29,groceries,97.98,snacks
+ACC00003,2023-09-17,01:14,utilities,321.38,internet
+ACC00006,2023-04-24,09:31,entertainment,144.13,concert
+ACC00003,2023-05-02,22:23,rent,437.88,monthly rent
+ACC00005,2023-02-14,09:37,dining,13.33,snacks
+ACC00004,2023-12-13,11:14,utilities,391.78,gas
+ACC00004,2023-05-23,19:13,utilities,96.59,electricity
+ACC00005,2023-02-20,07:40,dining,284.89,coffee
+ACC00001,2023-05-07,03:03,transport,323.2,fuel
+ACC00003,2023-01-17,03:45,transport,354.15,bus fare
+ACC00002,2023-05-04,20:34,entertainment,395.37,sports event
+ACC00006,2023-07-17,23:35,dining,307.91,restaurant
+ACC00006,2023-12-11,01:42,rent,95.84,monthly rent
+ACC00006,2023-03-29,07:12,utilities,441.09,internet
+ACC00007,2023-11-22,04:49,groceries,100.55,vegetables
+ACC00002,2023-12-04,01:19,entertainment,78.55,concert
+ACC00001,2023-03-14,10:35,utilities,288.06,internet
+ACC00006,2023-10-07,05:52,groceries,422.14,fruits
+ACC00008,2023-11-30,14:09,transport,333.55,bus fare
+ACC00002,2023-02-08,19:17,transport,433.33,bus fare
+ACC00006,2023-08-01,02:47,entertainment,445.14,movie
+ACC00001,2023-01-09,10:17,groceries,273.9,bread
+ACC00002,2023-12-17,17:11,dining,272.59,snacks
+ACC00007,2023-02-28,04:06,transport,26.33,fuel
+ACC00007,2023-10-08,11:16,utilities,214.25,internet
+ACC00001,2023-02-26,04:49,dining,430.18,restaurant
+ACC00006,2023-06-03,01:30,transport,296.25,bus fare
+ACC00001,2023-12-20,16:43,rent,356.78,monthly rent
+ACC00008,2023-08-03,15:37,dining,388.4,fast food
+ACC00005,2023-09-08,12:08,groceries,117.49,bread
+ACC00002,2023-07-26,21:21,utilities,110.08,phone bill
+ACC00003,2023-11-09,00:49,rent,215.38,monthly rent
+ACC00005,2023-12-02,22:14,groceries,186.51,milk
+ACC00005,2023-03-10,10:58,utilities,238.31,water
+ACC00008,2023-06-06,12:44,groceries,129.86,fruits
+ACC00007,2023-12-04,06:46,transport,208.5,fuel
+ACC00005,2023-09-03,08:27,utilities,163.0,water
+ACC00006,2023-09-14,06:09,dining,493.05,coffee
+ACC00004,2023-07-04,18:17,entertainment,152.33,museum
+ACC00007,2023-07-31,15:33,transport,383.93,fuel
+ACC00004,2023-10-05,20:32,entertainment,438.7,museum
+ACC00006,2023-06-09,14:37,transport,367.23,bus fare
+ACC00002,2023-05-15,05:34,rent,135.53,monthly rent
+ACC00004,2023-03-15,13:29,entertainment,45.85,concert
+ACC00004,2023-05-21,18:26,groceries,336.65,milk
+ACC00005,2023-09-18,09:00,entertainment,295.79,movie
+ACC00006,2023-06-02,03:52,dining,16.13,restaurant
+ACC00008,2023-12-02,16:49,utilities,442.51,phone bill
+ACC00001,2023-10-22,07:20,transport,343.42,train ticket
+ACC00007,2023-12-23,00:45,utilities,330.49,electricity
+ACC00007,2023-04-07,14:02,transport,262.97,train ticket
+ACC00008,2023-10-16,08:18,rent,128.33,monthly rent
+ACC00001,2023-05-08,15:30,rent,68.73,monthly rent
+ACC00001,2023-09-22,08:22,entertainment,16.07,movie
+ACC00002,2023-10-29,23:31,entertainment,173.77,concert
+ACC00006,2023-07-27,15:12,rent,232.72,monthly rent
+ACC00006,2023-05-26,19:35,groceries,425.22,fruits
+ACC00007,2023-08-31,19:20,entertainment,439.94,concert
+ACC00008,2023-06-04,21:50,groceries,404.85,milk
+ACC00002,2023-07-13,09:23,transport,119.6,train ticket
+ACC00007,2023-08-26,21:13,entertainment,241.91,sports event
+ACC00004,2023-08-27,18:38,rent,499.67,monthly rent
+ACC00001,2023-05-21,18:41,rent,418.72,monthly rent
+ACC00005,2023-06-28,13:42,transport,102.21,bus fare
+ACC00006,2023-03-14,13:18,dining,301.86,fast food
+ACC00004,2023-08-17,04:50,rent,76.27,monthly rent
+ACC00005,2023-06-05,16:51,transport,375.82,bus fare
+ACC00005,2023-10-30,21:08,entertainment,305.96,museum
+ACC00004,2023-04-29,05:46,entertainment,144.99,museum
+ACC00004,2023-10-04,17:44,utilities,53.02,gas
+ACC00004,2023-10-24,22:25,rent,111.91,monthly rent
+ACC00004,2023-12-25,21:20,rent,328.52,monthly rent
+ACC00008,2023-06-05,10:30,entertainment,317.96,museum
+ACC00002,2023-09-05,23:15,entertainment,327.25,movie
+ACC00007,2023-10-30,19:58,groceries,147.98,meat
+ACC00001,2023-07-20,05:55,utilities,467.81,phone bill
+ACC00001,2023-03-20,15:09,groceries,211.21,bread
+ACC00004,2023-03-26,06:19,groceries,318.77,snacks
+ACC00008,2023-06-08,16:03,rent,196.25,monthly rent
+ACC00005,2023-04-02,16:11,dining,302.37,snacks
+ACC00005,2023-08-02,03:28,dining,71.85,restaurant
+ACC00002,2023-08-04,01:46,dining,302.5,coffee
+ACC00004,2023-06-09,22:50,transport,312.25,train ticket
+ACC00001,2023-11-03,14:22,groceries,498.49,milk
+ACC00002,2023-07-16,13:02,groceries,38.3,meat
+ACC00004,2023-11-26,19:42,dining,420.94,restaurant
+ACC00007,2023-04-22,22:29,dining,425.53,snacks
+ACC00005,2023-08-22,02:00,transport,125.2,train ticket
+ACC00005,2023-01-04,19:35,dining,368.96,fast food
+ACC00007,2023-02-27,00:17,entertainment,422.74,sports event
+ACC00004,2023-12-15,10:03,utilities,393.1,phone bill
+ACC00003,2023-05-25,15:45,entertainment,247.85,concert
+ACC00002,2023-11-07,07:02,rent,80.42,monthly rent
+ACC00006,2023-07-12,17:49,transport,408.3,fuel
+ACC00003,2023-07-17,21:58,transport,417.51,fuel
+ACC00002,2023-07-03,23:23,dining,318.23,restaurant
+ACC00002,2023-10-05,17:06,groceries,323.33,milk
+ACC00001,2023-06-16,20:43,transport,312.7,fuel
+ACC00004,2023-11-27,16:00,rent,220.12,monthly rent
+ACC00004,2023-09-19,11:58,rent,65.59,monthly rent
+ACC00001,2023-01-05,13:48,utilities,362.12,electricity
+ACC00005,2023-08-26,03:53,utilities,469.12,phone bill
+ACC00005,2023-09-06,10:59,groceries,372.58,meat
+ACC00001,2023-01-29,06:19,groceries,153.77,fruits
+ACC00003,2023-06-08,17:50,rent,49.61,monthly rent
+ACC00004,2023-05-27,13:30,dining,190.98,snacks
+ACC00008,2023-07-13,01:00,entertainment,179.4,sports event
+ACC00002,2023-12-10,16:26,transport,411.05,fuel
+ACC00008,2023-01-20,12:27,groceries,405.41,meat
+ACC00001,2023-07-04,02:30,transport,426.46,fuel
+ACC00003,2023-05-16,02:46,groceries,56.85,fruits
+ACC00005,2023-07-11,08:03,rent,203.15,monthly rent
+ACC00008,2023-05-31,03:54,dining,82.41,fast food
+ACC00008,2023-08-26,00:55,groceries,48.13,fruits
+ACC00007,2023-09-26,20:42,groceries,241.24,milk
+ACC00003,2023-01-12,11:45,entertainment,310.25,museum
+ACC00001,2023-01-18,04:26,dining,221.82,restaurant
+ACC00006,2023-06-20,05:00,entertainment,217.74,movie
+ACC00003,2023-05-21,06:26,rent,218.55,monthly rent
+ACC00002,2023-02-01,09:37,rent,499.02,monthly rent
+ACC00008,2023-01-06,21:17,rent,308.22,monthly rent
+ACC00008,2023-11-23,10:10,entertainment,457.87,concert
+ACC00004,2023-01-17,16:35,rent,222.84,monthly rent
+ACC00004,2023-05-18,10:32,rent,372.75,monthly rent
+ACC00003,2023-03-12,07:52,groceries,245.39,fruits
+ACC00007,2023-07-26,17:45,dining,267.6,snacks
+ACC00008,2023-05-06,18:57,groceries,333.9,vegetables
+ACC00007,2023-09-20,03:18,utilities,204.21,internet
+ACC00002,2023-11-10,03:18,entertainment,23.51,concert
+ACC00005,2023-04-09,06:27,groceries,482.22,snacks
+ACC00004,2023-11-21,17:09,transport,344.59,train ticket
+ACC00004,2023-02-04,13:09,groceries,160.63,meat
+ACC00004,2023-04-27,14:39,utilities,487.99,phone bill
+ACC00006,2023-04-03,19:42,rent,411.51,monthly rent
+ACC00006,2023-12-15,13:19,rent,106.54,monthly rent
+ACC00005,2023-08-13,12:12,entertainment,169.41,museum
+ACC00006,2023-03-26,16:17,transport,461.11,bus fare
+ACC00007,2023-03-14,11:32,entertainment,218.78,movie
+ACC00006,2023-06-05,17:52,transport,95.02,train ticket
+ACC00001,2023-11-26,14:30,utilities,178.06,gas
+ACC00001,2023-12-25,05:45,entertainment,92.06,concert
+ACC00007,2023-07-29,21:07,rent,117.65,monthly rent
