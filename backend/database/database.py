@@ -13,6 +13,7 @@ def create_tables(connection):
     cursor.execute('''
        CREATE TABLE IF NOT EXISTS transactions (
            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           accountno TEXT NOT NULL,
            ref TEXT NOT NULL,
            val REAL NOT NULL,
            time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -33,22 +34,22 @@ def add_file_data(connection, filename):
     with open(f"/backend/sample/{filename}", "r") as file1:
         for line in file1:
             data = line.split(",").strip()
-            date = data[0].split("-").strip()
-            time = data[1].split(":").strip()
-            transactions.append((data[4], float(data[3]), datetime(int(date[0]), int(date[1]), int(date[2]), int(time[0]), int(time[1])), data[3]))
+            date = data[1].split("-").strip()
+            time = data[2].split(":").strip()
+            transactions.append((data[0], data[5], float(data[3]), datetime(int(date[0]), int(date[1]), int(date[2]), int(time[0]), int(time[1])), data[4]))
     cursor = connection.cursor()
     cursor.executemany('''
-        INSERT INTO transactions (ref, val, time, category)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO transactions (accountno, ref, val, time, category)
+        VALUES (?, ?, ?, ?, ?)
     ''', transactions)
 
 '''Adds the data from a transaction object to the database'''
 def add_transaction(connection, transaction):
     cursor = connection.cursor()
     cursor.execute('''
-       INSERT INTO transactions (ref, val, time, category)
-       VALUES (?, ?, ?, ?)
-    ''', (transaction.ref, transaction.value, transaction.time, transaction.category))
+       INSERT INTO transactions (accountno, ref, val, time, category)
+       VALUES (?, ?, ?, ?, ?)
+    ''', (transaction.accountno, transaction.ref, transaction.value, transaction.time, transaction.category))
     cursor.commit()
     cursor.close()
 
