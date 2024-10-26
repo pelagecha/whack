@@ -5,10 +5,10 @@ import FileUpload from "../components/FileUpload";
 import SpendingGraph from "../components/SpendingGraph";
 import SpendingLens from "../components/SpendingLens";
 import TimeRangeSelector from "./TimeRangeSelector";
-import { registerUser, loginUser, getUserData } from "../services/authService";
+import { registerUser, loginUser } from "../services/authService";
 import Header from "../components/Header";
 import InfoTiles from "../components/InfoTiles";
-
+import axios from "axios";
 interface Transaction {
     id: string;
     date: string;
@@ -28,19 +28,7 @@ export default function HomePage() {
     const [balance, setBalance] = useState<number>(0);
     const [totalSpending, setTotalSpending] = useState<number>(0);
     const [spendingIncrease, setSpendingIncrease] = useState<number>(0);
-    const [user, setUser] = useState<any>(null);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            const userData = await getUserData();
-            if (userData && userData.success) {
-                setUser(userData.user);
-                setData(userData.user.transactions || []);
-                setFilteredData(userData.user.transactions || []);
-            }
-        };
-        fetchUserData();
-    }, []);
+    const [user, setUser] = useState<unknown>(null);
 
     useEffect(() => {
         const categoryMap: { [key: string]: number } = {};
