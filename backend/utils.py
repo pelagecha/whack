@@ -9,9 +9,9 @@ class Transaction:
         self.ref = ref
         
 class Account:
-    def __init__(self, balance, accountno, account_type, interest_rate = 0, reference = ""):
-        self.balance = balance
+    def __init__(self, accountno, balance, account_type, interest_rate = 0, reference = ""):
         self.accountno = accountno
+        self.balance = balance
         self.account_type = account_type
         self.interest_rate = interest_rate
         self.reference = reference
