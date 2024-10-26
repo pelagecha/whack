@@ -24,19 +24,22 @@ def create_tables(connection):
     connection.commit()
     cursor.close()
 
-'''Initialised the database'''
+'''Initialises the database'''
 def init_db(connection):
+    reset_db(connection)
     create_tables(connection)
+    add_file_data(connection, "../sample/dataset1.csv")
+    
 
 '''Adds data from a csv file specified by filename from the sample folder'''
-def add_file_data(connection, filename):
+def add_file_data(connection, filepath):
     transactions = []
-    with open(f"/backend/sample/{filename}", "r") as file1:
+    with open(filepath, "r") as file1:
         for line in file1:
-            data = line.split(",").strip()
-            date = data[1].split("-").strip()
-            time = data[2].split(":").strip()
-            transactions.append((data[0], data[5], float(data[3]), datetime(int(date[0]), int(date[1]), int(date[2]), int(time[0]), int(time[1])), data[4]))
+            data = line.strip().split(",")
+            date = data[1].strip().split("-")
+            time = data[2].strip().split(":")
+            transactions.append((data[0], data[5], float(data[4]), datetime(int(date[0]), int(date[1]), int(date[2]), int(time[0]), int(time[1])), data[3]))
     cursor = connection.cursor()
     cursor.executemany('''
         INSERT INTO transactions (accountno, ref, val, time, category)
@@ -57,11 +60,26 @@ def add_transaction(connection, transaction):
 def reset_db(connection):
     cursor = connection.cursor()
     cursor.execute('''
-        DROP TABLE IF EXISTS transactions CASCADE;
+        DROP TABLE IF EXISTS transactions;
     ''')
     connection.commit()
     cursor.close()
-    create_tables(connection)
     
+'''Takes a database connection and account number and returns all transactions associates with that account'''
+def get_account_transactions(connection, accountno):
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT * 
+        FROM transactions
+        WHERE accountno = ?;
+    ''', accountno)
+    records = cursor.fetchall()
+    cursor.close()
+    return records
+
+if __name__ == "__main__":
+    connection = create_connection("finance.db")
+    init_db(connection)
+    connection.close()
     
     
