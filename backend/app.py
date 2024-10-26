@@ -1,82 +1,30 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
-from data_handler import load_data, get_categories, filter_data, to_json
+from flask import Flask, g, redirect, jsonify, flash #TODO add login
 from datetime import datetime
-import uvicorn
-import uuid
-from processors.image_classification import classify_image
-from database import create_connection, DATABASE_FILE, get_account_transactions#, add_file_account_data, add_transaction
+import os
 
-app = FastAPI()
-database_connection = None
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Update with your frontend URL in production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+#Make the app and configure the secret key
+app = Flask(__name__)
+app.secret_key = "scrumptious"
 
-# In-memory storage for sessions (use a database for production)
-data_storage = {}
+#Initialise the database and create a connection to it on startup
+db_connect = create_connection(f'database/{DATABASE_FILE}')
+init_db(db_connect)
 
-#Connect to the database on app startup
-@app.on_event("startup")
-def start_db():
-    global database_connection
-    database_connection = create_connection(f'database{DATABASE_FILE}')
+#TODO add login manager and configure
 
-#Close database connection on shutdown
-@app.on_event("shutdown")
+# Close database connection on shutdown
+@app.teardown_appcontext
 def close_db():
-    if database_connection:
-        database_connection.close()
-
-@app.post("/upload")
-async def upload_file(file: UploadFile = File(...)):
-    """
-    Endpoint to upload a CSV file and initialize a session.
-    """
-    df = load_data(file.file)
-    session_id = str(uuid.uuid4())
-    data_storage[session_id] = df
-    categories = get_categories(df)
-    return {"session_id": session_id, "categories": categories}
-
-@app.post("/filter")
-async def filter_data_endpoint(
-    session_id: str,
-    start_date: str = None,
-    end_date: str = None,
-    categories: str = None
-):
-    """
-    Endpoint to filter data based on session, date range, and categories.
-    """
-    df = data_storage.get(session_id)
-    if df is None:
-        return {"error": "Session not found"}
+    if db_connect:
+        db_connect.close
+        
+@app.route("/", methods=['GET'])
+def index(): #TODO change to login
+    return redirect("/home")
     
-    # Parse dates and categories
-    start_date_parsed = datetime.strptime(start_date, "%Y-%m-%d") if start_date else None
-    end_date_parsed = datetime.strptime(end_date, "%Y-%m-%d") if end_date else None
-    categories_list = categories.split(",") if categories else None
-    
-    # Filter data
-    filtered_df = filter_data(df, start_date=start_date_parsed, end_date=end_date_parsed, categories=categories_list)
-    
-    # Convert to JSON
-    data_json = to_json(filtered_df)
-    
-    return {"data": data_json}
-
-@app.post("/process-image")
-async def process_image(file: UploadFile = File(...)):
-    # Placeholder for image processing
-    result = classify_image(file.file)
-    return result
-
-if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+@app.route("/home", methods=['GET'])
+def home():
+    data = get_all_transaction_data(db_connect)
+    return jsonify(data)
