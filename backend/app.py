@@ -1,93 +1,12 @@
-from fastapi import FastAPI, Depends, HTTPException, UploadFile, File
-from fastapi_users import FastAPIUsers, models, schemas
-from fastapi_users.authentication import AuthenticationBackend, BearerTransport, JWTStrategy
-from fastapi_users.db import SQLAlchemyUserDatabase  # Correct import after installing extras
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
-from sqlalchemy.orm import sessionmaker
+from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-import uuid
+from data_handler import load_data, get_categories, filter_data, to_json
 from datetime import datetime
-
-# Replace these with your actual implementations
-def load_data(file):
-    # Placeholder for loading data
-    pass
-
-def get_categories(df):
-    # Placeholder for getting categories
-    pass
-
-def filter_data(df, start_date=None, end_date=None, categories=None):
-    # Placeholder for filtering data
-    pass
-
-def to_json(filtered_df):
-    # Placeholder for converting DataFrame to JSON
-    pass
-
-def classify_image(file):
-    # Placeholder for image classification
-    pass
-
-DATABASE_URL = "sqlite+aiosqlite:///./test.db"  # Use async SQLite URL
-Base: DeclarativeMeta = declarative_base()
-engine = create_async_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(
-    bind=engine, class_=AsyncSession, expire_on_commit=False
-)
-
-# Define your User model and UserDB model here
-class User(models.BaseUser):
-    pass
-
-class UserCreate(schemas.BaseUserCreate):
-    pass
-
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
-
-class UserDB(User, models.BaseUserDB):
-    pass
-
-# Initialize the user database
-async def get_user_db():
-    async with SessionLocal() as session:
-        yield SQLAlchemyUserDatabase(session, UserDB, User.__table__)  # Ensure correct argument order
-
-SECRET = "SECRET"
-
-# Define the transport and strategy
-bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
-
-def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=SECRET, lifetime_seconds=3600)
-
-# Create the authentication backend
-auth_backend = AuthenticationBackend(
-    name="jwt",
-    transport=bearer_transport,
-    get_strategy=get_jwt_strategy,
-)
+import uvicorn
+import uuid
+from processors.image_classification import classify_image
 
 app = FastAPI()
-
-# Initialize FastAPIUsers with the new authentication backend
-fastapi_users = FastAPIUsers(
-    get_user_db,
-    [auth_backend],
-    User,
-    UserCreate,
-    UserUpdate,
-    UserDB,
-)
-
-app.include_router(
-    fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
-)
-app.include_router(
-    fastapi_users.get_register_router(), prefix="/auth", tags=["auth"]
-)
 
 # Configure CORS
 app.add_middleware(
@@ -117,13 +36,14 @@ async def filter_data_endpoint(
     session_id: str,
     start_date: str = None,
     end_date: str = None,
-    categories: str = None,
-    user=Depends(fastapi_users.get_current_user)
+    categories: str = None
 ):
-    # Use user.id to filter data specific to the logged-in user
+    """
+    Endpoint to filter data based on session, date range, and categories.
+    """
     df = data_storage.get(session_id)
     if df is None:
-        raise HTTPException(status_code=404, detail="Session not found")
+        return {"error": "Session not found"}
     
     # Parse dates and categories
     start_date_parsed = datetime.strptime(start_date, "%Y-%m-%d") if start_date else None
@@ -145,5 +65,4 @@ async def process_image(file: UploadFile = File(...)):
     return result
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
