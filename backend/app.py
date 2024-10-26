@@ -4,6 +4,7 @@ from data_handler import load_data, get_categories, filter_data, to_json
 from datetime import datetime
 import uvicorn
 import uuid
+from processors.image_classification import classify_image
 
 app = FastAPI()
 
@@ -56,6 +57,12 @@ async def filter_data_endpoint(
     data_json = to_json(filtered_df)
     
     return {"data": data_json}
+
+@app.post("/process-image")
+async def process_image(file: UploadFile = File(...)):
+    # Placeholder for image processing
+    result = classify_image(file.file)
+    return result
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
