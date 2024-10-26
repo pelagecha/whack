@@ -1,0 +1,167 @@
+/* frontend/components/spendingLens.css */
+
+/* Container for the Spending Lens */
+.spending-lens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e0f7fa; /* Light Cyan */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for the Spending Lens */
+.spending-lens-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #00796b; /* Teal */
+}
+
+/* Categories container */
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Individual category bubble */
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.category-item.selected {
+    border: 4px solid #3b82f6; /* Blue border for selected */
+}
+
+.category-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Category name styling */
+.category-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+/* Category amount styling */
+.category-amount {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Indicator icon positioning */
+.indicator-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ffeb3b; /* Yellow */
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-inner {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+/* Close Button */
+.modal-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #757575; /* Gray */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close-button:hover {
+    color: #212121; /* Darker Gray */
+}
+
+/* Modal Title */
+.modal-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #00796b; /* Teal */
+}
+
+/* Expanded Categories Container */
+.categories-expanded {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Expand Button */
+.expand-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.expand-button {
+    background-color: #00796b; /* Teal */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.expand-button:hover {
+    background-color: #004d40; /* Darker Teal */
+    transform: scale(1.05);
+}
