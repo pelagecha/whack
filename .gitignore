@@ -140,6 +140,9 @@ venv.bak/
 # mkdocs documentation
 /site
 
+package-lock.json
+package.json
+
 # mypy
 .mypy_cache/
 .dmypy.json
