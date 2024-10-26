@@ -1,3 +1,5 @@
+// frontend/pages/index.tsx
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,13 +7,22 @@ import FileUpload from "../components/FileUpload";
 import SpendingGraph from "../components/SpendingGraph";
 import SpendingLens from "../components/SpendingLens";
 
+interface Transaction {
+    id: string;
+    date: string;
+    category: string;
+    amount: number;
+}
+
+interface CategoryData {
+    category: string;
+    amount: number;
+}
+
 export default function HomePage() {
-    const [data, setData] = useState<
-        { id: string; date: string; category: string; amount: number }[]
-    >([]);
-    const [categoriesData, setCategoriesData] = useState<
-        { category: string; amount: number }[]
-    >([]);
+    const [data, setData] = useState<Transaction[]>([]);
+    const [categoriesData, setCategoriesData] = useState<CategoryData[]>([]);
+    const [filteredData, setFilteredData] = useState<Transaction[]>([]);
 
     useEffect(() => {
         const categoryMap: { [key: string]: number } = {};
@@ -57,40 +68,61 @@ export default function HomePage() {
                     } => entry !== null
                 );
             setData(parsedData);
+            setFilteredData(parsedData); // Initialize filteredData with all data
         };
         reader.readAsText(file);
     };
 
     const handleFilterChange = (selectedCategories: string[]) => {
-        const filteredData = data.filter((transaction) =>
+        const updatedData = data.filter((transaction) =>
             selectedCategories.includes(transaction.category)
         );
-        setData(filteredData);
+        setFilteredData(updatedData);
     };
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <header className="bg-blue-600 text-white p-4">
-                <h1 className="text-4xl font-bold">Finance Tracker</h1>
+        <div className="min-h-screen flex flex-col bg-gray-50">
+            {/* Header */}
+            <header className="bg-blue-600 text-white p-6 shadow-md">
+                <div className="container mx-auto flex justify-between items-center">
+                    <h1 className="text-3xl font-bold">Ccredit</h1>
+                    {/* Optional: Add Navigation Links Here */}
+                </div>
             </header>
-            <main className="flex-grow p-8">
-                {data.length > 0 ? (
-                    <div className="space-y-8">
-                        <SpendingLens
-                            categories={categoriesData}
-                            onFilterChange={handleFilterChange}
-                        />
-                        <SpendingGraph data={data} />
+
+            {/* Main Content */}
+            <main className="flex-grow container mx-auto p-6">
+                {filteredData.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Spending Lens Card */}
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <SpendingLens
+                                categories={categoriesData}
+                                onFilterChange={handleFilterChange}
+                            />
+                        </div>
+
+                        {/* Spending Graph Card */}
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <SpendingGraph data={filteredData} />
+                        </div>
                     </div>
                 ) : (
-                    <p className="text-lg mb-8">
-                        No previous data, use the upload form below...
-                    </p>
+                    <div className="flex flex-col items-center justify-center h-full">
+                        <p className="text-lg mb-8">
+                            No data available. Please upload your spending CSV
+                            file below.
+                        </p>
+                        <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md">
+                            <FileUpload onFileUpload={handleFileUpload} />
+                        </div>
+                    </div>
                 )}
-                <FileUpload onFileUpload={handleFileUpload} />
             </main>
+
+            {/* Footer */}
             <footer className="bg-gray-800 text-white p-4 text-center">
-                <p>&copy; 2024 Finance Tracker. All rights reserved.</p>
+                <p>&copy; 2024 Clean my Credit. All rights reserved.</p>
             </footer>
         </div>
     );

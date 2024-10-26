@@ -1,77 +1,52 @@
 /* frontend/components/spendingLens.css */
 
-/* Container for the Spending Lens */
+/* Spending Lens Container */
 .spending-lens {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e0f7fa; /* Light Cyan */
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-/* Title for the Spending Lens */
+/* Title Styling */
 .spending-lens-title {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 700;
+    color: #374151; /* Dark Gray */
     margin-bottom: 20px;
-    color: #00796b; /* Teal */
 }
 
-/* Categories container */
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Bubble Container */
+.bubble-container {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    background: transparent;
 }
 
-/* Individual category bubble */
-.category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 15px;
-    width: 150px;
-    height: 150px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+/* SVG Styling */
+.bubble-svg {
+    width: 100%;
+    height: 100%;
+    background: transparent;
 }
 
-.category-item.selected {
-    border: 4px solid #3b82f6; /* Blue border for selected */
-}
-
-.category-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Category name styling */
-.category-name {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #ffffff;
-}
-
-/* Category amount styling */
-.category-amount {
+/* Bubble Text Styling */
+.bubble-text {
     font-size: 14px;
-    color: #ffffff;
+    pointer-events: none;
+    user-select: none;
+    font-weight: 500;
 }
 
-/* Indicator icon positioning */
+/* Indicator Icon Styling */
 .indicator-icon {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #ffeb3b; /* Yellow */
+    transform: translate(-50%, -50%);
 }
 
 /* Modal Overlay */
@@ -88,80 +63,127 @@
 /* Modal Content */
 .modal-content {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    padding: 30px;
+    overflow: auto;
+    max-height: 90vh;
 }
 
+/* Modal Inner Content */
 .modal-inner {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 100%;
-    max-width: 800px;
     position: relative;
 }
 
 /* Close Button */
 .modal-close-button {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
     border: none;
-    font-size: 30px;
-    color: #757575; /* Gray */
+    font-size: 24px;
+    color: #374151; /* Dark Gray */
     cursor: pointer;
     transition: color 0.3s;
 }
 
 .modal-close-button:hover {
-    color: #212121; /* Darker Gray */
+    color: #1f2937; /* Darker Gray */
 }
 
 /* Modal Title */
 .modal-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #374151; /* Dark Gray */
     text-align: center;
-    color: #00796b; /* Teal */
+    margin-bottom: 30px;
 }
 
-/* Expanded Categories Container */
-.categories-expanded {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* Expanded Bubble Container */
+.bubble-container-expanded {
+    width: 100%;
+    height: 800px;
+    position: relative;
 }
 
-/* Expand Button */
+.bubble-svg-expanded {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+/* Expand Button Container */
 .expand-button-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
+/* Expand Button Styling */
 .expand-button {
-    background-color: #00796b; /* Teal */
+    background-color: #2563eb; /* Dark Blue */
     color: #ffffff;
     padding: 10px 20px;
     border: none;
     border-radius: 50px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .expand-button:hover {
-    background-color: #004d40; /* Darker Teal */
-    transform: scale(1.05);
+    background-color: #1d4ed8; /* Darker Blue */
+    transform: translateY(-2px);
+}
+
+.expand-button:active {
+    transform: translateY(0px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .bubble-container,
+    .bubble-container-expanded {
+        width: 100%;
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .spending-lens-title {
+        font-size: 20px;
+    }
+
+    .bubble-container,
+    .bubble-container-expanded {
+        height: 400px;
+    }
+
+    .bubble-text {
+        font-size: 12px;
+    }
+
+    .indicator-icon {
+        font-size: 14px;
+    }
+
+    .modal-title {
+        font-size: 22px;
+    }
+
+    .expand-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

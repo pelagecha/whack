@@ -14,14 +14,12 @@ import {
     Legend,
     Filler,
     LineController,
-    LineDatasetOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 import * as ss from "simple-statistics";
 
-// Register the necessary components
 Chart.register(
     CategoryScale,
     LinearScale,
@@ -39,11 +37,11 @@ interface IData {
     amount: number;
 }
 
-interface ISpendingGraphProps {
+interface SpendingGraphProps {
     data: IData[];
 }
 
-const SpendingGraph: React.FC<ISpendingGraphProps> = ({ data }) => {
+const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     // Define a threshold for unusual spending
@@ -100,7 +98,6 @@ const SpendingGraph: React.FC<ISpendingGraphProps> = ({ data }) => {
                         item.amount > threshold ? "#dc2626" : "#2563eb"
                     ),
                     borderWidth: 2,
-                    // Optional: Add data labels
                 },
                 {
                     label: "Trend",
@@ -227,7 +224,7 @@ const SpendingGraph: React.FC<ISpendingGraphProps> = ({ data }) => {
                 <AnimatePresence>
                     {isExpanded && (
                         <motion.button
-                            className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-3 rounded-full shadow"
+                            className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold p-2 rounded-full shadow"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setIsExpanded(false);
@@ -235,6 +232,7 @@ const SpendingGraph: React.FC<ISpendingGraphProps> = ({ data }) => {
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
+                            aria-label="Close Graph"
                         >
                             <FaTimes />
                         </motion.button>
