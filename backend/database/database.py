@@ -28,7 +28,7 @@ def create_tables(connection):
 def init_db(connection):
     reset_db(connection)
     create_tables(connection)
-    add_file_data(connection, "../sample/dataset1.csv")
+    add_file_data(connection, "../sample/sample_data.csv")
     
 
 '''Adds data from a csv file specified by filename from the sample folder'''
