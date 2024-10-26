@@ -40,7 +40,7 @@ def init_db(connection):
     reset_db(connection)
     create_tables(connection)
     add_file_account_data(connection, "../sample/sample_account_data.csv")
-    add_file_transaction_data(connection, "../sample/sample_transaction_data.csv") #TODO uncomment
+    add_file_transaction_data(connection, "../sample/sample_transaction_data.csv")
     
 
 '''Adds transaction data from a csv file specified by filepath'''
@@ -93,6 +93,28 @@ def add_account(connection, account):
         INSERT INTO accounts (accountno, balance, type, interest_rate, reference)
         VALUES (?, ?, ?, ?, ?);
     ''', account.accountno, account.balance, account.type, account.interest_rate, account.reference)
+    connection.commit()
+    cursor.close()
+
+'''Changes the balance of an account by <change> amount.'''
+def alter_account_balance(connection, change, accountno):
+    cursor = connection.cursor()
+    cursor.execute('''
+        UPDATE accounts
+        SET balance = balance + ?
+        WHERE accountno = ?;
+    ''', change, accountno)
+    connection.commit()
+    cursor.close()
+
+'''Changes the interest rate on an account'''
+def change_interest_rate(connection, new_rate, accountno):
+    cursor = connection.cursor()
+    cursor.execute('''
+        UPDATE accounts
+        SET interest_rate = ?
+        WHERE accountno = ?;
+    ''', new_rate, accountno)
     connection.commit()
     cursor.close()
 
