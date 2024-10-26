@@ -28,3 +28,6 @@ def index(): #TODO change to login
 def home():
     data = get_all_transaction_data(db_connect)
     return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(debug = True)
