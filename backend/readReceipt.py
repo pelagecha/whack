@@ -37,5 +37,6 @@ def readReceipt(prices,  items):
 
     return prices
 
-prices = readReceipt('tesco2.png', 'tesco1.png')
-print(prices)
+if __name__ == "__main__":
+    prices = readReceipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
+    print(prices)

@@ -147,7 +147,7 @@ def get_all_transaction_data(connection):
     cursor = connection.cursor()
     cursor.execute('''
         SELECT *
-        FROM transactions;               
+        FROM transactions;
     ''')
     records = cursor.fetchall()
     cursor.close()
