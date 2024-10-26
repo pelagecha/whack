@@ -8,7 +8,7 @@ import TimeRangeSelector from "./TimeRangeSelector";
 import { registerUser, loginUser } from "../services/authService";
 import Header from "../components/Header";
 import InfoTiles from "../components/InfoTiles";
-import axios from "axios";
+
 interface Transaction {
     id: string;
     date: string;
