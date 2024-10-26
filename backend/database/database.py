@@ -1,11 +1,12 @@
 import sqlite3
 from datetime import datetime
 
+'''Creates a connection to the database specified by file and returns it'''
 def create_connection(file):
     connection = sqlite3.connect(file)
     return connection
 
-
+'''Creates the tables in the database on the connection'''
 def create_tables(connection):
     cursor = connection.cursor()
     
@@ -21,10 +22,12 @@ def create_tables(connection):
     
     connection.commit()
     cursor.close()
-    
+
+'''Initialised the database'''
 def init_db(connection):
     create_tables(connection)
-    
+
+'''Adds data from a csv file specified by filename from the sample folder'''
 def add_file_data(connection, filename):
     transactions = []
     with open(f"/backend/sample/{filename}", "r") as file1:
@@ -39,6 +42,7 @@ def add_file_data(connection, filename):
         VALUES (?, ?, ?, ?)
     ''', transactions)
 
+'''Adds the data from a transaction object to the database'''
 def add_transaction(connection, transaction):
     cursor = connection.cursor()
     cursor.execute('''
@@ -48,6 +52,7 @@ def add_transaction(connection, transaction):
     cursor.commit()
     cursor.close()
 
+'''Removes all tables and recreates them'''
 def reset_db(connection):
     cursor = connection.cursor()
     cursor.execute('''
