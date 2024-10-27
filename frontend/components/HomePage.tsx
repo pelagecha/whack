@@ -163,9 +163,9 @@ export default function HomePage() {
                     transactionCount={data.length}
                 />
 
-                <div className="mb-8">
+                {/* <div className="mb-8">
                     <TimeRangeSelector onChange={handleTimeRangeChange} />
-                </div>
+                </div> */}
 
                 {filteredData.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
