@@ -45,14 +45,20 @@ class User(UserMixin):
         return self.username
     
 
-def image_to_db_entry(file_path, account_no):
-    named_prices = read_receipt(file_path, file_path)
+def classify_image(file_path, account_no):
+    image = Image.open(file_path)
+    text = pytesseract.image_to_string(image)
+    candidate_labels = [
+        "Food",
+        "Transportation",
+        "Utilities",
+        "Health/Medical",
+        "Clothing/Apparel",
+        "Entertainment",
+        "Miscellaneous"
+    ]
 
-    cum_price = 0
-    cum_names = ""
+    category = classify_item(text, candidate_labels)
+    price = run_model("image", text)
 
-    for (name, price) in named_prices:
-        cum_price += price
-        cum_names += " " + name
-
-    return (classify_item(cum_names), price) 
+    return (category, price)
