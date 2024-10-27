@@ -8,7 +8,7 @@ from utils import User
 
 # Import your database functions and other dependencies
 from gpt import run_model
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue
 
 # Initialize the app and configure the secret key
 app = Flask(__name__)
@@ -135,9 +135,10 @@ def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
 
-
+# Take in input and provide it as a prompt to chat model
 @app.route("/chat", methods=['POST'])
 def chat():
+    db = get_db()
     data = request.json
     user_input = data.get("message", "")
     
@@ -146,7 +147,9 @@ def chat():
     
     try:
         # Assuming run_model is a function that processes the chat input
-        bot_response = run_model("chat", user_input)
+        history = get_dialogue(db)
+        bot_response = run_model("chat", history + user_input + data)
+        update_conversation(db, bot_response)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:
