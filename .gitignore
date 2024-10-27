@@ -250,3 +250,4 @@ frontend/node_modules
 
 #Database
 backend/database/finance.db
+backend/backend\\data_in\\input_data.csv

@@ -1,10 +1,12 @@
 import { useState, useCallback, useRef } from "react";
-import "./FileUpload.css"; // Import a CSS file for styling
+import "./FileUpload.css";
 
 const FileUpload = ({
     onFileUpload,
+    onUploadSuccess,
 }: {
     onFileUpload: (file: File) => void;
+    onUploadSuccess: () => void;
 }) => {
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
