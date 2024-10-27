@@ -3,12 +3,14 @@ from flask_cors import CORS
 from flask_login import login_user, LoginManager, current_user, logout_user, login_required
 from flask_mail import Mail, Message
 from werkzeug import security
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils import User
+from flask import Flask, render_template
+from dateutil.relativedelta import relativedelta
 
 # Import your database functions and other dependencies
 from gpt import run_model
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue, get_transactions_in_time, get_category_transactions, get_expenses_per_category
 
 # Initialize the app and configure the secret key
 app = Flask(__name__)
@@ -89,7 +91,13 @@ def register():
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
-    user = User(username, email, security.generate_password_hash(password))
+    
+    # Create a new User object without passing arguments to the constructor
+    user = User()
+    user.username = username
+    user.email = email
+    user.password = security.generate_password_hash(password)
+    
     db = get_db()
     add_user(db, user)
     login_user(user)
@@ -135,7 +143,30 @@ def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
 
+
+
+
+
 # Take in input and provide it as a prompt to chat model
+# @app.route("/chat", methods=['POST'])
+# def chat():
+#     db = get_db()
+#     data = request.json
+#     user_input = data.get("message", "")
+    
+#     if not user_input:
+#         return jsonify({"error": "No message provided"}), 400
+    
+#     try:
+#         # Assuming run_model is a function that processes the chat input
+#         history = get_dialogue(db)
+#         bot_response = run_model("chat", history + user_input + data)
+#         update_conversation(db, bot_response)
+#         print(f"MY response is:{bot_response}")
+#         return jsonify({"response": bot_response})
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
+
 @app.route("/chat", methods=['POST'])
 def chat():
     db = get_db()
@@ -148,8 +179,7 @@ def chat():
     try:
         # Assuming run_model is a function that processes the chat input
         history = get_dialogue(db)
-        bot_response = run_model("chat", history + user_input + data)
-        update_conversation(db, bot_response)
+        bot_response = run_model("chat", user_input)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:
@@ -158,8 +188,9 @@ def chat():
 '''Sends an email. Requires: 
 username - username of the user to send the email to
 subject - subject line of the email
-template - html of the message'''
-def send_email(username, subject, template):
+template - html of the message
+date - today's date in the datetime format'''
+def send_email(username, subject, template, date):
     db = get_db()
     user = get_user(db, username)
     
@@ -169,7 +200,15 @@ def send_email(username, subject, template):
         sender = "Nikita.Pelagecha@warwick.ac.uk"
         message = Message(subject = subject, sender = ("NOREPLY", sender), recipients = email)
         
-        message.html = template
+        db = get_db()
+
+        expensethisweek=get_transactions_in_time(db, current_user.username, date, date - timedelta(weeks=1))
+        percentexpensemore=expensethisweek/(expensethisweek - get_transactions_in_time(db, current_user.username, date - timedelta(weeks=1), date - timedelta(weeks=2)))*100
+        expensethisweekcategory=get_expenses_per_category(db, current_user.username, date, date - timedelta(weeks=1))
+        expensethismonth=get_transactions_in_time(db, current_user.username, date - relativedelta(months=1), date)
+        percentexpensemoremonth=expensethismonth/(expensethismonth - get_transactions_in_time(db, current_user.username, date - relativedelta(months=1), date - relativedelta(months=2)))*100
+        expensethismonthcategory=get_expenses_per_category(db, current_user.username, date - relativedelta(months=1), date - relativedelta(months=2))
+        message.html = render_template('template.html', username=username, expensethisweek=expensethisweek, percentexpensemore=percentexpensemore, expensethisweekcategory=expensethisweekcategory, expensethismonth=expensethismonth, percentexpensemoremonth=percentexpensemoremonth, expensethismonthcategory=expensethismonthcategory)
         
         mail.send(message)
 

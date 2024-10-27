@@ -30,6 +30,21 @@ const Header: React.FC<HeaderProps> = ({ user, onRegister }) => {
                     ) : (
                         <div className="space-x-3">
                             <button
+                                onClick={async () => {
+                                    await fetch(
+                                        "http://localhost:5000/logout",
+                                        {
+                                            method: "GET",
+                                            credentials: "include",
+                                        }
+                                    );
+                                    navigate("/login");
+                                }}
+                                className="px-4 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300"
+                            >
+                                Logout
+                            </button>
+                            {/* <button
                                 onClick={() => navigate("/signup")}
                                 className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300"
                             >
@@ -40,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ user, onRegister }) => {
                                 className="px-4 py-2 bg-indigo-700 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-800 transition duration-300"
                             >
                                 Login
-                            </button>
+                            </button> */}
                         </div>
                     )}
                 </div>
