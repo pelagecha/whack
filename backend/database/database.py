@@ -199,13 +199,15 @@ def get_all_transaction_data(connection):
 def get_user(connection, username):
     cursor = connection.cursor()
     cursor.execute('''
-        SELECT (username, email, password)
+        SELECT username, email, password
         FROM users
         WHERE username = ?               
-    ''', username)
+    ''', (username,))
     user = cursor.fetchone()
     cursor.close()
-    return User(user[0], user[1], user[2])
+    if user:
+        return User(user[0], user[1], user[2])
+    return None
 
 def get_balance(connection, accountno):
     records = get_account_transactions(connection, accountno)
