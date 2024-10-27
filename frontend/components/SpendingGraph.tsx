@@ -70,7 +70,14 @@ const SpendingGraph: React.FC = () => {
     // Prepare data with indicator points and regression line
     const chartData = useMemo(() => {
         return {
-            labels: sortedData.map((item) => item.time),
+            labels: sortedData.map((item) => {
+                const date = new Date(item.time);
+                const day = date.getDate().toString().padStart(1, "0");
+                const month = date.toLocaleString("default", {
+                    month: "short",
+                });
+                return `${day} ${month}`;
+            }),
             datasets: [
                 {
                     label: "Spending",

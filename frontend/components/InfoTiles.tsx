@@ -20,7 +20,7 @@ const InfoTiles: React.FC<InfoTilesProps> = ({
                     Current Balance
                 </h2>
                 <p className="text-3xl text-green-600 font-extrabold mt-4">
-                    ${balance.toFixed(2)}
+                    ${balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-6 text-center">
@@ -28,7 +28,10 @@ const InfoTiles: React.FC<InfoTilesProps> = ({
                     Total Spending
                 </h2>
                 <p className="text-3xl text-red-600 font-extrabold mt-4">
-                    ${totalSpending.toFixed(2)}
+                    $
+                    {totalSpending
+                        .toFixed(2)
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-6 text-center">
@@ -44,7 +47,9 @@ const InfoTiles: React.FC<InfoTilesProps> = ({
                     Transactions Count
                 </h2>
                 <p className="text-3xl text-blue-600 font-extrabold mt-4">
-                    {transactionCount}
+                    {transactionCount
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </p>
             </div>
         </div>
