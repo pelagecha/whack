@@ -16,7 +16,6 @@ export default function Page() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
-                        {/* Add other routes here */}
                     </Routes>
                 </DataProvider>
             </AuthProvider>

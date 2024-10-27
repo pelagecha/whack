@@ -1,7 +1,8 @@
+// Login.tsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { loginUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Import Link
 import { useAuthContext } from "../context/AuthContext";
 
 const Login: React.FC = () => {
@@ -80,9 +81,12 @@ const Login: React.FC = () => {
                 </button>
                 <p className="text-gray-500 text-sm text-center mt-4">
                     Don&apos;t have an account?{" "}
-                    <a href="/signup" className="text-blue-600 hover:underline">
+                    <Link
+                        to="/signup"
+                        className="text-blue-600 hover:underline"
+                    >
                         Signup here
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

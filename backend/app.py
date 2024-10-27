@@ -89,7 +89,13 @@ def register():
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
-    user = User(username, email, security.generate_password_hash(password))
+    
+    # Create a new User object without passing arguments to the constructor
+    user = User()
+    user.username = username
+    user.email = email
+    user.password = security.generate_password_hash(password)
+    
     db = get_db()
     add_user(db, user)
     login_user(user)

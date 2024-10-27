@@ -33,8 +33,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         checkLoginStatus();
     }, []);
 
+    const signOut = async () => {
+        try {
+            await fetch("http://localhost:5000/logout", {
+                method: "POST",
+                credentials: "include",
+            });
+            setIsLoggedIn(false);
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, signOut }}>
             {children}
         </AuthContext.Provider>
     );
