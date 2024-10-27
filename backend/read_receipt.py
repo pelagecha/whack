@@ -1,6 +1,6 @@
 import easyocr
 
-def readReceipt(prices,  items):
+def read_receipt(prices,  items):
     reader = easyocr.Reader(['en'])
 
     result = reader.readtext(prices, allowlist = '.0123456789')
@@ -38,5 +38,5 @@ def readReceipt(prices,  items):
     return prices
 
 if __name__ == "__main__":
-    prices = readReceipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
+    prices = read_receipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
     print(prices)

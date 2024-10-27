@@ -4,5 +4,3 @@ Set-Location .\frontend
 
 Write-Host "Starting Next.js app"
 npm run dev
-
-Set-Location ..

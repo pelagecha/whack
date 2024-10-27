@@ -7,5 +7,3 @@ Write-Host "Activating Virtual Environment"
 
 Write-Host "Starting Flask Server"
 python3.11 app.py
-
-Set-Location ..
