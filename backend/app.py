@@ -179,11 +179,12 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-'''Sends an email. Requires: 
+'''Prototype method to send an email. Requires: 
 username - username of the user to send the email to
 subject - subject line of the email
 template - html of the message
-date - today's date in the datetime format'''
+date - today's date in the datetime format.
+Currently cannot execute properly due to flask mail suppress'''
 def send_email(username, subject, template, date):
     db = get_db()
     user = get_user(db, username)
