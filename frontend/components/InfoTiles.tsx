@@ -1,3 +1,4 @@
+// InfoTiles.tsx
 import React from "react";
 
 interface InfoTilesProps {

@@ -1,3 +1,4 @@
+// TimeRangeSelector.tsx
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./TimeRangeSelector.css";
