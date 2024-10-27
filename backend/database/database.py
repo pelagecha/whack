@@ -1,4 +1,5 @@
 import sqlite3
+from utils import User
 from datetime import datetime
 
 '''Creates a connection to the database specified by file and returns it'''
@@ -11,12 +12,23 @@ def create_tables(connection):
     cursor = connection.cursor()
     
     cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT,
+            email TEXT NOT NULL,
+            password TEXT NOT NULL
+        );
+    ''')
+    
+    cursor.execute('''
         CREATE TABLE IF NOT EXISTS accounts (
             accountno TEXT PRIMARY KEY,
+            userid INTEGER NOT NULL,
             balance REAL NOT NULL,
             type TEXT NOT NULL,
             interest_rate REAL DEFAULT 0,
-            reference TEXT
+            reference TEXT,
+            FOREIGN KEY(userid) REFERENCES users(id)
         );            
     ''')
     
@@ -41,6 +53,7 @@ def init_db(connection):
     create_tables(connection)
     add_file_account_data(connection, "./sample/sample_account_data.csv")
     add_file_transaction_data(connection, "./sample/sample_transaction_data.csv")
+    add_file_user_data(connection, "./sample/sample_user_data.csv")
     
 
 '''Adds transaction data from a csv file specified by filepath'''
@@ -66,22 +79,36 @@ def add_file_account_data(connection, filepath):
     with open(filepath, "r") as file1:
         for line in file1:
             data = line.strip().split(",")
-            accounts.append((data[0], float(data[1]), data[2], float(data[3]), data[4]))
-        cursor = connection.cursor()
+            accounts.append((data[0], int(data[1]), float(data[2]), data[3], float(data[4]), data[5]))
+    cursor = connection.cursor()
     cursor.executemany('''
-        INSERT INTO accounts (accountno, balance, type, interest_rate, reference)
-        VALUES (?, ?, ?, ?, ?);
+        INSERT INTO accounts (accountno, userid, balance, type, interest_rate, reference)
+        VALUES (?, ?, ?, ?, ?, ?);
     ''', accounts)
     connection.commit()
     cursor.close()
-    
 
+'''Adds user data from a csv file specified by filepath'''
+def add_file_user_data(connection, filepath):
+    users = []
+    with open(filepath, "r") as file1:
+        for line in file1:
+            data = line.strip().split(",")
+            users.append((data[0], data[1], data[2]))
+    cursor = connection.cursor()
+    cursor.executemany('''
+        INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?);                   
+    ''', users)
+    connection.commit()
+    cursor.close()
+    
 '''Adds the data from a transaction object to the database'''
 def add_transaction(connection, transaction):
     cursor = connection.cursor()
     cursor.execute('''
        INSERT INTO transactions (accountno, ref, val, time, category)
-       VALUES (?, ?, ?, ?, ?)
+       VALUES (?, ?, ?, ?, ?);
     ''', (transaction.accountno, transaction.ref, transaction.value, transaction.time, transaction.category))
     connection.commit()
     cursor.close()
@@ -89,10 +116,20 @@ def add_transaction(connection, transaction):
 '''Adds the data from an account object to the database'''
 def add_account(connection, account):
     cursor = connection.cursor()
-    cursor('''
-        INSERT INTO accounts (accountno, balance, type, interest_rate, reference)
-        VALUES (?, ?, ?, ?, ?);
-    ''', account.accountno, account.balance, account.type, account.interest_rate, account.reference)
+    cursor.execute('''
+        INSERT INTO accounts (accountno, userid, balance, type, interest_rate, reference)
+        VALUES (?, ?, ?, ?, ?, ?);
+    ''', (account.accountno, account.userid, account.balance, account.type, account.interest_rate, account.reference))
+    connection.commit()
+    cursor.close()
+
+'''Adds the data from an account object to the database'''
+def add_user(connection, username, email, password):
+    cursor = connection.cursor()
+    cursor.execute('''
+        INSERT INTO users (username, email, password)
+        VALUES (?, ?, ?);               
+    ''', (username, email, password))
     connection.commit()
     cursor.close()
 
@@ -127,6 +164,9 @@ def reset_db(connection):
     cursor.execute('''
         DROP TABLE IF EXISTS accounts;               
     ''')
+    cursor.execute('''
+        DROP TABLE IF EXISTS users;               
+    ''')
     connection.commit()
     cursor.close()
     
@@ -155,6 +195,26 @@ def get_all_transaction_data(connection):
     column_names = [description[0] for description in cursor.description]
     return [dict(zip(column_names, record)) for record in records]
 
+'''Gets a user tuple from the database'''
+def get_user(connection, username):
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT (username, email, password)
+        FROM users
+        WHERE username = ?               
+    ''', username)
+    user = cursor.fetchone()
+    cursor.close()
+    return User(user[0], user[1], user[2])
+
+def get_balance(connection, accountno):
+    records = get_account_transactions(connection, accountno)
+    bal = 0
+    for record in records:
+        bal += record[-2]
+    return bal
+
+
 if __name__ == "__main__":
     connection = create_connection("finance.db")
     # init_db(connection)
@@ -162,6 +222,7 @@ if __name__ == "__main__":
     create_tables(connection)
     add_file_account_data(connection, "../sample/sample_account_data.csv")
     add_file_transaction_data(connection, "../sample/sample_transaction_data.csv")
+    add_file_user_data(connection, "../sample/sample_user_data.csv")
     connection.close()
     
     
