@@ -11,11 +11,13 @@ const ChatUI: React.FC = () => {
         if (!input.trim()) return;
 
         const newMessage = { sender: "user", text: input };
-        setMessages([...messages, newMessage]);
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
 
         try {
-            const response = await axios.post("/api/chat", { message: input });
-            const botMessage = { sender: "bot", text: response.data.reply };
+            const response = await axios.post("http://127.0.0.1:5000/chat", {
+                message: input,
+            });
+            const botMessage = { sender: "bot", text: response.data.response };
             setMessages((prevMessages) => [...prevMessages, botMessage]);
         } catch (error) {
             console.error("Error sending message:", error);
