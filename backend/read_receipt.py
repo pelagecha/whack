@@ -38,5 +38,5 @@ def read_receipt(prices,  items):
     return prices
 
 if __name__ == "__main__":
-    prices = readReceipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
+    prices = read_receipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
     print(prices)
