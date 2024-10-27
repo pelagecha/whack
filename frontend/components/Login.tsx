@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { loginUser } from "../services/authService"; // Import the login function
+import { loginUser } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [successMessage, setSuccessMessage] = useState(""); // New state for success message
+    const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate();
+    const { setIsLoggedIn } = useAuthContext();
 
     const handleLogin = async () => {
         if (username === "" || password === "") {
@@ -15,12 +19,12 @@ const Login: React.FC = () => {
             setError("");
             try {
                 const result = await loginUser(username, password);
-                if (result.success) {
+                if (result.successful) {
                     setSuccessMessage("Login successful!");
-                    // Redirect to the main page or trigger authentication here
-                    console.log("Login successful", result.user);
+                    setIsLoggedIn(true);
+                    navigate("/");
                 } else {
-                    setError(result.message);
+                    setError("Incorrect username or password");
                 }
             } catch (error) {
                 setError("An unexpected error occurred. Please try again.");
