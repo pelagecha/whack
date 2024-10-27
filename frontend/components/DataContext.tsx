@@ -8,13 +8,12 @@ import React, {
 import { useAuthContext } from "../context/AuthContext";
 
 interface Transaction {
-    accountno: string;
-    category: string;
     id: number;
+    accountno: string;
     ref: string;
-    time: string;
     val: number;
-    isSelected?: boolean; // Optional property to track selection
+    time: string;
+    category: string;
 }
 
 interface Account {
@@ -67,6 +66,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                     throw new Error("Network response was not ok");
                 }
                 const jsonData: Transaction[] = await response.json();
+                console.log("Fetched data:", jsonData); // Debugging line
                 setData(jsonData);
                 setFilteredData(jsonData);
             } catch (error) {
