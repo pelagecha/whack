@@ -1,7 +1,6 @@
 from datetime import datetime
 from flask_login import UserMixin
 from classifier import classify_item
-from backend.read_receipt import read_receipt
 import pytesseract
 from classifier import classify_item
 from PIL import Image

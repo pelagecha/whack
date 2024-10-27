@@ -25,7 +25,6 @@ def classify_item(item_description, candidate_labels):
         prob_label_is_true = probabilities[0][2].item()
         results[label] = prob_label_is_true
 
-    print(results)
     best_label = max(results, key=results.get)
     return best_label
 
