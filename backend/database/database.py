@@ -155,6 +155,14 @@ def get_all_transaction_data(connection):
     column_names = [description[0] for description in cursor.description]
     return [dict(zip(column_names, record)) for record in records]
 
+def get_balance(connection, accountno):
+    records = get_account_transactions(connection, accountno)
+    bal = 0
+    for record in records:
+        bal += record[-2]
+    return bal
+
+
 if __name__ == "__main__":
     connection = create_connection("finance.db")
     # init_db(connection)
