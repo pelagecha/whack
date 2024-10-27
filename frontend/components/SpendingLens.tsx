@@ -1,5 +1,3 @@
-// frontend/components/SpendingLens.tsx
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -24,6 +22,7 @@ interface BubbleData extends ICategoryData {
     x: number;
     y: number;
     isSelected: boolean;
+    color: string;
 }
 
 const SpendingLens: React.FC<ISpendingLensProps> = ({
@@ -37,36 +36,44 @@ const SpendingLens: React.FC<ISpendingLensProps> = ({
     const svgRef = useRef<SVGSVGElement | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    // Initialize bubbles with radius based on amount and setup a force simulation
     useEffect(() => {
         const maxAmount = d3.max(categories, (d) => d.amount) || 1;
-        const logScale = d3.scaleSqrt().domain([1, maxAmount]).range([30, 80]);
+        const radiusScale = d3
+            .scaleSqrt()
+            .domain([0, maxAmount])
+            .range([20, 80]);
+
+        // Create a color scale for categories
+        const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
         const initialBubbles: BubbleData[] = categories.map((cat) => ({
             ...cat,
-            radius: logScale(cat.amount),
+            radius: radiusScale(cat.amount),
             x: Math.random() * 600,
             y: Math.random() * 400,
             isSelected: false,
+            color: colorScale(cat.category),
         }));
 
         const containerWidth = containerRef.current?.offsetWidth || 800;
         const containerHeight = containerRef.current?.offsetHeight || 400;
 
-        // Use D3 force simulation to prevent bubbles from overlapping
+        // D3 force simulation to prevent bubbles from overlapping
         const simulation = d3
             .forceSimulation(initialBubbles)
-            .force("x", d3.forceX(containerWidth / 2).strength(0.05))
-            .force("y", d3.forceY(containerHeight / 2).strength(0.05))
+            .force(
+                "center",
+                d3.forceCenter(containerWidth / 2, containerHeight / 2)
+            )
             .force(
                 "collision",
-                d3.forceCollide<BubbleData>().radius((d) => d.radius + 5)
+                d3.forceCollide<BubbleData>().radius((d) => d.radius + 2)
             )
             .on("tick", () => {
                 setBubbles([...simulation.nodes()]);
             });
 
-        simulation.alpha(0.5).restart();
+        simulation.alpha(1).restart();
 
         return () => {
             simulation.stop();
@@ -105,18 +112,18 @@ const SpendingLens: React.FC<ISpendingLensProps> = ({
                                         ? cat.radius * 1.2
                                         : cat.radius
                                 }
-                                fill={cat.isSelected ? "#2563eb" : "#60a5fa"}
+                                fill={cat.color}
                                 stroke="#ffffff"
                                 strokeWidth={2}
-                                opacity={0.8}
+                                opacity={0.9}
                                 whileHover={{ scale: 1.1 }}
                                 onClick={() =>
                                     handleCategoryToggle(cat.category)
                                 }
                                 data-tooltip-id={`tooltip-${index}`}
-                                data-tooltip-content={`$${cat.amount.toFixed(
-                                    2
-                                )}`}
+                                data-tooltip-content={`${
+                                    cat.category
+                                }: $${cat.amount.toFixed(2)}`}
                             />
                             <text
                                 x={cat.x}

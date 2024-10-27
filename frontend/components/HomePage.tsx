@@ -39,13 +39,13 @@ export default function HomePage() {
                 />
                 {filteredData.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+                        <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-3 hover:shadow-xl transition-shadow duration-300">
                             <SpendingLens
                                 categories={categoriesData}
                                 onFilterChange={handleFilterChange}
                             />
                         </div>
-                        <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-2 hover:shadow-xl transition-shadow duration-300">
+                        <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-3 hover:shadow-xl transition-shadow duration-300">
                             <SpendingGraph data={filteredData} />
                         </div>
                         <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-3 hover:shadow-xl transition-shadow duration-300">

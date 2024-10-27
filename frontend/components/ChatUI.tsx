@@ -17,13 +17,13 @@ const ChatUI: React.FC = () => {
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const typingIntervalRef = useRef<NodeJS.Timeout | null>(null); // To store the interval ID
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+    // const scrollToBottom = () => {
+    //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
 
-    useEffect(() => {
-        scrollToBottom();
-    }, [messages, isTyping]);
+    // useEffect(() => {
+    //     scrollToBottom();
+    // }, [messages, isTyping]);
 
     const handleSend = async () => {
         if (!input.trim() || isTyping) return; // Prevent sending if typing is in progress

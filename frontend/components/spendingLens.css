@@ -3,273 +3,67 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(
-        135deg,
-        #ece9e6,
-        #ffffff
-    ); /* Enhanced Gradient */
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    position: relative;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
     overflow: hidden;
 }
 
-/* Title Styling */
-.spending-lens-title {
-    font-size: 26px;
-    font-weight: 700;
-    color: #1f2937; /* Dark Gray */
-    margin-bottom: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
 /* Bubble Container */
-.bubble-container,
-.bubble-container-expanded {
+.bubble-container {
     width: 100%;
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    background: radial-gradient(circle at top left, #f0f4f8, #d9e2ec);
+    background: #ffffff;
     box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
-    transition: height 0.5s ease;
-}
-
-.bubble-container {
-    height: 400px;
+    height: 500px;
     margin: 0;
 }
 
-.bubble-container-expanded {
-    height: 600px;
-}
-
 /* SVG Styling */
-.bubble-svg,
-.bubble-svg-expanded {
+.bubble-svg {
     width: 100%;
     height: 100%;
     background: transparent;
-    cursor: grab;
-}
-
-.bubble-svg:active {
-    cursor: grabbing;
 }
 
 /* Bubble Text Styling */
 .bubble-text {
-    font-size: 14px;
+    font-size: 12px;
     pointer-events: none;
     user-select: none;
-    font-weight: 600;
+    font-weight: bold;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     fill: #ffffff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 /* Tooltip Styling Override */
 .react-tooltip {
-    background-color: rgba(31, 41, 55, 0.9) !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
     color: #ffffff !important;
     font-size: 12px !important;
-    border-radius: 8px !important;
+    border-radius: 4px !important;
     padding: 8px 12px !important;
 }
 
-/* Modal Overlay */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(15, 23, 42, 0.7);
-    z-index: 40;
-}
-
-/* Modal Content */
-.modal-content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 95%;
-    max-width: 1300px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-    z-index: 50;
-    padding: 40px;
-    overflow: auto;
-    max-height: 85vh;
-    animation: fadeInScale 0.3s ease-in-out;
-}
-
-/* Modal Inner Content */
-.modal-inner {
-    position: relative;
-}
-
-/* Close Button */
-.modal-close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-    border: none;
-    font-size: 28px;
-    color: #1f2937; /* Dark Gray */
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.modal-close-button:hover {
-    color: #111827; /* Darker Gray */
-}
-
-/* Modal Title */
-.modal-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1f2937; /* Dark Gray */
-    text-align: center;
-    margin-bottom: 35px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-/* Expand Button Container */
-.expand-button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-/* Expand Button Styling */
-.expand-button {
-    background-color: #6d28d9; /* Vibrant Purple */
-    color: #ffffff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.expand-button:hover {
-    background-color: #5b21b6; /* Darker Purple */
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.expand-button:active {
-    transform: translateY(0px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Fade In and Scale Animation */
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
 /* Responsive Adjustments */
-@media (max-width: 1024px) {
-    .spending-lens-title {
-        font-size: 24px;
-    }
-
-    .bubble-container {
-        height: 350px;
-    }
-
-    .bubble-container-expanded {
-        height: 550px;
-    }
-
-    .bubble-text {
-        font-size: 13px;
-    }
-
-    .modal-title {
-        font-size: 24px;
-    }
-
-    .expand-button {
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-}
-
 @media (max-width: 768px) {
-    .spending-lens-title {
-        font-size: 22px;
-    }
-
     .bubble-container {
-        height: 300px;
-    }
-
-    .bubble-container-expanded {
-        height: 500px;
-    }
-
-    .bubble-text {
-        font-size: 12px;
-    }
-
-    .modal-title {
-        font-size: 22px;
-    }
-
-    .expand-button {
-        font-size: 13px;
-        padding: 8px 16px;
+        height: 400px;
     }
 }
 
 @media (max-width: 480px) {
-    .spending-lens {
-        padding: 15px;
-    }
-
-    .spending-lens-title {
-        font-size: 20px;
-    }
-
     .bubble-container {
-        height: 250px;
-    }
-
-    .bubble-container-expanded {
-        height: 450px;
+        height: 300px;
     }
 
     .bubble-text {
-        font-size: 11px;
-    }
-
-    .modal-title {
-        font-size: 20px;
-    }
-
-    .expand-button {
-        font-size: 12px;
-        padding: 6px 12px;
+        font-size: 10px;
     }
 }
