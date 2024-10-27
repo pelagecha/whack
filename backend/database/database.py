@@ -271,11 +271,12 @@ def get_user_accounts(connection, username):
 def get_user_transactions(connection, username):
     cursor1 = connection.cursor()
     cursor1.execute('''
-        SELECT userid
+        SELECT id
         FROM users
         WHERE username = ?;            
     ''', (username,))
-    userid = cursor1.fetchone()[0]
+    result = cursor1.fetchone()
+    userid = result[0]
     cursor1.close()
     
     cursor2 = connection.cursor()
@@ -284,7 +285,7 @@ def get_user_transactions(connection, username):
         FROM accounts
         WHERE userid = ?;
     ''', (userid,))
-    accountnos = [no[0] for no in cursor2.fetchall]
+    accountnos = [no[0] for no in cursor2.fetchall()]
     
     account_transactions = {}
     for number in accountnos:

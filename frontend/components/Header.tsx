@@ -44,18 +44,6 @@ const Header: React.FC<HeaderProps> = ({ user, onRegister }) => {
                             >
                                 Logout
                             </button>
-                            {/* <button
-                                onClick={() => navigate("/signup")}
-                                className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300"
-                            >
-                                Signup
-                            </button>
-                            <button
-                                onClick={handleLogin}
-                                className="px-4 py-2 bg-indigo-700 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-800 transition duration-300"
-                            >
-                                Login
-                            </button> */}
                         </div>
                     )}
                 </div>

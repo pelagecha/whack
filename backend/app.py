@@ -142,6 +142,7 @@ def user_accounts():
 def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
+    return jsonify(data)
 
 
 

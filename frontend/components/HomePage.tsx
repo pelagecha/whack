@@ -7,6 +7,7 @@ import InfoTiles from "../components/InfoTiles";
 import { useDataContext } from "../components/DataContext";
 import ChatUI from "./ChatUI";
 import Login from "./Login";
+import FileUpload from "./FileUpload";
 
 export default function HomePage() {
     const { isLoggedIn } = useAuthContext();
@@ -34,8 +35,10 @@ export default function HomePage() {
                 <InfoTiles
                     balance={balance}
                     totalSpending={totalSpending}
-                    spendingIncrease={spendingIncrease}
-                    transactionCount={filteredData.length}
+                    // spendingIncrease={spendingIncrease}
+                    // transactionCount={filteredData.length}
+                    spendingIncrease={100}
+                    transactionCount={100}
                 />
                 {filteredData.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -50,6 +53,15 @@ export default function HomePage() {
                         </div>
                         <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-3 hover:shadow-xl transition-shadow duration-300">
                             <ChatUI />
+                        </div>
+                        <div className="bg-white rounded-xl shadow-lg p-8 lg:col-span-3 hover:shadow-xl transition-shadow duration-300">
+                            <FileUpload
+                                onFileUpload={function (file: File): void {
+                                    throw new Error(
+                                        "Function not implemented."
+                                    );
+                                }}
+                            />
                         </div>
                     </div>
                 ) : (
