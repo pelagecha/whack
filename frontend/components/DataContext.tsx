@@ -39,9 +39,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     const [balance, setBalance] = useState<number>(0);
     const [totalSpending, setTotalSpending] = useState<number>(0);
     const [spendingIncrease, setSpendingIncrease] = useState<number>(0);
+    const isLoggedIn = true; // Define isLoggedIn or obtain it from context/state
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!isLoggedIn) return; // Ensure fetch only happens when logged in
+
             try {
                 const response = await fetch("http://127.0.0.1:5000/home");
                 if (!response.ok) {
@@ -56,7 +59,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
         };
 
         fetchData();
-    }, []);
+    }, [isLoggedIn]); // Add isLoggedIn as a dependency
 
     useEffect(() => {
         const categoryMap: { [key: string]: number } = {};

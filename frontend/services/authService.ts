@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/auth";
+const API_URL = "http://127.0.0.1:5000";
 
 export const registerUser = async (username: string, password: string) => {
     try {
@@ -18,7 +18,7 @@ export const registerUser = async (username: string, password: string) => {
 
 export const loginUser = async (username: string, password: string) => {
     try {
-        const response = await axios.post(`${API_URL}/jwt/login`, {
+        const response = await axios.post(`${API_URL}/login`, {
             username,
             password,
         });
