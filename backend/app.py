@@ -65,7 +65,7 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
         db = get_db()
-        user = get_user(db, username) # TODO this should accept 2 parameters: get_user(connection, username):
+        user = get_user(db, username)
         if user == None:
             flash("Incorrect Username or Password!")
             return jsonify(successful=False)
