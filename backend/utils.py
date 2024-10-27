@@ -2,6 +2,10 @@ from datetime import datetime
 from flask_login import UserMixin
 from classifier import classify_item
 from backend.read_receipt import read_receipt
+import pytesseract
+from classifier import classify_item
+from PIL import Image
+from gpt import run_model
 
 class Transaction:
     def __init__(self, accountno, value, category, year, month, day, hour, minute, ref):
@@ -41,14 +45,20 @@ class User(UserMixin):
         return self.username
     
 
-def image_to_db_entry(file_path, account_no):
-    named_prices = read_receipt(file_path, file_path)
+def classify_image(file_path):
+    image = Image.open(file_path)
+    text = pytesseract.image_to_string(image)
+    candidate_labels = [
+        "Food",
+        "Transportation",
+        "Utilities",
+        "Health/Medical",
+        "Clothing/Apparel",
+        "Entertainment",
+        "Miscellaneous"
+    ]
 
-    cum_price = 0
-    cum_names = ""
+    category = classify_item(text, candidate_labels)
+    price = run_model("image", text)
 
-    for (name, price) in named_prices:
-        cum_price += price
-        cum_names += " " + name
-
-    return (classify_item(cum_names), price) 
+    return (category, price)
