@@ -217,7 +217,6 @@ def get_balance(connection, accountno):
 
 if __name__ == "__main__":
     connection = create_connection("finance.db")
-    # init_db(connection)
     reset_db(connection)
     create_tables(connection)
     add_file_account_data(connection, "../sample/sample_account_data.csv")
