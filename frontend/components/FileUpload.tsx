@@ -9,11 +9,31 @@ const FileUpload = ({
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
             if (file) {
-                onFileUpload(file);
+                const formData = new FormData();
+                formData.append("file", file);
+
+                try {
+                    const response = await fetch(
+                        "http://localhost:5000/upload",
+                        {
+                            method: "POST",
+                            body: formData,
+                        }
+                    );
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log("File uploaded successfully:", result);
+                    } else {
+                        console.error("File upload failed");
+                    }
+                } catch (error) {
+                    console.error("Error uploading file:", error);
+                }
             }
         }
     };

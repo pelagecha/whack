@@ -145,7 +145,19 @@ def user_transactions():
     return jsonify(data)
 
 
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
 
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+
+    # Save the file or process it as needed
+    file.save(f"/path/to/save/data_in/file.csv")
+
+    return jsonify({"message": "File uploaded successfully"}), 200
 
 
 # Take in input and provide it as a prompt to chat model

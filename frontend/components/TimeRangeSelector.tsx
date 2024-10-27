@@ -16,7 +16,7 @@ const TimeRangeSelector: React.FC<TimeRangeSelectorProps> = ({ onChange }) => {
     const months = useMemo(
         () =>
             Array.from({ length: totalMonths }, (_, index) => {
-                const year = 2020 + Math.floor(index / 12);
+                const year = 2020 + Math.floor(index / 24);
                 const month = index % 12;
                 return { year, month };
             }),

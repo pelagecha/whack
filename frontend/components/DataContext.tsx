@@ -8,21 +8,12 @@ import React, {
 import { useAuthContext } from "../context/AuthContext";
 
 interface Transaction {
-    id: number;
     accountno: string;
-    ref: string;
-    val: number;
-    time: string;
     category: string;
-}
-
-interface Account {
-    accountno: string;
-    userid: number;
-    balance: number;
-    type: string;
-    interest_rate: number;
-    reference: string;
+    id: number;
+    ref: string;
+    time: string;
+    val: number;
 }
 
 interface DataContextProps {
@@ -66,12 +57,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                     throw new Error("Network response was not ok");
                 }
                 const jsonData: Transaction[] = await response.json();
-                console.log("Fetched data:", jsonData); // Debugging line
-                jsonData.forEach((account) => {
-                    console.log(account);
-                });
-                // setData(jsonData);
-                // setFilteredData(jsonData);
+                setData(jsonData);
+                setFilteredData(jsonData);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
