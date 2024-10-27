@@ -43,6 +43,12 @@ def create_tables(connection):
            FOREIGN KEY(accountno) REFERENCES accounts(accountno)
        );    
     ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS conversation (
+            dialogue TEXT DEFAULT ""
+        );
+    ''')
     
     connection.commit()
     cursor.close()
@@ -54,6 +60,7 @@ def init_db(connection):
     add_file_account_data(connection, "./sample/sample_account_data.csv")
     add_file_transaction_data(connection, "./sample/sample_transaction_data.csv")
     add_file_user_data(connection, "./sample/sample_user_data.csv")
+    update_conversation(connection, "")
     
 
 '''Adds transaction data from a csv file specified by filepath'''
@@ -167,6 +174,9 @@ def reset_db(connection):
     cursor.execute('''
         DROP TABLE IF EXISTS users;               
     ''')
+    cursor.execute('''
+        DROP TABLE IF EXISTS conversation;
+    ''')
     connection.commit()
     cursor.close()
     
@@ -216,6 +226,16 @@ def get_balance(connection, accountno):
     for record in records:
         bal += record[-2]
     return bal
+
+def get_dialogue(connection):
+    cursor = connection.cursor()
+    cursor.execute('''
+        SELECT dialogue
+        FROM conversation
+    ''')
+    record = cursor.fetchone()[0]
+    cursor.close()
+    return record
 
 '''Returns a dictionary of all of a user's account information'''
 def get_user_accounts(connection, username):
@@ -269,6 +289,15 @@ def get_user_transactions(connection, username):
         account_transactions[number] = current 
     
     return account_transactions
+
+def update_conversation(connection, history):
+    cursor = connection.cursor()
+    cursor.execute('''
+        UPDATE conversation
+        SET dialogue history
+    ''')
+    cursor.close()
+
 
 if __name__ == "__main__":
     connection = create_connection("finance.db")
