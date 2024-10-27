@@ -3,19 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 50vh; /* Make the chat stretch to cover the whole container */
+    max-width: 100%; /* Ensure it uses the full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.messages {
+    flex-grow: 1; /* Allow messages to take up available space */
+    overflow-y: auto;
+    padding-right: 1rem; /* Add some padding for better appearance */
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    padding-top: 0.5rem;
+    color: #0a0a0a;
 }

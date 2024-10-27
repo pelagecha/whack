@@ -88,7 +88,6 @@ const SpendingLens: React.FC<ISpendingLensProps> = ({
 
     return (
         <div className="spending-lens" ref={containerRef}>
-            <h2 className="spending-lens-title">Spending Lens</h2>
             <div className="bubble-container">
                 <svg ref={svgRef} className="bubble-svg">
                     {bubbles.map((cat, index) => (
