@@ -1,17 +1,10 @@
 from flask import Flask, flash, g, jsonify, request
 from flask_cors import CORS
-from flask_login import (
-    login_user,
-    LoginManager,
-    current_user,
-    logout_user,
-    login_required,
-    UserMixin,
-)
-from flask_mail import Mail
+from flask_login import login_user, LoginManager, current_user, logout_user, login_required
+from flask_mail import Mail, Message
 from werkzeug import security
 from datetime import datetime
-import os
+from utils import User
 
 # Import your database functions and other dependencies
 from gpt import run_model
@@ -54,21 +47,11 @@ def close_db(exception):
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# User class for Flask-Login
-class User(UserMixin):
-    def __init__(self, username, password, email):
-        self.id = username
-        self.password = password
-        self.email = email
-
 # Defines how the login manager gets the current user
 @login_manager.user_loader
 def load_user(username):
     db = get_db()
-    user_data = get_user(db, username)
-    if user_data:
-        return User(username=user_data.username, password=user_data.password, email=user_data.email)
-    return None
+    return get_user(db, username)
 
 # Defines what happens when an unauthorized user attempts to access a page that requires login
 @login_manager.unauthorized_handler
@@ -91,7 +74,6 @@ def login():
             flash("Incorrect username or password")
             return jsonify(successful=False) 
         else:
-            user = User(username=user.username, password=user.password, email=user.email)
             login_user(user)
             return jsonify(successful=True)
     elif request.method == 'GET':
@@ -107,16 +89,16 @@ def register():
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
+    user = User(username, email, security.generate_password_hash(password))
     db = get_db()
-    add_user(db, username, email, security.generate_password_hash(password))
-    user = User(username=username, password=password, email=email)
+    add_user(db, user)
     login_user(user)
     return jsonify(success=True)
 
 # Send a GET request with a username to check if it is taken
 @app.route("/check_username", methods=['GET'])
 def check_username():
-    username = request.args.get("username")
+    username = request.get_json().get("username")
     db = get_db()
     user = get_user(db, username)
     if user is None:
@@ -169,8 +151,6 @@ def chat():
         return jsonify({"response": bot_response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

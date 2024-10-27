@@ -124,12 +124,12 @@ def add_account(connection, account):
     cursor.close()
 
 '''Adds the data from an account object to the database'''
-def add_user(connection, username, email, password):
+def add_user(connection, user):
     cursor = connection.cursor()
     cursor.execute('''
         INSERT INTO users (username, email, password)
         VALUES (?, ?, ?);               
-    ''', (username, email, password))
+    ''', (user.username, user.email, user.password))
     connection.commit()
     cursor.close()
 
@@ -140,7 +140,7 @@ def alter_account_balance(connection, change, accountno):
         UPDATE accounts
         SET balance = balance + ?
         WHERE accountno = ?;
-    ''', change, accountno)
+    ''', (change, accountno))
     connection.commit()
     cursor.close()
 
@@ -151,7 +151,7 @@ def change_interest_rate(connection, new_rate, accountno):
         UPDATE accounts
         SET interest_rate = ?
         WHERE accountno = ?;
-    ''', new_rate, accountno)
+    ''', (new_rate, accountno))
     connection.commit()
     cursor.close()
 
@@ -177,7 +177,7 @@ def get_account_transactions(connection, accountno):
         SELECT * 
         FROM transactions
         WHERE accountno = ?;
-    ''', accountno)
+    ''', (accountno,))
     records = cursor.fetchall()
     cursor.close()
     return records
@@ -226,7 +226,7 @@ def get_user_accounts(connection, username):
         SELECT userid
         FROM users
         WHERE username = ?;            
-    ''', username)
+    ''', (username,))
     userid = cursor1.fetchone()[0]
     cursor1.close()
     
@@ -235,7 +235,7 @@ def get_user_accounts(connection, username):
         SELECT *
         FROM accounts
         WHERE userid = ?;
-    ''', userid)
+    ''', (userid,))
     accounts = cursor2.fetchall()
     cursor2.close()
     
@@ -249,7 +249,7 @@ def get_user_transactions(connection, username):
         SELECT userid
         FROM users
         WHERE username = ?;            
-    ''', username)
+    ''', (username,))
     userid = cursor1.fetchone()[0]
     cursor1.close()
     
@@ -258,7 +258,7 @@ def get_user_transactions(connection, username):
         SELECT accountno
         FROM accounts
         WHERE userid = ?;
-    ''', userid)
+    ''', (userid,))
     accountnos = [no[0] for no in cursor2.fetchall]
     
     account_transactions = {}
@@ -267,7 +267,7 @@ def get_user_transactions(connection, username):
             SELECT *
             FROM transactions
             WHERE accountno = ?;                
-        ''', number)
+        ''', (number,))
         current = cursor2.fetchall()
         account_transactions[number] = current 
     
