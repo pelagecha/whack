@@ -207,6 +207,14 @@ def get_user(connection, username):
     cursor.close()
     return User(user[0], user[1], user[2])
 
+def get_balance(connection, accountno):
+    records = get_account_transactions(connection, accountno)
+    bal = 0
+    for record in records:
+        bal += record[-2]
+    return bal
+
+
 if __name__ == "__main__":
     connection = create_connection("finance.db")
     # init_db(connection)

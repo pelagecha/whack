@@ -6,6 +6,8 @@ from werkzeug import security
 from datetime import datetime
 import os
 
+
+from gpt import run_model
 from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user
 
 #Make the app and configure the secret key
@@ -107,6 +109,27 @@ def home():
     db = get_db()
     data = get_all_transaction_data(db)
     return jsonify(data)
+
+
+@app.route("/chat", methods=['POST'])
+def chat():
+    data = request.json
+    user_input = data.get("message", "")
+    
+    if not user_input:
+        return jsonify({"error": "No message provided"}), 400
+    
+    try:
+        db = get_db()
+        # Replace 0 with the actual account number
+        data = str(get_account_transactions(db, 0))
+        # Assuming run_model is a function that processes the chat input
+        bot_response = run_model("chat", user_input + data)
+        print(f"MY response is:{bot_response}")
+        return jsonify({"response": bot_response})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug = True)

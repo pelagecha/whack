@@ -1,18 +1,21 @@
-/* frontend/components/spendingLens.css */
-
 /* Spending Lens Container */
 .spending-lens {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
+    background: linear-gradient(
+        135deg,
+        #ece9e6,
+        #ffffff
+    ); /* Enhanced Gradient */
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 /* Title Styling */
@@ -20,43 +23,43 @@
     font-size: 26px;
     font-weight: 700;
     color: #1f2937; /* Dark Gray */
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Bubble Container */
-.bubble-container {
+.bubble-container,
+.bubble-container-expanded {
     width: 100%;
-    height: 400px;
     position: relative;
     overflow: hidden;
     border-radius: 12px;
     background: radial-gradient(circle at top left, #f0f4f8, #d9e2ec);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+    transition: height 0.5s ease;
+}
+
+.bubble-container {
+    height: 400px;
+    margin: 0;
+}
+
+.bubble-container-expanded {
+    height: 600px;
 }
 
 /* SVG Styling */
-.bubble-svg {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-}
-
-/* Expanded Bubble Container */
-.bubble-container-expanded {
-    width: 100%;
-    height: 600px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    background: radial-gradient(circle at top left, #f0f4f8, #d9e2ec);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
+.bubble-svg,
 .bubble-svg-expanded {
     width: 100%;
     height: 100%;
     background: transparent;
+    cursor: grab;
+}
+
+.bubble-svg:active {
+    cursor: grabbing;
 }
 
 /* Bubble Text Styling */
@@ -66,15 +69,17 @@
     user-select: none;
     font-weight: 600;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    fill: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-/* Indicator Icon Styling */
-.indicator-icon {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    color: #f59e0b;
+/* Tooltip Styling Override */
+.react-tooltip {
+    background-color: rgba(31, 41, 55, 0.9) !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
 }
 
 /* Modal Overlay */
@@ -147,7 +152,7 @@
 
 /* Expand Button Styling */
 .expand-button {
-    background-color: #3b82f6; /* Modern Blue */
+    background-color: #6d28d9; /* Vibrant Purple */
     color: #ffffff;
     padding: 12px 24px;
     border: none;
@@ -161,7 +166,7 @@
 }
 
 .expand-button:hover {
-    background-color: #2563eb; /* Darker Blue */
+    background-color: #5b21b6; /* Darker Purple */
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
@@ -201,10 +206,6 @@
         font-size: 13px;
     }
 
-    .indicator-icon {
-        font-size: 16px;
-    }
-
     .modal-title {
         font-size: 24px;
     }
@@ -230,10 +231,6 @@
 
     .bubble-text {
         font-size: 12px;
-    }
-
-    .indicator-icon {
-        font-size: 14px;
     }
 
     .modal-title {
@@ -265,10 +262,6 @@
 
     .bubble-text {
         font-size: 11px;
-    }
-
-    .indicator-icon {
-        font-size: 12px;
     }
 
     .modal-title {
