@@ -17,6 +17,7 @@ import { Line } from "react-chartjs-2";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 import * as ss from "simple-statistics";
+import { useDataContext } from "./DataContext";
 
 Chart.register(
     CategoryScale,
@@ -30,20 +31,8 @@ Chart.register(
     LineController
 );
 
-interface Transaction {
-    accountno: string;
-    category: string;
-    id: number;
-    ref: string;
-    time: string;
-    val: number;
-}
-
-interface SpendingGraphProps {
-    data: Transaction[];
-}
-
-const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
+const SpendingGraph: React.FC = () => {
+    const { filteredData: data } = useDataContext(); // Use data from context
     console.log("Graph Data:", data); // Debugging line
     const [isExpanded, setIsExpanded] = useState(false);
 
