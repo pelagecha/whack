@@ -1,22 +1,22 @@
 # whack
 
 ## Setup
-Run ```bash
+Run ```
     ./setup.sh
     ```
     or
-    ```bash
+    ```
     ./setup.ps1
     ``` depending on your os.
 
 ## After Setup
 
-Run in two different terminals ```bash 
-                                ./run_flask(.sh / .ps1)
+Run in two different terminals ``` 
+                                ./run_flask(.sh/.ps1)
                                 ```
                                 and
-                                ```bash 
-                                ./run_next(.sh / .ps1)
+                                ``` 
+                                ./run_next(.sh/.ps1)
                                 ```.
 
 ### Testing
@@ -26,6 +26,6 @@ Run in two different terminals ```bash
     -   Add your backend testing instructions here.
 
 -   **Frontend Testing:**
-    ```bash
+    ```
     npm test
     ```
