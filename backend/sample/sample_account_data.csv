@@ -1,10 +1,10 @@
 ACC00002,1,1891.48,savings,1.18,Family Savings
 ACC00003,1,7829.31,ISA,1.11,Travel Fund
-ACC00004,1,9763.25,savings,2.34,Business Premium
-ACC00005,1,9652.01,business,0.99,Standard Account
-ACC00006,1,6895.50,savings,1.65,Travel Fund
-ACC00007,1,3794.27,current,1.82,High-Yield Savings
-ACC00008,1,4562.13,savings,1.96,Family Savings
+ACC00004,2,9763.25,savings,2.34,Business Premium
+ACC00005,3,9652.01,business,0.99,Standard Account
+ACC00006,3,6895.50,savings,1.65,Travel Fund
+ACC00007,4,3794.27,current,1.82,High-Yield Savings
+ACC00008,5,4562.13,savings,1.96,Family Savings
 ACC00009,2,2123.47,ISA,0.95,Standard Account
 ACC00010,2,7834.13,current,2.89,Business Premium
 ACC00011,2,3128.12,business,1.47,Travel Fund

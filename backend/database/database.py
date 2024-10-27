@@ -267,7 +267,7 @@ def get_user_accounts(connection, username):
     column_names = [description[0] for description in cursor2.description]
     return [dict(zip(column_names, account)) for account in accounts]
 
-''''''
+'''Gets all of a users transactions'''
 def get_user_transactions(connection, username):
     cursor1 = connection.cursor()
     cursor1.execute('''
@@ -301,21 +301,8 @@ def get_user_transactions(connection, username):
         ret += temp
     cursor.close()
     return ret
-    
-    # account_transactions = {}
-    # for number in accountnos:
-    #     cursor2.execute('''
-    #         SELECT *
-    #         FROM transactions
-    #         WHERE accountno = ?;                
-    #     ''', (number,))
-    #     current = cursor2.fetchall()
-    #     column_names = [description[0] for description in cursor2.description]
-    #     account_transactions[number] = [dict(zip(column_names, curr)) for curr in current] 
-    
-    # cursor2.close()
-    # return account_transactions
 
+'''Updates the conversation history for the chat ai'''
 def update_conversation(connection, history):
     cursor = connection.cursor()
     cursor.execute('''
