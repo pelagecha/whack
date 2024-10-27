@@ -155,7 +155,11 @@ def get_all_transaction_data(connection):
 
 if __name__ == "__main__":
     connection = create_connection("finance.db")
-    init_db(connection)
+    # init_db(connection)
+    reset_db(connection)
+    create_tables(connection)
+    add_file_account_data(connection, "../sample/sample_account_data.csv")
+    add_file_transaction_data(connection, "../sample/sample_transaction_data.csv")
     connection.close()
     
     

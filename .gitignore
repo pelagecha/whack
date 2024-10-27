@@ -249,4 +249,4 @@ frontend/.next
 frontend/node_modules
 
 #Database
-*.db
+backend/database/finance.db
