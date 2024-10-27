@@ -144,7 +144,7 @@ def user_transactions():
     data = get_user_transactions(db, current_user.username)
     return jsonify(data)
 
-
+#Allows files to be uploaded from the web
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
@@ -160,27 +160,6 @@ def upload_file():
     add_file_transaction_data(db, "backend\data_in\input_data.csv")
     
     return jsonify({"message": "File uploaded successfully"}), 200
-
-
-# Take in input and provide it as a prompt to chat model
-# @app.route("/chat", methods=['POST'])
-# def chat():
-#     db = get_db()
-#     data = request.json
-#     user_input = data.get("message", "")
-    
-#     if not user_input:
-#         return jsonify({"error": "No message provided"}), 400
-    
-#     try:
-#         # Assuming run_model is a function that processes the chat input
-#         history = get_dialogue(db)
-#         bot_response = run_model("chat", history + user_input + data)
-#         update_conversation(db, bot_response)
-#         print(f"MY response is:{bot_response}")
-#         return jsonify({"response": bot_response})
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
 
 @app.route("/chat", methods=['POST'])
 def chat():
