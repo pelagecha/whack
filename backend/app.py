@@ -152,16 +152,12 @@ def chat():
         return jsonify({"error": "No message provided"}), 400
     
     try:
-        db = get_db()
-        # Replace 0 with the actual account number
-        data = str(get_account_transactions(db, 0))
         # Assuming run_model is a function that processes the chat input
-        bot_response = run_model("chat", user_input + data)
+        bot_response = run_model("chat", user_input)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 
