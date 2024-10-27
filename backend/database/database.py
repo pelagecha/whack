@@ -72,6 +72,7 @@ def add_file_transaction_data(connection, filepath):
             date = data[1].strip().split("-")
             time = data[2].strip().split(":")
             transactions.append((data[0], data[5], float(data[4]), datetime(int(date[0]), int(date[1]), int(date[2]), int(time[0]), int(time[1])), data[3]))
+            alter_account_balance(connection, float(data[4]), data[0])
     cursor = connection.cursor()
     cursor.executemany('''
         INSERT INTO transactions (accountno, ref, val, time, category)
