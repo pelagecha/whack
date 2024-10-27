@@ -1,15 +1,25 @@
-from flask import Flask, g, redirect, jsonify, flash #TODO add login
+from flask import Flask, g, redirect, jsonify, flash, request
 from flask_cors import CORS
+from flask_login import login_user, LoginManager, current_user, logout_user, login_required
+from flask_mail import Mail, Message
+from werkzeug import security
 from datetime import datetime
 import os
 
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user
 
 #Make the app and configure the secret key
 app = Flask(__name__)
 app.secret_key = "scrumptious"
 
+#Suppress emails during development. Change to true for production
+app.config['MAIL_SUPPRESS_SEND'] = True
+
+#Configure CORS for the app
 CORS(app)
+
+#Create mail handler
+mail = Mail(app)
 
 #Initialise the database
 def initialise_db():
@@ -24,20 +34,75 @@ def get_db():
         g.db = create_connection(f'database/{DATABASE_FILE}')
     return g.db
 
-#TODO add login manager and configure
-
 # Close database connection on shutdown
 @app.teardown_appcontext
 def close_db(exception):
     db = g.pop('db', None)
     if db is not None:
         db.close()
+
+#Initialise login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+#Defines how the login manager gets the current user
+@login_manager.user_loader
+def load_user(username):
+    db = get_db()
+    return get_user(db, username)
+
+#Defines what happens when an unauthorised user attempts to access a page that requires login
+@login_manager.unauthorized_handler
+def unauthorised_callback():
+    flash("You need to be logged in to access this page")
+
+#Send a post request with login details to login a user
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = get_user(username)
+        if user == None:
+            flash("Incorrect Username or Password!")
+            return jsonify(successful=False)
+        elif not security.check_password_hash(user.password, password):
+            flash("Incorrect username or password")
+            return jsonify(successful=False) 
+        else:
+            login_user(user.username)
+            return jsonify(successful=True)
+
+#Send a post request with new user details to add them to the database
+@app.route("/register", methods = ['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        db = get_db()
+        add_user(db, username, email, security.generate_password_hash(password))
+        login_user(username)
+        return jsonify(success=True)
         
-@app.route("/", methods=['GET'])
-def index(): #TODO change to login
-    return redirect("/home")
-    
+#Send a get request with a username to check if it is taken
+@app.route("/check_username", methods=['GET'])
+def check_username():
+    username = request.args.get("username")
+    db = get_db()
+    user = get_user(db, username)
+    if user == None:
+        return jsonify(taken=False)
+    return jsonify(taken=True)
+
+#Send a get request to logout the current user
+@app.route("/logout", methods = ['GET'])
+@login_required
+def logout():
+    logout_user()
+
 @app.route("/home", methods=['GET'])
+@login_required
 def home():
     db = get_db()
     data = get_all_transaction_data(db)
@@ -45,3 +110,4 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug = True)
+    
