@@ -8,7 +8,7 @@ def run_model(type, query):
     try:
         load_dotenv()
         api_key = os.getenv("OPENAI_API_KEY")
-        client = OpenAI()
+        client = OpenAI(api_key=api_key)
     except:
         return "provide an API key in .env"
 
