@@ -45,7 +45,7 @@ class User(UserMixin):
         return self.username
     
 
-def classify_image(file_path, account_no):
+def classify_image(file_path):
     image = Image.open(file_path)
     text = pytesseract.image_to_string(image)
     candidate_labels = [
