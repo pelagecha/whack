@@ -131,6 +131,23 @@ def chat():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+'''Sends an email. Requires: 
+username - username of the user to send the email to
+subject - subject line of the email
+template - html of the message'''
+def send_email(username, subject, template):
+    db = get_db()
+    user = get_user(db, username)
+    
+    if user != None:
+        email = user.email
+        
+        sender = "Nikita.Pelagecha@warwick.ac.uk"
+        message = Message(subject = subject, sender = ("NOREPLY", sender), recipients = email)
+        
+        message.html = template
+        
+        mail.send(message)
 
 if __name__ == '__main__':
     app.run(debug = True)

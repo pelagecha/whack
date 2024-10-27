@@ -2,12 +2,13 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
 
-model_name = 'facebook/bart-large-mnli'
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
 # Takes in item and categories, and outputs most likely category
 def classify_item(item_description, candidate_labels):
+    model_name = 'facebook/bart-large-mnli'
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+
     results = {}
 
     for label in candidate_labels:
@@ -24,7 +25,6 @@ def classify_item(item_description, candidate_labels):
         prob_label_is_true = probabilities[0][2].item()
         results[label] = prob_label_is_true
 
-    print(results)
     best_label = max(results, key=results.get)
     return best_label
 

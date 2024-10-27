@@ -1,8 +1,5 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-import pytesseract
-from PIL import Image
-from database.database import get_account_transactions
 import os
 
 # def run_rag(query, connection, accountno):
@@ -47,13 +44,11 @@ def run_model(type, query):
         )
         return completion.choices[0].message.content
     elif type == "image":
-        image = Image.open(query)
-        text = pytesseract.image_to_string(image)
         completion = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You will be given a stream of text from an image related to finances. You are to find the final sum total expense. Include only this numeric value in your response. You are not allowed to have text in your response."},
-                {"role": "user", "content": f"{text}"}
+                {"role": "user", "content": f"{query}"}
             ],
         )
         return completion.choices[0].message.content
