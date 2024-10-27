@@ -1,30 +1,36 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { loginUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
+import { motion } from "framer-motion";
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
     const navigate = useNavigate();
-    const { setIsLoggedIn } = useAuthContext();
 
-    const handleLogin = async () => {
-        if (username === "" || password === "") {
-            setError("Please fill in both fields.");
+    const handleSignup = async () => {
+        if (username === "" || email === "" || password === "") {
+            setError("Please fill in all fields.");
         } else {
             setError("");
             try {
-                const result = await loginUser(username, password);
-                if (result.successful) {
-                    setSuccessMessage("Login successful!");
-                    setIsLoggedIn(true);
-                    navigate("/");
+                const response = await fetch("http://localhost:5000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ username, email, password }),
+                });
+                const result = await response.json();
+                if (result.success) {
+                    setSuccessMessage(
+                        "Signup successful! Redirecting to login..."
+                    );
+                    setTimeout(() => navigate("/login"), 2000);
                 } else {
-                    setError("Incorrect username or password");
+                    setError("Signup failed. Please try again.");
                 }
             } catch (error) {
                 setError("An unexpected error occurred. Please try again.");
@@ -36,7 +42,7 @@ const Login: React.FC = () => {
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full">
                 <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
-                    Login
+                    Signup
                 </h2>
                 {error && (
                     <motion.div
@@ -66,6 +72,13 @@ const Login: React.FC = () => {
                     className="mb-4 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
                 />
                 <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="mb-4 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <input
                     type="password"
                     placeholder="Password"
                     value={password}
@@ -73,20 +86,14 @@ const Login: React.FC = () => {
                     className="mb-4 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 text-black"
                 />
                 <button
-                    onClick={handleLogin}
+                    onClick={handleSignup}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-md transition duration-300 ease-in-out"
                 >
-                    Login
+                    Signup
                 </button>
-                <p className="text-gray-500 text-sm text-center mt-4">
-                    Don&apos;t have an account?{" "}
-                    <a href="/signup" className="text-blue-600 hover:underline">
-                        Signup here
-                    </a>
-                </p>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Signup;

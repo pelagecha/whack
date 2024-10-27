@@ -30,10 +30,10 @@ const Header: React.FC<HeaderProps> = ({ user, onRegister }) => {
                     ) : (
                         <div className="space-x-3">
                             <button
-                                onClick={onRegister}
-                                className="px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-blue-100 transition duration-300"
+                                onClick={() => navigate("/signup")}
+                                className="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300"
                             >
-                                Register
+                                Signup
                             </button>
                             <button
                                 onClick={handleLogin}
