@@ -137,7 +137,30 @@ def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
 
+
+
+
+
 # Take in input and provide it as a prompt to chat model
+# @app.route("/chat", methods=['POST'])
+# def chat():
+#     db = get_db()
+#     data = request.json
+#     user_input = data.get("message", "")
+    
+#     if not user_input:
+#         return jsonify({"error": "No message provided"}), 400
+    
+#     try:
+#         # Assuming run_model is a function that processes the chat input
+#         history = get_dialogue(db)
+#         bot_response = run_model("chat", history + user_input + data)
+#         update_conversation(db, bot_response)
+#         print(f"MY response is:{bot_response}")
+#         return jsonify({"response": bot_response})
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
+
 @app.route("/chat", methods=['POST'])
 def chat():
     db = get_db()
@@ -150,8 +173,7 @@ def chat():
     try:
         # Assuming run_model is a function that processes the chat input
         history = get_dialogue(db)
-        bot_response = run_model("chat", history + user_input + data)
-        update_conversation(db, bot_response)
+        bot_response = run_model("chat", user_input)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:

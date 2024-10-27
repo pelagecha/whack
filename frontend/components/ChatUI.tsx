@@ -1,21 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid"; // Install uuid for unique IDs
+
+interface Message {
+    id: string;
+    sender: "user" | "bot";
+    text: string;
+}
 
 const ChatUI: React.FC = () => {
-    const [messages, setMessages] = useState<
-        { sender: string; text: string }[]
-    >([]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [showBanner, setShowBanner] = useState(true);
     const [isTyping, setIsTyping] = useState(false);
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
+    const typingIntervalRef = useRef<NodeJS.Timeout | null>(null); // To store the interval ID
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, isTyping]);
 
     const handleSend = async () => {
-        if (!input.trim()) return;
+        if (!input.trim() || isTyping) return; // Prevent sending if typing is in progress
 
-        const newMessage = { sender: "user", text: input };
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        const userMessage: Message = {
+            id: uuidv4(),
+            sender: "user",
+            text: input,
+        };
+        setMessages((prevMessages) => [...prevMessages, userMessage]);
         setShowBanner(false);
         setIsTyping(true);
 
@@ -23,32 +41,50 @@ const ChatUI: React.FC = () => {
             const response = await axios.post("http://127.0.0.1:5000/chat", {
                 message: input,
             });
-            const botMessage = { sender: "bot", text: "" };
+
+            const botMessage: Message = {
+                id: uuidv4(),
+                sender: "bot",
+                text: "",
+            };
             setMessages((prevMessages) => [...prevMessages, botMessage]);
 
-            // Gradual text appearance
-            let index = 0;
-            const interval = setInterval(() => {
-                if (index < response.data.response.length) {
-                    setMessages((prevMessages) => {
-                        const updatedMessages = [...prevMessages];
-                        updatedMessages[updatedMessages.length - 1].text +=
-                            response.data.response[index];
-                        return updatedMessages;
-                    });
-                    index++;
+            const botResponse: string = response.data.response;
+            let index = -1;
+
+            // Clear any existing interval
+            if (typingIntervalRef.current) {
+                clearInterval(typingIntervalRef.current);
+            }
+
+            typingIntervalRef.current = setInterval(() => {
+                index++;
+                if (index < botResponse.length) {
+                    setMessages((prevMessages) =>
+                        prevMessages.map((msg) =>
+                            msg.id === botMessage.id
+                                ? {
+                                      ...msg,
+                                      text: msg.text + botResponse[index],
+                                  }
+                                : msg
+                        )
+                    );
                 } else {
-                    clearInterval(interval);
-                    setIsTyping(false); // Hide typing banner once text is fully displayed
+                    if (typingIntervalRef.current) {
+                        clearInterval(typingIntervalRef.current);
+                    }
+                    typingIntervalRef.current = null;
+                    setIsTyping(false);
                 }
-            }, 50);
+            }, 1);
         } catch (error) {
             console.error("Error sending message:", error);
-            setIsTyping(false); // Stop typing indicator on error
+            setIsTyping(false);
         }
 
         setInput("");
-        setUploadedImage(null); // Clear image after sending a message
+        // setUploadedImage(null); // Clear image after sending a message
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -68,6 +104,15 @@ const ChatUI: React.FC = () => {
         }
     };
 
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (typingIntervalRef.current) {
+                clearInterval(typingIntervalRef.current);
+            }
+        };
+    }, []);
+
     return (
         <div className="chat-container bg-white p-6 rounded-xl shadow-md max-w-lg mx-auto border border-gray-200">
             {showBanner && (
@@ -81,9 +126,9 @@ const ChatUI: React.FC = () => {
                 </div>
             )}
             <div className="messages overflow-y-auto h-80 mb-4 space-y-2 pr-2 bg-gray-50 rounded-lg p-2">
-                {messages.map((msg, index) => (
+                {messages.map((msg) => (
                     <div
-                        key={index}
+                        key={msg.id}
                         className={`message-bubble ${
                             msg.sender === "user"
                                 ? "bg-blue-500 text-white ml-auto"
@@ -117,6 +162,7 @@ const ChatUI: React.FC = () => {
                     onKeyDown={handleKeyDown}
                     className="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Type your message..."
+                    disabled={isTyping} // Disable input while typing
                 />
                 <input
                     type="file"
@@ -125,7 +171,12 @@ const ChatUI: React.FC = () => {
                     className="hidden"
                     id="image-upload"
                 />
-                <label htmlFor="image-upload" className="cursor-pointer p-2">
+                <label
+                    htmlFor="image-upload"
+                    className={`cursor-pointer p-2 ${
+                        isTyping ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                >
                     {uploadedImage ? (
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +217,10 @@ const ChatUI: React.FC = () => {
                 </label>
                 <button
                     onClick={handleSend}
-                    className="bg-blue-500 text-white p-3 rounded-r-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition"
+                    disabled={isTyping} // Disable button while typing
+                    className={`bg-blue-500 text-white p-3 rounded-r-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 transition ${
+                        isTyping ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
                     Send
                 </button>
