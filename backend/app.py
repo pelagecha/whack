@@ -64,7 +64,8 @@ def login():
     if request.method == 'POST':
         username = request.form.get("username")
         password = request.form.get("password")
-        user = get_user(username)
+        db = get_db()
+        user = get_user(db, username)
         if user == None:
             flash("Incorrect Username or Password!")
             return jsonify(successful=False)

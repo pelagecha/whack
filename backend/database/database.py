@@ -207,6 +207,7 @@ def get_user(connection, username):
     cursor.close()
     return User(user[0], user[1], user[2])
 
+'''Sums a users transactions'''
 def get_balance(connection, accountno):
     records = get_account_transactions(connection, accountno)
     bal = 0
@@ -214,6 +215,58 @@ def get_balance(connection, accountno):
         bal += record[-2]
     return bal
 
+'''Returns a dictionary of all of a user's account information'''
+def get_user_accounts(connection, username):
+    cursor1 = connection.cursor()
+    cursor1.execute('''
+        SELECT userid
+        FROM users
+        WHERE username = ?;            
+    ''', username)
+    userid = cursor1.fetchone()[0]
+    cursor1.close()
+    
+    cursor2 = connection.cursor()
+    cursor2.execute('''
+        SELECT *
+        FROM accounts
+        WHERE userid = ?;
+    ''', userid)
+    accounts = cursor2.fetchall()
+    cursor2.close()
+    
+    column_names = [description[0] for description in cursor2.description]
+    return [dict(zip(column_names, account)) for account in accounts]
+    
+def get_user_transactions(connection, username):
+    cursor1 = connection.cursor()
+    cursor1.execute('''
+        SELECT userid
+        FROM users
+        WHERE username = ?;            
+    ''', username)
+    userid = cursor1.fetchone()[0]
+    cursor1.close()
+    
+    cursor2 = connection.cursor()
+    cursor2.execute('''
+        SELECT accountno
+        FROM accounts
+        WHERE userid = ?;
+    ''', userid)
+    accountnos = [no[0] for no in cursor2.fetchall]
+    
+    account_transactions = {}
+    for number in accountnos:
+        cursor2.execute('''
+            SELECT *
+            FROM transactions
+            WHERE accountno = ?;                
+        ''', number)
+        current = cursor2.fetchall()
+        account_transactions[number] = current 
+    
+    return account_transactions
 
 if __name__ == "__main__":
     connection = create_connection("finance.db")
