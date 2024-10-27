@@ -1,21 +1,14 @@
 from flask import Flask, flash, g, jsonify, request
 from flask_cors import CORS
-from flask_login import (
-    login_user,
-    LoginManager,
-    current_user,
-    logout_user,
-    login_required,
-    UserMixin,
-)
-from flask_mail import Mail
+from flask_login import login_user, LoginManager, current_user, logout_user, login_required
+from flask_mail import Mail, Message
 from werkzeug import security
 from datetime import datetime
-import os
+from utils import User
 
 # Import your database functions and other dependencies
 from gpt import run_model
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue
 
 # Initialize the app and configure the secret key
 app = Flask(__name__)
@@ -54,6 +47,7 @@ def close_db(exception):
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+<<<<<<< HEAD
 # User class for Flask-Login
 class User(UserMixin):
     def __init__(self, username, password, email):
@@ -62,14 +56,13 @@ class User(UserMixin):
         self.password = password
         self.email = email
 
+=======
+>>>>>>> a9e514c2577e46a2e58caac74e3f85c262417d0c
 # Defines how the login manager gets the current user
 @login_manager.user_loader
 def load_user(username):
     db = get_db()
-    user_data = get_user(db, username)
-    if user_data:
-        return User(username=user_data.username, password=user_data.password, email=user_data.email)
-    return None
+    return get_user(db, username)
 
 # Defines what happens when an unauthorized user attempts to access a page that requires login
 @login_manager.unauthorized_handler
@@ -92,7 +85,6 @@ def login():
             flash("Incorrect username or password")
             return jsonify(successful=False) 
         else:
-            user = User(username=user.username, password=user.password, email=user.email)
             login_user(user)
             return jsonify(successful=True)
     elif request.method == 'GET':
@@ -108,16 +100,16 @@ def register():
     username = data.get("username")
     email = data.get("email")
     password = data.get("password")
+    user = User(username, email, security.generate_password_hash(password))
     db = get_db()
-    add_user(db, username, email, security.generate_password_hash(password))
-    user = User(username=username, password=password, email=email)
+    add_user(db, user)
     login_user(user)
     return jsonify(success=True)
 
 # Send a GET request with a username to check if it is taken
 @app.route("/check_username", methods=['GET'])
 def check_username():
-    username = request.args.get("username")
+    username = request.get_json().get("username")
     db = get_db()
     user = get_user(db, username)
     if user is None:
@@ -154,9 +146,10 @@ def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
 
-
+# Take in input and provide it as a prompt to chat model
 @app.route("/chat", methods=['POST'])
 def chat():
+    db = get_db()
     data = request.json
     user_input = data.get("message", "")
     
@@ -165,13 +158,13 @@ def chat():
     
     try:
         # Assuming run_model is a function that processes the chat input
-        bot_response = run_model("chat", user_input)
+        history = get_dialogue(db)
+        bot_response = run_model("chat", history + user_input + data)
+        update_conversation(db, bot_response)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
