@@ -65,7 +65,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
-                const jsonData: Account[] = await response.json();
+                const jsonData: Transaction[] = await response.json();
                 console.log("Fetched data:", jsonData); // Debugging line
                 jsonData.forEach((account) => {
                     console.log(account);
