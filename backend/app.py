@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 
 # Import your database functions and other dependencies
 from gpt import run_model
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_transaction_data, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions, update_conversation, get_dialogue
 
 # Initialize the app and configure the secret key
 app = Flask(__name__)
@@ -155,8 +155,10 @@ def upload_file():
         return jsonify({"error": "No selected file"}), 400
 
     # Save the file or process it as needed
-    file.save(f"/path/to/save/data_in/file.csv")
-
+    file.save("backend\data_in\input_data.csv")
+    db = get_db()
+    add_file_transaction_data(db, "backend\data_in\input_data.csv")
+    
     return jsonify({"message": "File uploaded successfully"}), 200
 
 
