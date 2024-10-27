@@ -1,4 +1,7 @@
 import easyocr
+from PIL import Image
+import pytesseract
+import re
 
 def read_receipt(prices,  items):
     reader = easyocr.Reader(['en'])
@@ -37,6 +40,23 @@ def read_receipt(prices,  items):
 
     return prices
 
+def readReceipt2(path):
+    image = Image.open(path)
+
+    # Extract text using Tesseract
+    text = pytesseract.image_to_string(image)
+
+    # Print the extracted text
+    print("Extracted Text:\n", text)
+
+    # Extract prices
+    prices = re.findall(r'\$\d+\.\d{2}', text)
+    print("Extracted Prices:", prices)
+
+    # Extract items
+    items = re.findall(r'(.+): \$(\d+\.\d{2})', text)
+
 if __name__ == "__main__":
-    prices = read_receipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
+    # prices = readReceipt('./backend/sample/receiptR.png', './backend/sample/receiptL.png')
+    prices = readReceipt2()
     print(prices)
