@@ -35,10 +35,10 @@ export default function HomePage() {
                 <InfoTiles
                     balance={balance}
                     totalSpending={totalSpending}
-                    // spendingIncrease={spendingIncrease}
-                    // transactionCount={filteredData.length}
-                    spendingIncrease={100}
-                    transactionCount={100}
+                    spendingIncrease={spendingIncrease}
+                    transactionCount={filteredData.length}
+                    // spendingIncrease={100}
+                    // transactionCount={100}
                 />
                 {filteredData.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
