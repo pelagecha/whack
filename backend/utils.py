@@ -1,14 +1,11 @@
 from datetime import datetime
 from flask_login import UserMixin
 from classifier import classify_item
-<<<<<<< HEAD
 from read_receipt import read_receipt
-=======
 import pytesseract
 from classifier import classify_item
 from PIL import Image
 from gpt import run_model
->>>>>>> 139581601bcacf678bc9fd73af87fd405a25bb7c
 
 class Transaction:
     def __init__(self, accountno, value, category, year, month, day, hour, minute, ref):

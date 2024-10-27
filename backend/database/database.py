@@ -205,7 +205,7 @@ def get_all_transaction_data(connection):
     column_names = [description[0] for description in cursor.description]
     return [dict(zip(column_names, record)) for record in records]
 
-'''Gets a user tuple from the database'''
+'''Fetches a user record from the database and returns a User object'''
 def get_user(connection, username):
     cursor = connection.cursor()
     cursor.execute('''
@@ -216,7 +216,9 @@ def get_user(connection, username):
     user = cursor.fetchone()
     cursor.close()
     if user:
-        return User(user[0], user[1], user[2])
+        user_obj = User()
+        user_obj.username, user_obj.email, user_obj.password = user
+        return user_obj
     return None
 
 '''Sums a users transactions'''
@@ -259,7 +261,8 @@ def get_user_accounts(connection, username):
     
     column_names = [description[0] for description in cursor2.description]
     return [dict(zip(column_names, account)) for account in accounts]
-    
+
+''''''
 def get_user_transactions(connection, username):
     cursor1 = connection.cursor()
     cursor1.execute('''
