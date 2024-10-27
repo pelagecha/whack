@@ -47,17 +47,6 @@ def close_db(exception):
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-<<<<<<< HEAD
-# User class for Flask-Login
-class User(UserMixin):
-    def __init__(self, username, password, email):
-        self.id = username  # Flask-Login uses 'id' as the unique identifier
-        self.username = username  # Add this line to explicitly define 'username'
-        self.password = password
-        self.email = email
-
-=======
->>>>>>> a9e514c2577e46a2e58caac74e3f85c262417d0c
 # Defines how the login manager gets the current user
 @login_manager.user_loader
 def load_user(username):
@@ -146,7 +135,30 @@ def user_transactions():
     db = get_db()
     data = get_user_transactions(db, current_user.username)
 
+
+
+
+
 # Take in input and provide it as a prompt to chat model
+# @app.route("/chat", methods=['POST'])
+# def chat():
+#     db = get_db()
+#     data = request.json
+#     user_input = data.get("message", "")
+    
+#     if not user_input:
+#         return jsonify({"error": "No message provided"}), 400
+    
+#     try:
+#         # Assuming run_model is a function that processes the chat input
+#         history = get_dialogue(db)
+#         bot_response = run_model("chat", history + user_input + data)
+#         update_conversation(db, bot_response)
+#         print(f"MY response is:{bot_response}")
+#         return jsonify({"response": bot_response})
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
+
 @app.route("/chat", methods=['POST'])
 def chat():
     db = get_db()
@@ -159,8 +171,7 @@ def chat():
     try:
         # Assuming run_model is a function that processes the chat input
         history = get_dialogue(db)
-        bot_response = run_model("chat", history + user_input + data)
-        update_conversation(db, bot_response)
+        bot_response = run_model("chat", user_input)
         print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:

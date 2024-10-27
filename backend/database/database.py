@@ -229,15 +229,19 @@ def get_balance(connection, accountno):
         bal += record[-2]
     return bal
 
-def get_dialogue(connection):
+def get_dialogue(connection): # HACK
     cursor = connection.cursor()
-    cursor.execute('''
-        SELECT dialogue
-        FROM conversation
-    ''')
-    record = cursor.fetchone()[0]
-    cursor.close()
-    return record
+    try:
+        cursor.execute('''
+            SELECT dialogue
+            FROM conversation
+        ''')
+        record = cursor.fetchone()
+        if record:
+            return record[0]
+        return None
+    finally:
+        cursor.close()
 
 '''Returns a dictionary of all of a user's account information'''
 def get_user_accounts(connection, username):
@@ -297,8 +301,9 @@ def update_conversation(connection, history):
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE conversation
-        SET dialogue history
-    ''')
+        SET dialogue = ?;
+    ''', (history,))
+    connection.commit()
     cursor.close()
 
 

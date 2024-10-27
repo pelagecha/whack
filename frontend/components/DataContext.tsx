@@ -47,12 +47,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
             if (!isLoggedIn) return;
 
             try {
-                const response = await fetch(
-                    "http://localhost:5000/user_transactions",
-                    {
-                        credentials: "include",
-                    }
-                );
+                const response = await fetch("http://localhost:5000/home", {
+                    credentials: "include",
+                });
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
