@@ -8,12 +8,21 @@ import React, {
 import { useAuthContext } from "../context/AuthContext";
 
 interface Transaction {
-    accountno: string;
-    category: string;
     id: number;
+    accountno: string;
     ref: string;
-    time: string;
     val: number;
+    time: string;
+    category: string;
+}
+
+interface Account {
+    accountno: string;
+    userid: number;
+    balance: number;
+    type: string;
+    interest_rate: number;
+    reference: string;
 }
 
 interface DataContextProps {
@@ -47,13 +56,17 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
             if (!isLoggedIn) return;
 
             try {
-                const response = await fetch("http://localhost:5000/home", {
-                    credentials: "include",
-                });
+                const response = await fetch(
+                    "http://localhost:5000/user_transactions",
+                    {
+                        credentials: "include",
+                    }
+                );
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
                 const jsonData: Transaction[] = await response.json();
+                console.log("Fetched data:", jsonData); // Debugging line
                 setData(jsonData);
                 setFilteredData(jsonData);
             } catch (error) {
