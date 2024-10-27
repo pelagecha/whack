@@ -57,7 +57,8 @@ login_manager.init_app(app)
 # User class for Flask-Login
 class User(UserMixin):
     def __init__(self, username, password, email):
-        self.id = username
+        self.id = username  # Flask-Login uses 'id' as the unique identifier
+        self.username = username  # Add this line to explicitly define 'username'
         self.password = password
         self.email = email
 
