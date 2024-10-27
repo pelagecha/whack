@@ -2,6 +2,10 @@ from datetime import datetime
 from flask_login import UserMixin
 from classifier import classify_item
 from read_receipt import read_receipt
+import pytesseract
+from classifier import classify_item
+from PIL import Image
+from gpt import run_model
 
 class Transaction:
     def __init__(self, accountno, value, category, year, month, day, hour, minute, ref):
