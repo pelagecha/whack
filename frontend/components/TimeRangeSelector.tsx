@@ -1,9 +1,12 @@
-// TimeRangeSelector.tsx
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./TimeRangeSelector.css";
 
-const TimeRangeSelector: React.FC = () => {
+interface TimeRangeSelectorProps {
+    onChange: (startDate: string, endDate: string) => void;
+}
+
+const TimeRangeSelector: React.FC<TimeRangeSelectorProps> = ({ onChange }) => {
     const [range, setRange] = useState({ start: 0, end: 119 });
     const sliderRef = useRef<HTMLDivElement>(null);
     const [sliderWidth, setSliderWidth] = useState(0);
@@ -47,7 +50,7 @@ const TimeRangeSelector: React.FC = () => {
                 (deltaX / sliderWidth) * totalMonths
             );
 
-            setRange((prevRange) => {
+            setRange(() => {
                 let newStart = initialRange.start;
                 let newEnd = initialRange.end;
 
@@ -102,9 +105,33 @@ const TimeRangeSelector: React.FC = () => {
                 newStart = newEnd - (prevRange.end - prevRange.start);
             }
 
-            return { start: newStart, end: newEnd };
+            // Only update if the range has actually changed
+            if (newStart !== prevRange.start || newEnd !== prevRange.end) {
+                return { start: newStart, end: newEnd };
+            }
+            return prevRange;
         });
     };
+
+    // Call onChange whenever range changes
+    useEffect(() => {
+        const startDate = new Date(
+            months[range.start].year,
+            months[range.start].month,
+            1
+        );
+        const endDate = new Date(
+            months[range.end].year,
+            months[range.end].month + 1,
+            0
+        ); // Last day of the end month
+
+        console.log("Selected Date Range:", startDate, endDate); // Debugging line
+        onChange(
+            startDate.toISOString().split("T")[0],
+            endDate.toISOString().split("T")[0]
+        );
+    }, [range, months, onChange]);
 
     return (
         <div className="time-range-selector" ref={sliderRef}>
@@ -136,7 +163,7 @@ const TimeRangeSelector: React.FC = () => {
                 }}
                 drag="x"
                 dragElastic={0}
-                dragConstraints={{ left: 0, right: 0 }} // Remove inertia by constraining drag
+                dragConstraints={{ left: 0, right: 0 }}
                 onDrag={handleDrag}
                 initial={{ opacity: 0.8 }}
                 animate={{ opacity: 1 }}
@@ -163,4 +190,3 @@ const TimeRangeSelector: React.FC = () => {
 };
 
 export default TimeRangeSelector;
-//

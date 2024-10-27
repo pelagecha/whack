@@ -7,9 +7,8 @@ interface InfoTilesProps {
     spendingIncrease: number;
     transactionCount: number;
 }
-
 const InfoTiles: React.FC<InfoTilesProps> = ({
-    balance,
+    balance, // Default value
     totalSpending,
     spendingIncrease,
     transactionCount,

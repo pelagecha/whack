@@ -1,23 +1,20 @@
-// HomePage.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import SpendingGraph from "../components/SpendingGraph";
 import SpendingLens from "../components/SpendingLens";
 import TimeRangeSelector from "./TimeRangeSelector";
 import Header from "../components/Header";
 import InfoTiles from "../components/InfoTiles";
 
-// Define the Transaction and CategoryData interfaces
 interface Transaction {
-    id: string;
-    date: string;
-    time: string;
-    category: string;
-    amount: number;
+    id: number;
+    accountno: string;
     reference: string;
+    amount: number;
+    date: string;
+    category: string;
 }
-// acc_num, date, time, category, amount, reference;
 
 interface CategoryData {
     category: string;
@@ -33,7 +30,6 @@ export default function HomePage() {
     const [spendingIncrease, setSpendingIncrease] = useState<number>(0);
 
     // Fetch data from the backend API when the component mounts
-    // Fetch data from the backend API when the component mounts
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,9 +38,14 @@ export default function HomePage() {
                     throw new Error("Network response was not ok");
                 }
                 const jsonData: Transaction[] = await response.json();
-                console.log("Fetched data:", jsonData); // Debug: Log fetched data
                 setData(jsonData);
                 setFilteredData(jsonData);
+
+                // Calculate and print the total amount spent
+                const totalSpent = jsonData.reduce((acc, transaction) => {
+                    return acc + Math.abs(transaction.amount);
+                }, 0);
+                console.log("Total Amount Spent:", totalSpent);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -63,10 +64,18 @@ export default function HomePage() {
                 transaction.category &&
                 typeof transaction.amount === "number"
             ) {
+                // Log the transaction amount
+                console.log("Transaction Amount:", transaction.amount);
+
+                // Update the categoryMap for all transactions
                 categoryMap[transaction.category] =
                     (categoryMap[transaction.category] || 0) +
-                    transaction.amount;
-                totalSpent += transaction.amount;
+                    Math.abs(transaction.amount);
+
+                totalSpent += Math.abs(transaction.amount);
+
+                // Log the total spent so far
+                console.log("Total Spent So Far:", totalSpent);
             }
         });
 
@@ -94,14 +103,19 @@ export default function HomePage() {
             const firstHalf = filteredData.slice(0, halfIndex);
             const secondHalf = filteredData.slice(halfIndex);
 
-            const firstHalfSpending = firstHalf.reduce(
-                (acc, transaction) => acc + transaction.amount,
-                0
-            );
-            const secondHalfSpending = secondHalf.reduce(
-                (acc, transaction) => acc + transaction.amount,
-                0
-            );
+            const firstHalfSpending = firstHalf
+                .filter((transaction) => transaction.amount < 0)
+                .reduce(
+                    (acc, transaction) => acc + Math.abs(transaction.amount),
+                    0
+                );
+
+            const secondHalfSpending = secondHalf
+                .filter((transaction) => transaction.amount < 0)
+                .reduce(
+                    (acc, transaction) => acc + Math.abs(transaction.amount),
+                    0
+                );
 
             if (firstHalfSpending > 0) {
                 setSpendingIncrease(
@@ -115,23 +129,30 @@ export default function HomePage() {
 
     // Handle category filter changes
     const handleFilterChange = (selectedCategories: string[]) => {
-        const updatedData = data.filter((transaction) =>
-            selectedCategories.includes(transaction.category)
-        );
-        setFilteredData(updatedData);
+        if (selectedCategories.length === 0) {
+            setFilteredData(data);
+        } else {
+            const updatedData = data.filter((transaction) =>
+                selectedCategories.includes(transaction.category)
+            );
+            setFilteredData(updatedData);
+        }
     };
 
     // Handle time range changes
-    const handleTimeRangeChange = (startDate: string, endDate: string) => {
-        const updatedData = data.filter((transaction) => {
-            const transactionDate = new Date(transaction.date);
-            return (
-                transactionDate >= new Date(startDate) &&
-                transactionDate <= new Date(endDate)
-            );
-        });
-        setFilteredData(updatedData);
-    };
+    const handleTimeRangeChange = useCallback(
+        (startDate: string, endDate: string) => {
+            const updatedData = data.filter((transaction) => {
+                const transactionDate = new Date(transaction.date);
+                return (
+                    transactionDate >= new Date(startDate) &&
+                    transactionDate <= new Date(endDate)
+                );
+            });
+            setFilteredData(updatedData);
+        },
+        [data]
+    );
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
@@ -142,7 +163,7 @@ export default function HomePage() {
                     balance={balance}
                     totalSpending={totalSpending}
                     spendingIncrease={spendingIncrease}
-                    transactionCount={data ? data.length : 0}
+                    transactionCount={data.length}
                 />
 
                 <div className="mb-8">
