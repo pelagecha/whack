@@ -239,7 +239,8 @@ def get_user_accounts(connection, username):
     
     column_names = [description[0] for description in cursor2.description]
     return [dict(zip(column_names, account)) for account in accounts]
-    
+
+''''''
 def get_user_transactions(connection, username):
     cursor1 = connection.cursor()
     cursor1.execute('''

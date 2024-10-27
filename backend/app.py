@@ -8,7 +8,7 @@ import os
 
 
 from gpt import run_model
-from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user
+from database import create_connection, DATABASE_FILE, get_account_transactions, add_file_account_data, add_transaction, init_db, get_all_transaction_data, get_user, add_user, get_user_accounts, get_user_transactions
 
 #Make the app and configure the secret key
 app = Flask(__name__)
@@ -104,12 +104,28 @@ def check_username():
 def logout():
     logout_user()
 
-@app.route("/home", methods=['GET'])
+#Send user data to the home
+@app.route("/home", methods=['GET']) #TODO remove
 @login_required
 def home():
     db = get_db()
     data = get_all_transaction_data(db)
     return jsonify(data)
+
+#Send information on all the accounts owned by the current user
+@app.route("/user_accounts", methods = ['GET'])
+@login_required
+def user_accounts():
+    db = get_db()
+    account_info = get_user_accounts(db, current_user.username)
+    return jsonify(account_info)
+
+#Send information on all the transaction of the current user
+@app.route("/user_transactions", methods = ['GET'])
+@login_required
+def user_transactions():
+    db = get_db()
+    data = get_user_transactions(db, current_user.username)
 
 
 @app.route("/chat", methods=['POST'])
