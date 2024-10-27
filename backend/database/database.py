@@ -287,19 +287,34 @@ def get_user_transactions(connection, username):
     ''', (userid,))
     accountnos = [no[0] for no in cursor2.fetchall()]
     
-    account_transactions = {}
-    for number in accountnos:
-        cursor2.execute('''
+    ret = []
+    for no in accountnos:
+        cursor = connection.cursor()
+        cursor.execute('''
             SELECT *
             FROM transactions
-            WHERE accountno = ?;                
-        ''', (number,))
-        current = cursor2.fetchall()
-        column_names = [description[0] for description in cursor2.description]
-        account_transactions[number] = [dict(zip(column_names, curr)) for curr in current] 
+            WHERE accountno = ?;
+        ''', (no,))
+        records = cursor.fetchall()
+        column_names = [description[0] for description in cursor.description]
+        temp = [dict(zip(column_names, record)) for record in records]
+        ret += temp
+    cursor.close()
+    return ret
     
-    cursor2.close()
-    return account_transactions
+    # account_transactions = {}
+    # for number in accountnos:
+    #     cursor2.execute('''
+    #         SELECT *
+    #         FROM transactions
+    #         WHERE accountno = ?;                
+    #     ''', (number,))
+    #     current = cursor2.fetchall()
+    #     column_names = [description[0] for description in cursor2.description]
+    #     account_transactions[number] = [dict(zip(column_names, curr)) for curr in current] 
+    
+    # cursor2.close()
+    # return account_transactions
 
 def update_conversation(connection, history):
     cursor = connection.cursor()
