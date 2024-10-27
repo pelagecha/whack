@@ -1,4 +1,4 @@
-from flask import Flask, g, redirect, jsonify, flash, request, render_template
+from flask import Flask, g, redirect, jsonify, flash, request
 from flask_cors import CORS
 from flask_login import login_user, LoginManager, current_user, logout_user, login_required
 from flask_mail import Mail, Message
@@ -138,14 +138,15 @@ def send_email(username, subject, template):
     db = get_db()
     user = get_user(db, username)
     
-    email = user.email
-    
-    sender = "Nikita.Pelagecha@warwick.ac.uk"
-    message = Message(subject = subject, sender = ("NOREPLY", sender), recipients = email)
-    
-    message.html = template
-    
-    mail.send(message)
+    if user != None:
+        email = user.email
+        
+        sender = "Nikita.Pelagecha@warwick.ac.uk"
+        message = Message(subject = subject, sender = ("NOREPLY", sender), recipients = email)
+        
+        message.html = template
+        
+        mail.send(message)
 
 if __name__ == '__main__':
     app.run(debug = True)
