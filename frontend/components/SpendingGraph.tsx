@@ -31,12 +31,12 @@ Chart.register(
 );
 
 interface Transaction {
-    id: string;
-    date: string;
-    time: string;
+    accountno: string;
     category: string;
-    amount: number;
-    reference: string;
+    id: number;
+    ref: string;
+    time: string;
+    val: number;
 }
 
 interface SpendingGraphProps {
@@ -49,28 +49,28 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
 
     // Define a threshold for unusual spending
     const threshold = useMemo(() => {
-        const amounts = data.map((item) => item.amount);
+        const amounts = data.map((item) => item.val);
         return ss.quantile(amounts, 0.9); // Top 10% as threshold
     }, [data]);
 
     // Sort data by date
     const sortedData = useMemo(() => {
         return [...data].sort(
-            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+            (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
         );
     }, [data]);
 
     // Calculate regression data
     const regressionData = useMemo(() => {
         if (sortedData.length < 2) return [];
-        const startDate = new Date(sortedData[0].date);
+        const startDate = new Date(sortedData[0].time);
         const xValues = sortedData.map((item) =>
             Math.floor(
-                (new Date(item.date).getTime() - startDate.getTime()) /
+                (new Date(item.time).getTime() - startDate.getTime()) /
                     (1000 * 60 * 60 * 24)
             )
         );
-        const yValues = sortedData.map((item) => item.amount);
+        const yValues = sortedData.map((item) => item.val);
         const linearRegression = ss.linearRegression(
             xValues.map((x, i) => [x, yValues[i]])
         );
@@ -81,29 +81,29 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
     // Prepare data with indicator points and regression line
     const chartData = useMemo(() => {
         return {
-            labels: sortedData.map((item) => item.date),
+            labels: sortedData.map((item) => item.time),
             datasets: [
                 {
                     label: "Spending",
-                    data: sortedData.map((item) => item.amount),
+                    data: sortedData.map((item) => item.val),
                     fill: true,
                     backgroundColor: "rgba(59, 130, 246, 0.1)", // Light blue fill
                     borderColor: "rgba(59, 130, 246, 1)", // Blue border
                     tension: 0.4, // Smooth curves
                     pointRadius: sortedData.map((item) =>
-                        item.amount > threshold ? 6 : 3
+                        item.val > threshold ? 6 : 3
                     ),
                     pointBackgroundColor: sortedData.map((item) =>
-                        item.amount > threshold ? "#ef4444" : "#3b82f6"
+                        item.val > threshold ? "#ef4444" : "#3b82f6"
                     ),
                     pointBorderColor: sortedData.map((item) =>
-                        item.amount > threshold ? "#f87171" : "#60a5fa"
+                        item.val > threshold ? "#f87171" : "#60a5fa"
                     ),
                     pointHoverRadius: sortedData.map((item) =>
-                        item.amount > threshold ? 8 : 5
+                        item.val > threshold ? 8 : 5
                     ),
                     pointHoverBackgroundColor: sortedData.map((item) =>
-                        item.amount > threshold ? "#dc2626" : "#2563eb"
+                        item.val > threshold ? "#dc2626" : "#2563eb"
                     ),
                     borderWidth: 2,
                 },

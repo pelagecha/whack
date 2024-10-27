@@ -8,12 +8,12 @@ import Header from "../components/Header";
 import InfoTiles from "../components/InfoTiles";
 
 interface Transaction {
-    id: number;
     accountno: string;
-    reference: string;
-    amount: number;
-    date: string;
     category: string;
+    id: number;
+    ref: string;
+    time: string;
+    val: number;
 }
 
 interface CategoryData {
@@ -43,7 +43,7 @@ export default function HomePage() {
 
                 // Calculate and print the total amount spent
                 const totalSpent = jsonData.reduce((acc, transaction) => {
-                    return acc + Math.abs(transaction.amount);
+                    return acc + Math.abs(transaction.val);
                 }, 0);
                 console.log("Total Amount Spent:", totalSpent);
             } catch (error) {
@@ -60,19 +60,16 @@ export default function HomePage() {
         let totalSpent = 0;
 
         data.forEach((transaction) => {
-            if (
-                transaction.category &&
-                typeof transaction.amount === "number"
-            ) {
+            if (transaction.category && typeof transaction.val === "number") {
                 // Log the transaction amount
-                console.log("Transaction Amount:", transaction.amount);
+                console.log("Transaction Amount:", transaction.val);
 
                 // Update the categoryMap for all transactions
                 categoryMap[transaction.category] =
                     (categoryMap[transaction.category] || 0) +
-                    Math.abs(transaction.amount);
+                    Math.abs(transaction.val);
 
-                totalSpent += Math.abs(transaction.amount);
+                totalSpent += Math.abs(transaction.val);
 
                 // Log the total spent so far
                 console.log("Total Spent So Far:", totalSpent);
@@ -88,11 +85,11 @@ export default function HomePage() {
         setTotalSpending(totalSpent);
 
         const income = data
-            .filter((transaction) => transaction.amount > 0)
-            .reduce((acc, transaction) => acc + transaction.amount, 0);
+            .filter((transaction) => transaction.val > 0)
+            .reduce((acc, transaction) => acc + transaction.val, 0);
         const expenses = data
-            .filter((transaction) => transaction.amount < 0)
-            .reduce((acc, transaction) => acc + transaction.amount, 0);
+            .filter((transaction) => transaction.val < 0)
+            .reduce((acc, transaction) => acc + transaction.val, 0);
         setBalance(income + expenses);
     }, [data]);
 
@@ -104,16 +101,16 @@ export default function HomePage() {
             const secondHalf = filteredData.slice(halfIndex);
 
             const firstHalfSpending = firstHalf
-                .filter((transaction) => transaction.amount < 0)
+                .filter((transaction) => transaction.val < 0)
                 .reduce(
-                    (acc, transaction) => acc + Math.abs(transaction.amount),
+                    (acc, transaction) => acc + Math.abs(transaction.val),
                     0
                 );
 
             const secondHalfSpending = secondHalf
-                .filter((transaction) => transaction.amount < 0)
+                .filter((transaction) => transaction.val < 0)
                 .reduce(
-                    (acc, transaction) => acc + Math.abs(transaction.amount),
+                    (acc, transaction) => acc + Math.abs(transaction.val),
                     0
                 );
 
