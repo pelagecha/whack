@@ -91,7 +91,7 @@ def login():
             flash("Incorrect username or password")
             return jsonify(successful=False) 
         else:
-            user = User(username=user_data.username, password=user_data.password, email=user_data.email)
+            user = User(username=user.username, password=user.password, email=user.email)
             login_user(user)
             return jsonify(successful=True)
     elif request.method == 'GET':
