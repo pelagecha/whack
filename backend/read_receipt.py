@@ -3,7 +3,7 @@ from PIL import Image
 import pytesseract
 import re
 
-def readReceipt(prices,  items):
+def read_receipt(prices,  items):
     reader = easyocr.Reader(['en'])
 
     result = reader.readtext(prices, allowlist = '.0123456789')

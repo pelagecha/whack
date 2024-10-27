@@ -1,5 +1,3 @@
-// frontend/components/SpendingGraph.tsx
-
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -19,6 +17,7 @@ import { Line } from "react-chartjs-2";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
 import * as ss from "simple-statistics";
+import { useDataContext } from "./DataContext";
 
 Chart.register(
     CategoryScale,
@@ -32,70 +31,68 @@ Chart.register(
     LineController
 );
 
-interface IData {
-    date: string;
-    amount: number;
-}
-
-interface SpendingGraphProps {
-    data: IData[];
-}
-
-const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
+const SpendingGraph: React.FC = () => {
+    const { filteredData: data } = useDataContext(); // Use data from context
+    console.log("Graph Data:", data); // Debugging line
     const [isExpanded, setIsExpanded] = useState(false);
 
     // Define a threshold for unusual spending
     const threshold = useMemo(() => {
-        const amounts = data.map((item) => item.amount);
+        const amounts = data.map((item) => item.val);
         return ss.quantile(amounts, 0.9); // Top 10% as threshold
+    }, [data]);
+
+    // Sort data by date
+    const sortedData = useMemo(() => {
+        return [...data].sort(
+            (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime()
+        );
     }, [data]);
 
     // Calculate regression data
     const regressionData = useMemo(() => {
-        if (data.length < 2) return [];
-        // Convert dates to numerical values (e.g., days since start)
-        const startDate = new Date(data[0].date);
-        const xValues = data.map((item) =>
+        if (sortedData.length < 2) return [];
+        const startDate = new Date(sortedData[0].time);
+        const xValues = sortedData.map((item) =>
             Math.floor(
-                (new Date(item.date).getTime() - startDate.getTime()) /
+                (new Date(item.time).getTime() - startDate.getTime()) /
                     (1000 * 60 * 60 * 24)
             )
         );
-        const yValues = data.map((item) => item.amount);
+        const yValues = sortedData.map((item) => item.val);
         const linearRegression = ss.linearRegression(
             xValues.map((x, i) => [x, yValues[i]])
         );
         const linearRegressionLine = ss.linearRegressionLine(linearRegression);
         return xValues.map((x) => linearRegressionLine(x));
-    }, [data]);
+    }, [sortedData]);
 
     // Prepare data with indicator points and regression line
     const chartData = useMemo(() => {
         return {
-            labels: data.map((item) => item.date),
+            labels: sortedData.map((item) => item.time),
             datasets: [
                 {
                     label: "Spending",
-                    data: data.map((item) => item.amount),
+                    data: sortedData.map((item) => item.val),
                     fill: true,
                     backgroundColor: "rgba(59, 130, 246, 0.1)", // Light blue fill
                     borderColor: "rgba(59, 130, 246, 1)", // Blue border
                     tension: 0.4, // Smooth curves
-                    pointRadius: data.map((item) =>
-                        item.amount > threshold ? 6 : 3
+                    pointRadius: sortedData.map((item) =>
+                        item.val > threshold ? 6 : 3
                     ),
-                    pointBackgroundColor: data.map(
-                        (item) =>
-                            item.amount > threshold ? "#ef4444" : "#3b82f6" // Red for high spending
+                    pointBackgroundColor: sortedData.map((item) =>
+                        item.val > threshold ? "#ef4444" : "#3b82f6"
                     ),
-                    pointBorderColor: data.map((item) =>
-                        item.amount > threshold ? "#f87171" : "#60a5fa"
+                    pointBorderColor: sortedData.map((item) =>
+                        item.val > threshold ? "#f87171" : "#60a5fa"
                     ),
-                    pointHoverRadius: data.map((item) =>
-                        item.amount > threshold ? 8 : 5
+                    pointHoverRadius: sortedData.map((item) =>
+                        item.val > threshold ? 8 : 5
                     ),
-                    pointHoverBackgroundColor: data.map((item) =>
-                        item.amount > threshold ? "#dc2626" : "#2563eb"
+                    pointHoverBackgroundColor: sortedData.map((item) =>
+                        item.val > threshold ? "#dc2626" : "#2563eb"
                     ),
                     borderWidth: 2,
                 },
@@ -106,11 +103,11 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
                     borderColor: "#10b981", // Green for trend line
                     borderDash: [5, 5],
                     tension: 0.4,
-                    pointRadius: 0, // Hide points for trend line
+                    pointRadius: 0,
                 },
             ],
         };
-    }, [data, regressionData, threshold]);
+    }, [sortedData, regressionData, threshold]);
 
     const options = useMemo(() => {
         return {
@@ -123,7 +120,7 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
                         font: {
                             size: 14,
                         },
-                        color: "#374151", // Dark gray
+                        color: "#374151",
                     },
                 },
                 title: {
@@ -168,7 +165,7 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
                         color: "#374151",
                     },
                     grid: {
-                        display: false, // Hide vertical gridlines
+                        display: false,
                     },
                     ticks: {
                         color: "#374151",
@@ -189,7 +186,7 @@ const SpendingGraph: React.FC<SpendingGraphProps> = ({ data }) => {
                         color: "#374151",
                     },
                     grid: {
-                        color: "rgba(156, 163, 175, 0.2)", // Light gray gridlines
+                        color: "rgba(156, 163, 175, 0.2)",
                         borderDash: [3, 3],
                     },
                     ticks: {

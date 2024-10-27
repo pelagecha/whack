@@ -1,6 +1,6 @@
-pandas
 python-multipart
 transformers
 torch
 flask
 flask-cors
+easyocr

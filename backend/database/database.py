@@ -151,7 +151,9 @@ def get_all_transaction_data(connection):
     ''')
     records = cursor.fetchall()
     cursor.close()
-    return records
+    
+    column_names = [description[0] for description in cursor.description]
+    return [dict(zip(column_names, record)) for record in records]
 
 if __name__ == "__main__":
     connection = create_connection("finance.db")

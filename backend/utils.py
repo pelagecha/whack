@@ -1,6 +1,6 @@
 from datetime import datetime
 from classifier import classify_item
-from readReceipt import readReceipt
+from backend.read_receipt import read_receipt
 
 class Transaction:
     def __init__(self, accountno, value, category, year, month, day, hour, minute, ref):
@@ -30,7 +30,7 @@ class Account:
         return self.balance * ((1 + self.interest_rate)**months)
     
 def image_to_db_entry(file_path, account_no):
-    named_prices = readReceipt(file_path, file_path)
+    named_prices = read_receipt(file_path, file_path)
 
     cum_price = 0
     cum_names = ""
