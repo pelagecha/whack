@@ -11,14 +11,6 @@ const ChatUI: React.FC = () => {
     const [uploadedImage, setUploadedImage] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
-    useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
-
     const handleSend = async () => {
         if (!input.trim()) return;
 

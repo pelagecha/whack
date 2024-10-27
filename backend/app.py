@@ -145,7 +145,7 @@ def home():
 
 @app.route("/chat", methods=['POST'])
 def chat():
-    data = request.get_json()
+    data = request.json
     user_input = data.get("message", "")
     
     if not user_input:
@@ -154,13 +154,15 @@ def chat():
     try:
         db = get_db()
         # Replace 0 with the actual account number
-        transactions = get_account_transactions(db, 0)
+        data = str(get_account_transactions(db, 0))
         # Assuming run_model is a function that processes the chat input
-        bot_response = run_model("chat", user_input + str(transactions))
-        print(f"My response is: {bot_response}")
+        bot_response = run_model("chat", user_input + data)
+        print(f"MY response is:{bot_response}")
         return jsonify({"response": bot_response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 
 if __name__ == '__main__':

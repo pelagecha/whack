@@ -10,11 +10,6 @@ import Login from "./Login";
 
 export default function HomePage() {
     const { isLoggedIn } = useAuthContext();
-
-    if (!isLoggedIn) {
-        return <Login />;
-    }
-
     const {
         filteredData,
         categoriesData,
@@ -24,6 +19,10 @@ export default function HomePage() {
         handleFilterChange,
         handleTimeRangeChange,
     } = useDataContext();
+
+    if (!isLoggedIn) {
+        return <Login />;
+    }
 
     return (
         <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 to-blue-100">
