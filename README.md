@@ -1,32 +1,38 @@
 # whack
 
-## Setup
+
+
+## Setup using bash
 Run ```
     ./setup.sh
     ```
-    or
+    for MacOs and Linux, or
     ```
     ./setup.ps1
-    ``` depending on your os.
+    ```
+    for Windows.
+
 
 ## After Setup
 
-Run in two different terminals ``` 
-                                ./run_flask(.sh/.ps1)
-                                ```
-                                and
-                                ``` 
-                                ./run_next(.sh/.ps1)
-                                ```.
+Run in two different terminals 
+    ``` 
+    ./run_flask(.sh/.ps1)
+    ```
+    and
+    ``` 
+    ./run_next(.sh/.ps1)
+    ```
 
-### Testing
+### Future testing
 
--   **Backend Testing:**
-
+-   **Backend:**
+    ```
     -   cd backend/
     -   python app.py
+    ```
 
--   **Frontend Testing:**
+-   **Frontend:**
     ```
     -   cd frontend/
     -   npm run dev
