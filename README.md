@@ -23,9 +23,11 @@ Run in two different terminals ```
 
 -   **Backend Testing:**
 
-    -   Add your backend testing instructions here.
+    -   cd backend/
+    -   python app.py
 
 -   **Frontend Testing:**
     ```
-    npm test
+    -   cd frontend/
+    -   npm run dev
     ```
